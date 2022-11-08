@@ -17,12 +17,12 @@ class Usuarios extends BaseController
         // $this->grupoModel = new \App\Models\GrupoModel();
     }
 
-    public function usuarios()
+    public function index()
     {
         $data = [
             'titulo' => 'Usuários',
         ];
-        return view('Adm/usuarios', $data);
+        return view('Usuarios/index', $data);
     }
 
     public function recuperaUsuarios()

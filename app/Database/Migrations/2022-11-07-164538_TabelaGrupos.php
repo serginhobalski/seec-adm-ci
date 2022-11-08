@@ -4,7 +4,7 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class TabelaRelatorio extends Migration
+class TabelaGrupos extends Migration
 {
     public function up()
     {
@@ -19,36 +19,13 @@ class TabelaRelatorio extends Migration
                 'type'       => 'VARCHAR',
                 'constraint' => '100',
             ],
-            'local' => [
+            'descricao' => [
                 'type'       => 'VARCHAR',
-                'constraint' => '100',
-                'null' => true,
-                'default' => null,
+                'constraint' => '240',
             ],
-            'mes' => [
-                'type'       => 'VARCHAR',
-                'constraint' => '20',
-            ],
-            'ano' => [
-                'type'       => 'VARCHAR',
-                'constraint' => '10',
-            ],
-            'valor' => [
-                'type'       => 'DECIMAL',
-                'constraint' => '10,2',
-            ],
-            'comprovante' => [
-                'type'       => 'VARCHAR',
-                'constraint' => '255',
-            ],
-            'relatorio' => [
-                'type'       => 'VARCHAR',
-                'constraint' => '255',
-            ],
-            'obs' => [
-                'type'       => 'TEXT',
-                'null' => true,
-                'default' => null,
+            'exibir' => [
+                'type'       => 'BOOLEAN',
+                'null' => false,
             ],
             'criado_em' => [
                 'type'       => 'TIMESTAMP',
@@ -65,11 +42,13 @@ class TabelaRelatorio extends Migration
             ],
         ]);
         $this->forge->addKey('id', true);
-        $this->forge->createTable('relatorios');
+        $this->forge->addUniqueKey('nome');
+
+        $this->forge->createTable('grupos');
     }
 
     public function down()
     {
-        $this->forge->dropTable('relatorios');
+        $this->forge->dropTable('grupos');
     }
 }

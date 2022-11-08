@@ -14,23 +14,21 @@
 
 <!-- Custom header -->
 <?php echo $this->section('header'); ?>
-<!-- Header content here -->
-<h1><?php echo $titulo; ?></h1>
 <?php $this->endSection(); ?>
 
 <!-- Custom page content -->
 <?php echo $this->section('conteudo'); ?>
 
 <div class="table-responsive radius-md">
-    <table id="ajaxTableUsuarios" class="table" style="width: 100%;">
+    <table id="ajaxTableRelatorios" class="table" style="width: 100%;">
         <thead>
             <tr>
-                <th class="text-primary">#</th>
+                <th class="text-primary">Id</th>
                 <th class="text-primary">Usuário</th>
                 <th class="text-primary">Local</th>
-                <th class="text-primary">Login</th>
-                <th class="text-primary">Tipo</th>
-                <!-- <th class="text-primary">Ações</th> -->
+                <th class="text-primary">Mês</th>
+                <th class="text-primary">Ano</th>
+                <th class="text-primary">Valor</th>
             </tr>
         </thead>
 
@@ -78,13 +76,13 @@
     }
 
     $(document).ready(function() {
-        $('#ajaxTableUsuarios').DataTable({
+        $('#ajaxTableRelatorios').DataTable({
 
             "oLanguage": DATATABLE_PTBR,
 
-            ajax: "<?php echo site_url('usuarios/recuperausuarios'); ?>",
+            ajax: "<?php echo site_url('relatorios/recuperarelatorios'); ?>",
             columns: [{
-                    data: 'imagem'
+                    data: 'id'
                 },
                 {
                     data: 'nome'
@@ -93,10 +91,13 @@
                     data: 'local'
                 },
                 {
-                    data: 'login'
+                    data: 'mes'
                 },
                 {
-                    data: 'admin'
+                    data: 'ano'
+                },
+                {
+                    data: 'valor'
                 },
             ],
         });

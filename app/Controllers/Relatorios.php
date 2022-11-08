@@ -13,12 +13,12 @@ class Relatorios extends BaseController
         $this->relatorioModel = new \App\Models\RelatorioModel();
     }
 
-    public function relatorios()
+    public function index()
     {
         $data = [
             'titulo' => 'Relatórios',
         ];
-        return view('Adm/relatorios', $data);
+        return view('Relatorios/index', $data);
     }
 
     public function recuperaRelatorios()

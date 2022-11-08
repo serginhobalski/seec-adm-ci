@@ -222,10 +222,19 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="/usuarios" class="ttr-material-button">
+                        <a href="#" class="ttr-material-button">
                             <span class="ttr-icon"><i class="ti-bookmark-alt"></i></span>
                             <span class="ttr-label">Usuários</span>
+                            <span class="ttr-arrow-icon"><i class="fa fa-angle-down"></i></span>
                         </a>
+                        <ul>
+                            <li>
+                                <a href="/usuarios" class="ttr-material-button"><span class="ttr-label">Listar Usuários</span></a>
+                            </li>
+                            <li>
+                                <a href="/grupos" class="ttr-material-button"><span class="ttr-label">Grupos de acesso</span></a>
+                            </li>
+                        </ul>
                     </li>
                     <li>
                         <a href="/relatorios" class="ttr-material-button">
