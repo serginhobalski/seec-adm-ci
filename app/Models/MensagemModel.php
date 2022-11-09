@@ -9,7 +9,7 @@ class MensagemModel extends Model
     protected $table            = 'mensagems';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
-    protected $returnType       = 'array';
+    protected $returnType       = 'app\Etities\Mensagem';
     protected $useSoftDeletes   = true;
     protected $protectFields    = true;
     protected $allowedFields    = [

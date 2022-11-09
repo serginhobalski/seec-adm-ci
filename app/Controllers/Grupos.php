@@ -13,12 +13,12 @@ class Grupos extends BaseController
         $this->grupoModel = new \App\Models\GrupoModel();
     }
 
-    public function grupos()
+    public function index()
     {
         $data = [
             'titulo' => 'Grupos de Acesso',
         ];
-        return view('Adm/grupos', $data);
+        return view('Grupos/index', $data);
     }
 
     public function recuperaGrupos()

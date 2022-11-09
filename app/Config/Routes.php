@@ -52,7 +52,7 @@ $routes->get('/cursos', 'Adm::cursos');
 $routes->get('/mensagens', 'Adm::mensagens');
 $routes->get('/calendario', 'Adm::calendario');
 $routes->get('/usuarios', 'Usuarios::index');
-$routes->get('/grupos', 'Grupos::grupos');
+$routes->get('/grupos', 'Grupos::index');
 $routes->get('/relatorios', 'Relatorios::index');
 $routes->get('/perfil', 'Adm::perfil');
 
