@@ -35,7 +35,7 @@ class TabelaUsuarios extends Migration
                 'type'       => 'VARCHAR',
                 'constraint' => '200',
             ],
-            'password' => [
+            'password_hash' => [
                 'type'       => 'VARCHAR',
                 'constraint' => '250',
             ],

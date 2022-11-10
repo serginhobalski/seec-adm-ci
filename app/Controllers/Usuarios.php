@@ -4,6 +4,9 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 
+use App\Entities\Usuario;
+use App\Models\UsuarioModel;
+
 class Usuarios extends BaseController
 {
     private $usuarioModel;
@@ -112,14 +115,163 @@ class Usuarios extends BaseController
             return redirect()->back();
         }
 
+        // Enviar hash do token do form
         $retorno['token'] = csrf_hash();
 
+        // Recuperar o post da requisição
         $post = $this->request->getPost();
 
+        // Validar a existência do usuário
         $usuario = $this->buscaUsuarioOu404($post['id']);
 
+        // Remover o campo 'password' se o campo não foi preenchido
+        if (empty($post['password'])) {
+
+            unset($post['password']);
+            unset($post['password_confirmation']);
+        }
+
+        // preencher os atributos do usuários com os valores do POST
         $usuario->fill($post);
 
+        if ($usuario->hasChanged() == false) {
+            $retorno['info'] = 'Não existem dados para serem atualizados.';
+            return $this->response->setJSON($retorno);
+        }
+
+        if ($this->usuarioModel->protect(false)->save($usuario)) {
+
+            session()->setFlashdata('sucesso', 'Dados salvos com sucesso!');
+
+            return $this->response->setJSON($retorno);
+        }
+
+        $retorno['erro'] = 'Por favor verifique os erros abaixo.';
+        $retorno['erros_model'] = $this->usuarioModel->errors();
+
+
+        // Retorno para o AJAX request
+        return $this->response->setJSON($retorno);
+    }
+
+    public function editarImagem(int $id = null)
+    {
+        $usuario = $this->buscaUsuarioOu404($id);
+
+        $data = [
+            'titulo' => "Alterando imagem de " . esc($usuario->nome),
+            'usuario' => $usuario,
+        ];
+
+        return view('Usuarios/editar_imagem', $data);
+    }
+
+    public function upload(int $id = null)
+    {
+        if (!$this->request->isAJAX()) {
+
+            return redirect()->back();
+        }
+
+        // Enviar hash do token do form
+        $retorno['token'] = csrf_hash();
+
+        $validacao = service('validation');
+
+        $regras = [
+            'imagem' => 'uploaded[imagem]|max_size[imagem,1024]|ext_in[imagem,png,jpg,jpeg,gif]',
+        ];
+
+        $mensagens = [   // Errors
+            'imagem' => [
+                'uploaded' => 'Por favor selecione uma imagem.',
+                'max_size' => 'Por favor selecione uma de no máximo 1MB.',
+                'ext_info' => 'Tipo de arquivo não suportado.',
+            ],
+        ];
+
+
+        $validacao->setRules($regras, $mensagens);
+
+
+        // Recuperar o post da requisição
+        $post = $this->request->getPost();
+
+        // Validar a existência do usuário
+        $usuario = $this->buscaUsuarioOu404($post['id']);
+
+        // Remover o campo 'password' se o campo não foi preenchido
+        if (empty($post['password'])) {
+
+            unset($post['password']);
+            unset($post['password_confirmation']);
+        }
+
+        // preencher os atributos do usuários com os valores do POST
+        $usuario->fill($post);
+
+        if ($usuario->hasChanged() == false) {
+            $retorno['info'] = 'Não existem dados para serem atualizados.';
+            return $this->response->setJSON($retorno);
+        }
+
+        if ($this->usuarioModel->protect(false)->save($usuario)) {
+
+            session()->setFlashdata('sucesso', 'Dados salvos com sucesso!');
+
+            return $this->response->setJSON($retorno);
+        }
+
+        $retorno['erro'] = 'Por favor verifique os erros abaixo.';
+        $retorno['erros_model'] = $this->usuarioModel->errors();
+
+
+        // Retorno para o AJAX request
+        return $this->response->setJSON($retorno);
+    }
+
+    public function criar()
+    {
+        $usuario = new Usuario();
+
+        $data = [
+            'titulo' => 'Cadastro de usuário',
+            'usuario' => $usuario,
+        ];
+        return view('Usuarios/criar', $data);
+    }
+
+    public function cadastrar(int $id = null)
+    {
+        if (!$this->request->isAJAX()) {
+
+            return redirect()->back();
+        }
+
+        // Enviar hash do token do form
+        $retorno['token'] = csrf_hash();
+
+        // Recuperar o post da requisição
+        $post = $this->request->getPost();
+
+        // Criar novo objeto da entidade Usuário
+        $usuario = new Usuario($post);
+
+
+        if ($this->usuarioModel->protect(false)->save($usuario)) {
+
+            session()->setFlashdata('sucesso', 'Dados salvos com sucesso!<br> <a href=' . site_url('usuarios/criar') . ' class="btn mt-2"><i class="fa fa-save"></i> Cadastrar outro usuário</a>');
+
+            $retorno['id'] = $this->usuarioModel->getInsertID();
+
+            return $this->response->setJSON($retorno);
+        }
+
+        $retorno['erro'] = 'Por favor verifique os erros abaixo.';
+        $retorno['erros_model'] = $this->usuarioModel->errors();
+
+
+        // Retorno para o AJAX request
         return $this->response->setJSON($retorno);
     }
 }

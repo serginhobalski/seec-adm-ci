@@ -465,7 +465,7 @@ class UsuarioSeeder extends Seeder
 
         foreach ($usuarios as $usuario) {
             // Simple Queries
-            $this->db->query('INSERT INTO usuarios (nome, local, login, ativo, admin, password, criado_em) VALUES(:nome:, :local:, :login:, :ativo:, :admin:, :password:, :criado_em:)', $usuario);
+            $this->db->query('INSERT INTO usuarios (nome, local, login, ativo, admin, password_hash, criado_em) VALUES(:nome:, :local:, :login:, :ativo:, :admin:, :password:, :criado_em:)', $usuario);
 
             // Using Query Builder
             // $this->db->table('usuarios')->insert($usuario);

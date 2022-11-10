@@ -44,11 +44,15 @@
     <div class="form-group row">
         <label class="col-sm-4 col-form-label">Usuário Ativo</label>
         <div class="col-sm-8">
-            <input type="hidden" name="ativo" value="0">
-
-            <input class="form-control" type="checkbox" name="ativo" id="ativo" <?php if ($usuario->ativo == true) : ?> checked <?php endif; ?>>
-
-            <!-- <label class="col-form-label" for="ativo">Usuário Ativo</label> -->
+            <select name="ativo" id="ativo">
+                <?php if ($usuario->ativo == true) : ?>
+                    <option value="1" selected>Ativo</option>
+                    <option value="0">Inativo</option>
+                <?php else : ?>
+                    <option value="1">Ativo</option>
+                    <option value="0" selected>Inativo</option>
+                <?php endif; ?>
+            </select>
         </div>
     </div>
 

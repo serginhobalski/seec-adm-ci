@@ -24,8 +24,7 @@
         <thead>
             <tr>
                 <th class="text-primary">Id</th>
-                <th class="text-primary">Usuário</th>
-                <th class="text-primary">Local</th>
+                <th class="text-primary">Unidade</th>
                 <th class="text-primary">Mês</th>
                 <th class="text-primary">Ano</th>
                 <th class="text-primary">Valor</th>
@@ -86,9 +85,6 @@
                 },
                 {
                     data: 'nome'
-                },
-                {
-                    data: 'local'
                 },
                 {
                     data: 'mes'

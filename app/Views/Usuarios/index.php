@@ -21,6 +21,7 @@
 <!-- Custom page content -->
 <?php echo $this->section('conteudo'); ?>
 
+<a href="<?php echo site_url('usuarios/criar'); ?>" class="btn mb-2"><i class="fa fa-save"> Cadastrar Novo Usuário</i></a>
 <div class="table-responsive radius-md">
     <table id="ajaxTableUsuarios" class="table" style="width: 100%;">
         <thead>

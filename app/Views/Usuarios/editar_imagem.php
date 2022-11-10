@@ -28,9 +28,15 @@
 
         </div>
 
-        <?php echo form_open('/', ['id' => 'form'], ['id' => "$usuario->id"]) ?>
+        <?php echo form_open_multipart('/', ['id' => 'form'], ['id' => "$usuario->id"]) ?>
 
-        <?php echo $this->include('Usuarios/_form.php'); ?>
+        <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Escolha uma imagem</label>
+            <div class="col-sm-8">
+                <input class="form-control" type="file" name="imagem">
+            </div>
+        </div>
+
 
         <div class="form-group mt-5 mb-4 d-flex">
 
@@ -62,7 +68,7 @@
             $.ajax({
 
                 type: 'POST',
-                url: '<?php echo site_url('usuarios/atualizar'); ?>',
+                url: '<?php echo site_url('usuarios/upload'); ?>',
                 data: new FormData(this),
                 dataType: 'json',
                 contentType: false,
@@ -80,14 +86,9 @@
 
                     if (!response.erro) {
 
+                        // Tudo certo! Pode redirecionar!
+                        window.location.href = "<?php echo site_url("usuarios/exibir/$usuario->id"); ?>";
 
-                        if (response.info) {
-                            $("#response").html('<div class="alert alert-info">' + response.info + '</div>');
-
-                        } else {
-                            // Tudo certo! Pode redirecionar!
-                            window.location.href = "<?php echo site_url("usuarios/exibir/$usuario->id"); ?>";
-                        }
 
                     }
                     if (response.erro) {
