@@ -31,15 +31,15 @@
             <div class="widget-inner">
                 <form class="edit-profile m-b30">
                     <div class="">
-                        <div class="form-group row">
-                            <div class="col-12 card-img-top">
+                        <div class="form-group row text-center">
+                            <div class="col-6 card-img-top">
                                 <?php if ($usuario->imagem == null) : ?>
                                     <img src="<?php echo site_url('src/') ?>assets/images/itq.jpg" width="200px" alt=""><br>
                                 <?php else : ?>
                                     <img src="<?php echo site_url("usuarios/imagem/$usuario->imagem"); ?>" width="200px" alt=""><br>
                                 <?php endif; ?>
+                                <a href="<?php echo site_url("usuarios/editarimagem/$usuario->id"); ?>" class="btn btn-outline-info btn-sm mt-2">Alterar imagem</a>
                             </div>
-                            <a href="<?php echo site_url("usuarios/editarimagem/$usuario->id"); ?>" class="btn btn-outline-info btn-sm">Alterar imagem</a>
                         </div>
 
                         <div class="seperator"></div>

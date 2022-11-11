@@ -31,10 +31,11 @@ class GrupoModel extends Model
     ];
     protected $validationMessages   = [
         'nome' => [
-            'required' => 'Coloque o nome do grupo.',
+            'required' => '<b class="text-danger">Coloque o nome do grupo.</b>',
+            'is_unique' => '<b class="text-danger">Este nome de grupo já está em uso.</b>',
         ],
         'descricao ' => [
-            'required' => 'Coloque uma descrição para o grupo.',
+            'required' => '<b class="text-danger">Coloque uma descrição para o grupo.</b>',
         ],
     ];
 }

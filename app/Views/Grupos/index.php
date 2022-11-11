@@ -20,6 +20,7 @@
 
 <!-- Custom page content -->
 <?php echo $this->section('conteudo'); ?>
+<a href="<?php echo site_url('grupos/criar'); ?>" class="btn mb-2"><i class="fa fa-save"> Criar Grupo de Acesso</i></a>
 
 <div class="table-responsive radius-md">
     <table id="ajaxTableGrupos" class="table" style="width: 100%;">
@@ -28,6 +29,7 @@
                 <th class="text-primary">ID</th>
                 <th class="text-primary">Grupo</th>
                 <th class="text-primary">Descrição</th>
+                <th class="text-primary">Status</th>
             </tr>
         </thead>
 
@@ -81,10 +83,16 @@
 
             ajax: "<?php echo site_url('grupos/recuperagrupos'); ?>",
             columns: [{
+                    data: 'id'
+                },
+                {
                     data: 'nome'
                 },
                 {
                     data: 'descricao'
+                },
+                {
+                    data: 'exibir'
                 },
             ],
         });
