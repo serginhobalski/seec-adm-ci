@@ -8,10 +8,14 @@ use App\Entities\Grupo;
 class Grupos extends BaseController
 {
     private $grupoModel;
+    private $grupoPermissaoModel;
+    private $permissaoModel;
 
     public function __construct()
     {
         $this->grupoModel = new \App\Models\GrupoModel();
+        $this->grupoPermissaoModel = new \App\Models\GrupoPermissaoModel();
+        $this->permissaoModel = new \App\Models\PermissaoModel();
     }
 
     public function index()
@@ -192,6 +196,50 @@ class Grupos extends BaseController
         ];
 
         return view('Grupos/excluir', $data);
+    }
+
+    public function permissoes(int $id = null)
+    {
+        // if( ! $this->usuarioLogado()->temPermissaoPara('editar-grupos')){
+
+        //     return redirect()->back()->with('atencao', $this->usuarioLogado()->nome. ', você não tem permissão para acessar esse menu.' );
+        // }
+
+        $grupo = $this->buscaGrupoOu404($id);
+
+        // Grupo administrador
+        if ($grupo->id == 1) {
+            return redirect()
+                ->back()
+                ->with('info', 'Não é necessário atribuir ou remover permissões de acesso para o grupo <b>' . esc($grupo->nome) . '</b>, pois esse esse grupo é Administrador.');
+        }
+
+
+        // Garantimos a recueração de permissões quando não for admin
+        if ($grupo->id > 1) {
+            $grupo->permissoes = $this->grupoPermissaoModel->recuperaPermissoesDoGrupo($grupo->id, 5);
+            $grupo->pager = $this->grupoPermissaoModel->pager;
+        }
+
+
+        $data = [
+            'titulo' => "Gerenciando as permissões do grupo de acesso " . esc($grupo->nome),
+            'grupo' => $grupo,
+        ];
+
+
+        if (!empty($grupo->permissoes)) {
+            $permissoesExistentes = array_column($grupo->permissoes, 'permissao_id');
+
+            $data['permissoesDisponiveis'] = $this->permissaoModel->whereNotIn('id', $permissoesExistentes)->findAll();
+        } else {
+
+            // Se caiu aqui, é porque o grupo não possui nenhuma permissão.
+            // Portanto, enviamos todas para a view
+            $data['permissoesDisponiveis'] = $this->permissaoModel->findAll();
+        }
+
+        return view('Grupos/permissoes', $data);
     }
 
     private function buscaGrupoOu404(int $id = null)

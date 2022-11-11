@@ -10,14 +10,14 @@ use App\Models\UsuarioModel;
 class Usuarios extends BaseController
 {
     private $usuarioModel;
-    // private $grupoUsuarioModel;
-    // private $grupoModel;
+    private $grupoUsuarioModel;
+    private $grupoModel;
 
     public function __construct()
     {
         $this->usuarioModel = new \App\Models\UsuarioModel();
-        // $this->grupoUsuarioModel = new \App\Models\GrupoUsuarioModel();
-        // $this->grupoModel = new \App\Models\GrupoModel();
+        $this->grupoUsuarioModel = new \App\Models\GrupoUsuarioModel();
+        $this->grupoModel = new \App\Models\GrupoModel();
     }
 
     public function index()
@@ -298,6 +298,51 @@ class Usuarios extends BaseController
 
         return view('Usuarios/excluir', $data);
     }
+
+
+    public function grupos(int $id = null)
+    {
+        $usuario = $this->buscaUsuarioOu404($id);
+
+        $usuario->grupos = $this->grupoUsuarioModel->recuperaGruposDoUsuario($usuario->id, 5);
+        $usuario->pager = $this->grupoUsuarioModel->pager;
+
+
+        $data = [
+            'titulo' => "Gerenciando os grupos de acesso do usuário " . esc($usuario->nome),
+            'usuario' => $usuario,
+        ];
+
+        if (in_array(2, array_column($usuario->grupos, 'grupo_id'))) {
+
+            return redirect()->to(site_url("usuarios/exibir/$usuario->id"))
+                ->with('info',  "O usuário já  possui acesso.");
+        }
+
+        if (!empty($usuario->grupos)) {
+
+            $gruposExistentes = array_column($usuario->grupos, 'grupo_id');
+
+            $data['gruposDisponiveis'] = $this->grupoModel
+                ->where('id !=', 2)
+                ->whereNotIn('id', $gruposExistentes)
+                ->findAll();
+
+            dd($data['gruposDisponiveis']);
+        } else {
+            // Recuperamos todos os grupos, com excessão do 2
+            $data['gruposDisponiveis'] = $this->grupoModel
+                ->where('id !=', 2)
+                ->findAll();
+        }
+
+
+
+
+
+        return view('Usuarios/grupos', $data);
+    }
+
 
     private function removeImagemAntiga(string $imagem)
     {
