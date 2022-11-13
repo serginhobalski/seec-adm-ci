@@ -19,7 +19,7 @@ class Grupo extends Entity
 
             // Grupo excluído
 
-            $icone = '<span class="text-white">Excluído</span>&nbsp;<i class="fa fa-undo"></i>&nbsp;Desfazer';
+            $icone = '<span class="text-white"><b>Excluído</b></span>&nbsp;<i class="fa fa-undo"></i>&nbsp;Restaurar';
 
             $situacao = anchor("grupos/desfazerexclusao/$this->id", $icone, ['class' => 'btn btn-outline-succes btn-sm']);
 
@@ -28,7 +28,7 @@ class Grupo extends Entity
 
         if ($this->exibir == true) {
 
-            return '<i class="fa fa-eye fa-lg text-secondary"></i>&nbsp;Exibir grupo';
+            return '<i class="fa fa-eye fa-lg text-success"></i>&nbsp;Exibir grupo';
         }
 
 

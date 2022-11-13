@@ -8,5 +8,5 @@ class PermissaoModel extends Model
 {
     protected $table            = 'permissoes';
     protected $returnType       = 'object';
-    protected $allowedFields    = [];
+    protected $allowedFields    = []; // Através do seeder
 }

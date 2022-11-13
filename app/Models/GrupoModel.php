@@ -7,11 +7,8 @@ use CodeIgniter\Model;
 class GrupoModel extends Model
 {
     protected $table            = 'grupos';
-    protected $primaryKey       = 'id';
-    protected $useAutoIncrement = true;
     protected $returnType       = 'App\Entities\Grupo';
     protected $useSoftDeletes   = true;
-    protected $protectFields    = true;
     protected $allowedFields    = [
         'nome',
         'descricao',

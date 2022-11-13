@@ -11,14 +11,14 @@ use App\Models\UsuarioModel;
 class Usuarios extends BaseController
 {
     private $usuarioModel;
-    // private $grupoUsuarioModel;
-    // private $grupoModel;
+    private $grupoUsuarioModel;
+    private $grupoModel;
 
     public function __construct()
     {
         $this->usuarioModel = new \App\Models\UsuarioModel();
-        // $this->grupoUsuarioModel = new \App\Models\GrupoUsuarioModel();
-        // $this->grupoModel = new \App\Models\GrupoModel();
+        $this->grupoUsuarioModel = new \App\Models\GrupoUsuarioModel();
+        $this->grupoModel = new \App\Models\GrupoModel();
     }
 
     public function index()
@@ -328,6 +328,42 @@ class Usuarios extends BaseController
 
         return redirect()->back()->with('sucesso', "$usuario->nome reativado com sucesso!");
     }
+
+    public function grupos(int $id = null)
+    {
+        $usuario = $this->buscaUsuarioOu404($id);
+
+        $usuario->grupos = $this->grupoUsuarioModel->recuperaGruposDoUsuario($usuario->id, 5);
+        $usuario->pager = $this->grupoUsuarioModel->pager;
+
+        $data = [
+            'titulo' => "Gerenciando grupos de acesso de " . esc($usuario->nome),
+            'usuario' => $usuario,
+        ];
+
+        if (in_array(1, array_column($usuario->grupos, 'grupo_id'))) {
+
+            return redirect()->to(site_url("usuarios/exibir/$usuario->id"))->with('info', "O grupo de permissão deste usuário não pode ser alterado.");
+        }
+
+        if (!empty($usuario->grupos)) {
+            // Recuperamos os grupos disponíveis ao usuário
+            $gruposExistentes = array_column($usuario->grupos, 'grupo_id');
+
+            $data['gruposDisponiveis'] = $this->grupoModel
+                ->where('id !=', 1)
+                ->whereNotIn('id', $gruposExistentes)
+                ->findAll();
+        } else {
+            // recuperamos todos os grupos
+            $data['gruposDisponiveis'] = $this->grupoModel
+                ->where('id !=', 1)
+                ->findAll();
+        }
+
+        return view('Usuarios/grupos', $data);
+    }
+
 
     private function removeImagemAntiga(string $imagem)
     {

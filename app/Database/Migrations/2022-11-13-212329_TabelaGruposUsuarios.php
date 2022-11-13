@@ -25,7 +25,6 @@ class TabelaGruposUsuarios extends Migration
                 'constraint'     => 5,
                 'unsigned'       => true,
             ],
-
         ]);
 
         $this->forge->addKey('id', true);

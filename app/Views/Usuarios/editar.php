@@ -24,9 +24,7 @@
 <div class="row">
     <div class="col-12">
 
-        <div id="response">
-
-        </div>
+        <div id="response"></div>
 
         <?php echo form_open('/', ['id' => 'form'], ['id' => "$usuario->id"]) ?>
 

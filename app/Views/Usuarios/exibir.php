@@ -123,7 +123,9 @@
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Atualizado em</label>
                             <div class="col-sm-7">
-                                <h4><?php echo date('d/m/Y - H:i', strtotime($usuario->alterado_em)); ?></h4>
+                                <?php if (!empty($usuario->alterado_em) || $usuario->alterado_em != null) : ?>
+                                    <h4><?php echo date('d/m/Y - H:i', strtotime($usuario->alterado_em)); ?></h4>
+                                <?php endif; ?>
                             </div>
                         </div>
 
@@ -141,6 +143,7 @@
                                         </button>
                                         <div class="dropdown-menu">
                                             <a class="dropdown-item" href="<?php echo site_url("usuarios/editar/$usuario->id"); ?>"><i class="ti-pencil-alt"></i> Editar</a>
+                                            <a class="dropdown-item" href="<?php echo site_url("usuarios/grupos/$usuario->id"); ?>"><i class="ti-settings"></i> Gerenciar grupos</a>
                                             <?php if ($usuario->deletado_em != null) : ?>
                                                 <a class="dropdown-item" href="<?php echo site_url("usuarios/desfazerexclusao/$usuario->id"); ?>">
                                                     <i class="ti-trash"></i> Reativar usuário

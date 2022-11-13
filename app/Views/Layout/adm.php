@@ -178,23 +178,29 @@
                 <ul>
                     <li>
                         <a href="/adm" class="ttr-material-button">
-                            <span class="ttr-icon"><i class="ti-home"></i></span>
+                            <span class="ttr-icon"><i class="fa fa-dashboard"></i></span>
                             <span class="ttr-label">Dashborad</span>
                         </a>
                     </li>
                     <li>
+                        <a href="/grupos" class="ttr-material-button">
+                            <span class="ttr-icon"><i class="fa fa-wrench"></i></span>
+                            <span class="ttr-label">Grupos & Permissões</span>
+                        </a>
+                    </li>
+                    <li>
                         <a href="/cursos" class="ttr-material-button">
-                            <span class="ttr-icon"><i class="ti-book"></i></span>
+                            <span class="ttr-icon"><i class="fa fa-book"></i></span>
                             <span class="ttr-label">Cursos</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="ttr-material-button">
-                            <span class="ttr-icon"><i class="ti-email"></i></span>
+                        <a href="/mensagens" class="ttr-material-button">
+                            <span class="ttr-icon"><i class="fa fa-paper-plane"></i></span>
                             <span class="ttr-label">Mensagens</span>
-                            <span class="ttr-arrow-icon"><i class="fa fa-angle-down"></i></span>
+                            <!-- <span class="ttr-arrow-icon"><i class="fa fa-angle-down"></i></span> -->
                         </a>
-                        <ul>
+                        <!-- <ul>
                             <li>
                                 <a href="/mensagens" class="ttr-material-button"><span class="ttr-label">Mail Box</span></a>
                             </li>
@@ -204,58 +210,58 @@
                             <li>
                                 <a href="mailbox-read.html" class="ttr-material-button"><span class="ttr-label">Mail Read</span></a>
                             </li>
-                        </ul>
+                        </ul> -->
                     </li>
                     <li>
-                        <a href="#" class="ttr-material-button">
-                            <span class="ttr-icon"><i class="ti-calendar"></i></span>
+                        <a href="/calendario" class="ttr-material-button">
+                            <span class="ttr-icon"><i class="fa fa-calendar"></i></span>
                             <span class="ttr-label">Calendário</span>
-                            <span class="ttr-arrow-icon"><i class="fa fa-angle-down"></i></span>
+                            <!-- <span class="ttr-arrow-icon"><i class="fa fa-angle-down"></i></span> -->
                         </a>
-                        <ul>
+                        <!-- <ul>
                             <li>
                                 <a href="/calendario" class="ttr-material-button"><span class="ttr-label">Basic Calendar</span></a>
                             </li>
                             <li>
                                 <a href="/calendario" class="ttr-material-button"><span class="ttr-label">List View</span></a>
                             </li>
-                        </ul>
+                        </ul> -->
                     </li>
                     <li>
-                        <a href="#" class="ttr-material-button">
-                            <span class="ttr-icon"><i class="ti-bookmark-alt"></i></span>
+                        <a href="/usuarios" class="ttr-material-button">
+                            <span class="ttr-icon"><i class="fa fa-users"></i></span>
                             <span class="ttr-label">Usuários</span>
-                            <span class="ttr-arrow-icon"><i class="fa fa-angle-down"></i></span>
+                            <!-- <span class="ttr-arrow-icon"><i class="fa fa-angle-down"></i></span> -->
                         </a>
-                        <ul>
+                        <!-- <ul>
                             <li>
                                 <a href="/usuarios" class="ttr-material-button"><span class="ttr-label">Listar Usuários</span></a>
                             </li>
                             <li>
                                 <a href="/grupos" class="ttr-material-button"><span class="ttr-label">Grupos de acesso</span></a>
                             </li>
-                        </ul>
+                        </ul> -->
                     </li>
                     <li>
                         <a href="/relatorios" class="ttr-material-button">
-                            <span class="ttr-icon"><i class="ti-layout-accordion-list"></i></span>
+                            <span class="ttr-icon"><i class="fa fa-paste"></i></span>
                             <span class="ttr-label">Relatórios</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="ttr-material-button">
-                            <span class="ttr-icon"><i class="ti-user"></i></span>
+                        <a href="/perfil" class="ttr-material-button">
+                            <span class="ttr-icon"><i class="fa fa-user"></i></span>
                             <span class="ttr-label">Meu perfil</span>
-                            <span class="ttr-arrow-icon"><i class="fa fa-angle-down"></i></span>
+                            <!-- <span class="ttr-arrow-icon"><i class="fa fa-angle-down"></i></span> -->
                         </a>
-                        <ul>
+                        <!-- <ul>
                             <li>
                                 <a href="/perfil" class="ttr-material-button"><span class="ttr-label">User Profile</span></a>
                             </li>
                             <li>
                                 <a href="/perfil" class="ttr-material-button"><span class="ttr-label">Teacher Profile</span></a>
                             </li>
-                        </ul>
+                        </ul> -->
                     </li>
                     <li class="ttr-seperate"></li>
                 </ul>
@@ -325,57 +331,57 @@
                 eventLimit: true, // allow "more" link when too many events
                 events: [{
                         title: 'All Day Event',
-                        start: '2019-03-01'
+                        start: '2022-12-25'
                     },
                     {
                         title: 'Long Event',
-                        start: '2019-03-07',
+                        start: '2022-03-07',
                         end: '2019-03-10'
                     },
                     {
                         id: 999,
                         title: 'Repeating Event',
-                        start: '2019-03-09T16:00:00'
+                        start: '2022-03-09T16:00:00'
                     },
                     {
                         id: 999,
                         title: 'Repeating Event',
-                        start: '2019-03-16T16:00:00'
+                        start: '2022-03-16T16:00:00'
                     },
                     {
                         title: 'Conference',
                         start: '2019-03-11',
-                        end: '2019-03-13'
+                        end: '2022-03-13'
                     },
                     {
                         title: 'Meeting',
-                        start: '2019-03-12T10:30:00',
-                        end: '2019-03-12T12:30:00'
+                        start: '2022-03-12T10:30:00',
+                        end: '2022-03-12T12:30:00'
                     },
                     {
                         title: 'Lunch',
-                        start: '2019-03-12T12:00:00'
+                        start: '2022-03-12T12:00:00'
                     },
                     {
                         title: 'Meeting',
-                        start: '2019-03-12T14:30:00'
+                        start: '2022-03-12T14:30:00'
                     },
                     {
                         title: 'Happy Hour',
-                        start: '2019-03-12T17:30:00'
+                        start: '2022-03-12T17:30:00'
                     },
                     {
                         title: 'Dinner',
-                        start: '2019-03-12T20:00:00'
+                        start: '2022-03-12T20:00:00'
                     },
                     {
                         title: 'Birthday Party',
-                        start: '2019-03-13T07:00:00'
+                        start: '2022-03-13T07:00:00'
                     },
                     {
                         title: 'Click for Google',
                         url: 'http://google.com/',
-                        start: '2019-03-28'
+                        start: '2022-03-28'
                     }
                 ]
             });
@@ -385,6 +391,15 @@
 
     <!-- Render custom scripts -->
     <?php echo $this->renderSection('scripts'); ?>
+
+    <script>
+        $(function() {
+            $('[data-toggle="popover"]').popover({
+                html: true,
+            });
+        })
+    </script>
+
 </body>
 
 <!-- Mirrored from educhamp.themetrades.com/demo/admin// by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 22 Feb 2019 13:09:05 GMT -->

@@ -6,37 +6,35 @@ use CodeIgniter\Model;
 
 class GrupoPermissaoModel extends Model
 {
-    protected $DBGroup          = 'default';
-    protected $table            = 'grupopermissaos';
-    protected $primaryKey       = 'id';
-    protected $useAutoIncrement = true;
-    protected $insertID         = 0;
+
+    protected $table            = 'grupos_permissoes';
     protected $returnType       = 'object';
-    protected $useSoftDeletes   = false;
-    protected $protectFields    = true;
-    protected $allowedFields    = [];
+    protected $allowedFields    = ['grupo_id', 'permissao_id'];
 
-    // Dates
-    protected $useTimestamps = false;
-    protected $dateFormat    = 'datetime';
-    protected $createdField  = 'created_at';
-    protected $updatedField  = 'updated_at';
-    protected $deletedField  = 'deleted_at';
 
-    // Validation
-    protected $validationRules      = [];
-    protected $validationMessages   = [];
-    protected $skipValidation       = false;
-    protected $cleanValidationRules = true;
+    /**
+     * Método que recupera as permissões dos grupos de acesso
+     * 
+     * @param integer $grupo_id
+     * @param integer $quantidade_paginacao
+     * @return array|null
+     */
+    public function recuperaPermissoesDoGrupo(int $grupo_id, int $quantidade_paginacao)
+    {
 
-    // Callbacks
-    protected $allowCallbacks = true;
-    protected $beforeInsert   = [];
-    protected $afterInsert    = [];
-    protected $beforeUpdate   = [];
-    protected $afterUpdate    = [];
-    protected $beforeFind     = [];
-    protected $afterFind      = [];
-    protected $beforeDelete   = [];
-    protected $afterDelete    = [];
+
+        $atributos = [
+            'grupos_permissoes.id AS principal_id',
+            'grupos.id AS grupo_id',
+            'permissoes.id AS permissao_id',
+            'permissoes.nome',
+        ];
+
+        return $this->select($atributos)
+            ->join('grupos', 'grupos.id = grupos_permissoes.grupo_id')
+            ->join('permissoes', 'permissoes.id = grupos_permissoes.permissao_id')
+            ->where('grupos_permissoes.grupo_id', $grupo_id)
+            ->groupBy('permissoes.nome')
+            ->paginate($quantidade_paginacao);
+    }
 }

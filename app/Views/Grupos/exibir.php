@@ -24,7 +24,17 @@
 <div class="row">
     <!-- Your Profile Views Chart -->
     <div class="col-lg-12 m-b30">
+
+        <div id="response"></div>
+
         <div class="widget-box">
+            <?php if ($grupo->id == 1) : ?>
+                <div class="alert alert-info" role="alert">
+                    <h4 class="alert-heading">Importante!</h4>
+                    <p>O grupo <?php echo esc($grupo->nome); ?> não pode ser alterado nem deletado.</p>
+                </div>
+            <?php endif; ?>
+
             <div class="wc-title">
                 <h4>Detalhes de <?php echo $grupo->nome; ?></h4>
             </div>
@@ -41,14 +51,20 @@
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Status</label>
-                            <div class="col-sm-7">
+                            <div class="col-sm-7 d-flex">
+                                <?php if ($grupo->deletado_em == null) : ?>
+                                    <h3><?php echo $grupo->exibeSituacao(); ?></h3>
+                                    <a tabindex="0" class="text-primary" role="button" data-toggle="popover" data-trigger="focus" title="Importante!" data-content="Esse grupo <?php echo ($grupo->exibir == true ? 'será' : 'não será'); ?> exibido como opção para atribuir a usuários do sistema em geral."><i class="fa fa-info-circle"></i></a>
+                                <?php endif; ?>
+                            </div>
+                            <!-- <div class="col-sm-7">
                                 <?php if ($grupo->exibir == 0) : ?>
                                     <h3>Grupo oculto para os usuários.</h3>
                                 <?php else : ?>
                                     <h3>Grupo em exibição para os usuários</h3>
                                 <?php endif; ?>
                                 <span class="help">*Exibição em relação aos usuários sem acesso administrativo.</span>
-                            </div>
+                            </div> -->
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Descrição</label>
@@ -73,17 +89,21 @@
                                 <div class="col-sm-2">
                                 </div>
                                 <div class="col-sm-7 d-flex">
-                                    <div class="dropdown">
-                                        <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
-                                            Ações
-                                        </button>
-                                        <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="<?php echo site_url("grupos/editar/$grupo->id"); ?>"><i class="ti-pencil-alt"></i> Editar</a>
-                                            <a class="dropdown-item" href="<?php echo site_url("grupos/excluir/$grupo->id"); ?>">
-                                                <i class="ti-trash"></i> Excluir
-                                            </a>
+                                    <?php if ($grupo->id > 1) : ?>
+                                        <div class="dropdown">
+                                            <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+                                                Ações
+                                            </button>
+                                            <div class="dropdown-menu">
+                                                <a class="dropdown-item" href="<?php echo site_url("grupos/editar/$grupo->id"); ?>"><i class="ti-pencil-alt"></i> Editar</a>
+                                                <a class="dropdown-item" href="<?php echo site_url("grupos/permissoes/$grupo->id"); ?>"><i class="ti-settings"></i> Gerenciar permissões</a>
+                                                <hr>
+                                                <a class="dropdown-item" href="<?php echo site_url("grupos/excluir/$grupo->id"); ?>">
+                                                    <i class="ti-trash"></i> Excluir
+                                                </a>
+                                            </div>
                                         </div>
-                                    </div>
+                                    <?php endif; ?>
                                     <a href="/grupos" class="btn btn-dark ml-3"><i class="ti-arrow-left"></i> Voltar</a>
                                 </div>
                             </div>
