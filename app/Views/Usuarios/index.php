@@ -31,6 +31,7 @@
                 <th class="text-primary">Local</th>
                 <th class="text-primary">Login</th>
                 <th class="text-primary">Tipo</th>
+                <th class="text-primary">Status</th>
                 <!-- <th class="text-primary">Ações</th> -->
             </tr>
         </thead>
@@ -98,6 +99,9 @@
                 },
                 {
                     data: 'admin'
+                },
+                {
+                    data: 'ativo'
                 },
             ],
         });

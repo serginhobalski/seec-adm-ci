@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Controllers\BaseController;
 
 use App\Entities\Usuario;
+
 use App\Models\UsuarioModel;
 
 class Usuarios extends BaseController
@@ -41,12 +42,14 @@ class Usuarios extends BaseController
             'local',
             'login',
             'admin',
+            'ativo',
             'imagem',
+            'deletado_em',
         ];
 
 
         $usuarios = $this->usuarioModel->select($atributos)
-            // ->withDeleted(true)
+            ->withDeleted(true)
             ->orderBy('nome', 'ASC')
             ->findAll();
 
@@ -78,6 +81,7 @@ class Usuarios extends BaseController
                 'local' => esc($usuario->local),
                 'login' => esc($usuario->login),
                 'admin' => ($usuario->admin == true ? '<span class="text-success">Admin Geral </span>' : '<span class="text-warning">UETP </span>'),
+                'ativo' => $usuario->exibeSituacao(),
             ];
         }
 
@@ -278,6 +282,11 @@ class Usuarios extends BaseController
     {
         $usuario = $this->buscaUsuarioOu404($id);
 
+        // Verificar se o usuário já foi excluído anteriormente
+        if ($usuario->deletado_em != null) {
+            return redirect()->back()->with('info', "Este usuário já encontra-se excluído.");
+        }
+
         if ($this->request->getMethod() === 'post') {
 
             // Deletar usuário
@@ -288,7 +297,13 @@ class Usuarios extends BaseController
                 $this->removeImagemAntiga($usuario->imagem);
             }
 
-            return redirect()->to(site_url("usuarios"))->with('sucesso', "Usuário $usuario->nome excluído com sucesso.");
+            $usuario->imagem = null;
+            $usuario->ativo = false;
+
+            $this->usuarioModel->protect(false)->save($usuario);
+
+
+            return redirect()->to(site_url("usuarios"))->with('sucesso', "$usuario->nome excluído com sucesso.");
         }
 
         $data = [
@@ -297,6 +312,21 @@ class Usuarios extends BaseController
         ];
 
         return view('Usuarios/excluir', $data);
+    }
+
+    public function desfazerExclusao(int $id = null)
+    {
+        $usuario = $this->buscaUsuarioOu404($id);
+
+        // Verificar se o usuário já foi excluído anteriormente
+        if ($usuario->deletado_em == null) {
+            return redirect()->back()->with('info', "Este usuário não encontra-se excluído.");
+        }
+
+        $usuario->deletado_em = null;
+        $this->usuarioModel->protect(false)->save($usuario);
+
+        return redirect()->back()->with('sucesso', "$usuario->nome reativado com sucesso!");
     }
 
     private function removeImagemAntiga(string $imagem)
@@ -337,8 +367,9 @@ class Usuarios extends BaseController
 
 
         if ($this->usuarioModel->protect(false)->save($usuario)) {
+            $btnCriar = anchor("usuarios/criar", 'Cadastrar novo usuário', ['class' => 'btn mt-2']);
 
-            session()->setFlashdata('sucesso', 'Dados salvos com sucesso!<br> <a href=' . site_url('usuarios/criar') . ' class="btn mt-2"><i class="fa fa-save"></i> Cadastrar outro usuário</a>');
+            session()->setFlashdata('sucesso', "Dados salvos com sucesso! $btnCriar");
 
             $retorno['id'] = $this->usuarioModel->getInsertID();
 

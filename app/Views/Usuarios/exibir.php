@@ -54,13 +54,28 @@
                             <label class="col-sm-2 col-form-label">Tipo</label>
                             <div class="col-sm-7">
                                 <?php if ($usuario->admin == 0) : ?>
-                                    <h3>UETP</h3>
+                                    <h3 class="text-warning">UETP</h3>
+                                    <span class="help text-info">*UETP: Unidade de Ensino Teológico-Pastoral.</span>
                                 <?php else : ?>
-                                    <h3>Administrador</h3>
+                                    <h3 class="text-success">Administrador</h3>
+                                    <span class="help text-info">*Usuário com acesso total ao sistema.</span>
                                 <?php endif; ?>
-                                <span class="help">*UETP: Unidade de Ensino Teológico-Pastoral.</span>
                             </div>
                         </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Status</label>
+                            <div class="col-sm-7">
+                                <h3><?php echo $usuario->exibeSituacao(); ?></h3>
+                                <!-- <?php if ($usuario->ativo == 0) : ?>
+                                    <h3 class="text-danger">Inativo</h3>
+                                    <span class="help text-danger">*Usuário foi excluído do sistema.</span>
+                                <?php else : ?>
+                                    <h3 class="text-info">Ativo</h3>
+                                    <span class="help text-info">*Usuário ativo do sistema.</span>
+                                <?php endif; ?> -->
+                            </div>
+                        </div>
+
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Cidade/Bairro</label>
                             <div class="col-sm-7">
@@ -105,6 +120,12 @@
                                 <h4><?php echo date('d/m/Y - H:i', strtotime($usuario->criado_em)); ?></h4>
                             </div>
                         </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Atualizado em</label>
+                            <div class="col-sm-7">
+                                <h4><?php echo date('d/m/Y - H:i', strtotime($usuario->alterado_em)); ?></h4>
+                            </div>
+                        </div>
 
 
                     </div>
@@ -120,9 +141,15 @@
                                         </button>
                                         <div class="dropdown-menu">
                                             <a class="dropdown-item" href="<?php echo site_url("usuarios/editar/$usuario->id"); ?>"><i class="ti-pencil-alt"></i> Editar</a>
-                                            <a class="dropdown-item" href="<?php echo site_url("usuarios/excluir/$usuario->id"); ?>">
-                                                <i class="ti-trash"></i> Excluir
-                                            </a>
+                                            <?php if ($usuario->deletado_em != null) : ?>
+                                                <a class="dropdown-item" href="<?php echo site_url("usuarios/desfazerexclusao/$usuario->id"); ?>">
+                                                    <i class="ti-trash"></i> Reativar usuário
+                                                </a>
+                                            <?php else : ?>
+                                                <a class="dropdown-item" href="<?php echo site_url("usuarios/excluir/$usuario->id"); ?>">
+                                                    <i class="ti-trash"></i> Excluir
+                                                </a>
+                                            <?php endif; ?>
                                         </div>
                                     </div>
                                     <a href="/usuarios" class="btn btn-dark ml-3"><i class="ti-arrow-left"></i> Voltar</a>

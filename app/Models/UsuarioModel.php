@@ -22,7 +22,6 @@ class UsuarioModel extends Model
         'reset_hash',
         'reset_expira_em',
         'ativo',
-        'admin',
         'imagem',
     ];
 
