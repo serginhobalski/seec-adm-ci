@@ -120,7 +120,6 @@
                                         </button>
                                         <div class="dropdown-menu">
                                             <a class="dropdown-item" href="<?php echo site_url("usuarios/editar/$usuario->id"); ?>"><i class="ti-pencil-alt"></i> Editar</a>
-                                            <a class="dropdown-item" href="<?php echo site_url("usuarios/grupos/$usuario->id"); ?>"><i class="ti-settings"></i> Grupos de acesso</a>
                                             <a class="dropdown-item" href="<?php echo site_url("usuarios/excluir/$usuario->id"); ?>">
                                                 <i class="ti-trash"></i> Excluir
                                             </a>

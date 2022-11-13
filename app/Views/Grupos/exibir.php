@@ -79,8 +79,6 @@
                                         </button>
                                         <div class="dropdown-menu">
                                             <a class="dropdown-item" href="<?php echo site_url("grupos/editar/$grupo->id"); ?>"><i class="ti-pencil-alt"></i> Editar</a>
-                                            <a class="dropdown-item" href="<?php echo site_url("grupos/permissoes/$grupo->id"); ?>"><i class="ti-settings"></i> Gerenciar permissões</a>
-                                            <hr>
                                             <a class="dropdown-item" href="<?php echo site_url("grupos/excluir/$grupo->id"); ?>">
                                                 <i class="ti-trash"></i> Excluir
                                             </a>
