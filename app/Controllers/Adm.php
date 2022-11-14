@@ -2,6 +2,8 @@
 
 namespace App\Controllers;
 
+use App\Libraries\Autenticacao;
+
 class Adm extends BaseController
 {
     public function index()
@@ -10,6 +12,13 @@ class Adm extends BaseController
             'titulo' => 'Painel',
         ];
         return view('Adm/index', $data);
+    }
+
+    public function login()
+    {
+        $autenticacao = new Autenticacao();
+
+        dd($autenticacao->login('admin', 'serele21'));
     }
 
     public function cursos()
