@@ -108,15 +108,7 @@ class Usuarios extends BaseController
         return view('Usuarios/exibir', $data);
     }
 
-    private function buscaUsuarioOu404(int $id = null)
-    {
-        if (!$id || !$usuario = $this->usuarioModel->withDeleted(true)->find($id)) {
 
-            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound("Não encontramos o usuário $id");
-        }
-
-        return $usuario;
-    }
 
 
     public function editar(int $id = null)
@@ -341,23 +333,28 @@ class Usuarios extends BaseController
             'usuario' => $usuario,
         ];
 
-        if (in_array(1, array_column($usuario->grupos, 'grupo_id'))) {
+        $grupoAdmin = 1;
+        if (in_array($grupoAdmin, array_column($usuario->grupos, 'grupo_id'))) {
 
-            return redirect()->to(site_url("usuarios/exibir/$usuario->id"))->with('info', "O grupo de permissão deste usuário não pode ser alterado.");
+            $usuario->full_control = true;
+            return view('Usuarios/grupos', $data);
         }
+
+        $usuario->full_control = false;
+
 
         if (!empty($usuario->grupos)) {
             // Recuperamos os grupos disponíveis ao usuário
             $gruposExistentes = array_column($usuario->grupos, 'grupo_id');
 
             $data['gruposDisponiveis'] = $this->grupoModel
-                ->where('id !=', 1)
+                // ->where('id !=', 1)
                 ->whereNotIn('id', $gruposExistentes)
                 ->findAll();
         } else {
             // recuperamos todos os grupos
             $data['gruposDisponiveis'] = $this->grupoModel
-                ->where('id !=', 1)
+                // ->where('id !=', 1)
                 ->findAll();
         }
 
@@ -365,13 +362,86 @@ class Usuarios extends BaseController
     }
 
 
-    private function removeImagemAntiga(string $imagem)
+    public function salvarGrupos()
     {
-        $imagemCaminho = WRITEPATH . "uploads/usuarios/$imagem";
 
-        if (is_file($imagemCaminho)) {
-            unlink($imagemCaminho);
+        if (!$this->request->isAJAX()) {
+
+            return redirect()->back();
         }
+
+        // Enviar hash do token do form
+        $retorno['token'] = csrf_hash();
+
+        // Recuperar o post da requisição
+        $post = $this->request->getPost();
+
+        // Validar a existência do usuário
+        $usuario = $this->buscaUsuarioOu404($post['id']);
+
+        if (empty($post['grupo_id'])) {
+
+            $retorno['erro'] = 'Por favor verifique os erros abaixo.';
+            $retorno['erros_model'] = ['grupo_id' => '<b class="text-danger">Escolha um ou mais grupos para salvar.</b>'];
+            // Retorno para o AJAX request
+            return $this->response->setJSON($retorno);
+        }
+
+
+        if (in_array(1, $post['grupo_id'])) {
+
+            $grupoAdmin = [
+                'grupo_id' => 1,
+                'usuario_id' => $usuario->id,
+            ];
+
+            $this->grupoUsuarioModel->insert($grupoAdmin);
+
+            $this->grupoUsuarioModel->where('grupo_id !=', 1)
+                ->where('usuario_id', $usuario->id)
+                ->delete();
+
+
+            session()->setFlashdata('sucesso', 'Dados salvos com sucesso!');
+            session()->setFlashdata('info', 'O grupo <b>Administrador</b> já engloba todos os outros grupos de acesso!');
+
+            // Retorno para o AJAX request
+            return $this->response->setJSON($retorno);
+        }
+
+
+
+        // Receberá as permissões do POST
+        $grupoPush = [];
+
+        foreach ($post['grupo_id'] as $grupo) {
+
+            array_push($grupoPush, [
+                'grupo_id' => $grupo,
+                'usuario_id' => $usuario->id,
+            ]);
+
+            $this->grupoUsuarioModel->insertBatch($grupoPush);
+
+            session()->setFlashdata('sucesso', 'Dados salvos com sucesso!');
+
+            return $this->response->setJSON($retorno);
+        }
+    }
+
+    public function removeGrupo(int $principal_id = null)
+    {
+
+        if ($this->request->getMethod() === 'post') {
+
+            $grupoUsuario = $this->buscaGrupoUsuarioOu404($principal_id);
+
+            $this->grupoUsuarioModel->delete($principal_id);
+            return redirect()->back()->with("sucesso", "Grupo removido!");
+        }
+
+        // Se não for via POST
+        return redirect()->back();
     }
 
     public function criar()
@@ -418,5 +488,40 @@ class Usuarios extends BaseController
 
         // Retorno para o AJAX request
         return $this->response->setJSON($retorno);
+    }
+
+    private function buscaUsuarioOu404(int $id = null)
+    {
+        if (!$id || !$usuario = $this->usuarioModel->withDeleted(true)->find($id)) {
+
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound("Não encontramos o usuário $id");
+        }
+
+        return $usuario;
+    }
+
+    /**
+     * Método que recupera o registro de grupos associados ao usuário
+     *
+     * @param integer|null $principal_id
+     * @return Exception|object
+     */
+    private function buscaGrupoUsuarioOu404(int $principal_id = null)
+    {
+        if (!$principal_id || !$grupoUsuario = $this->grupoUsuarioModel->find($principal_id)) {
+
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound("Não encontramos associação com o grupo $principal_id");
+        }
+
+        return $grupoUsuario;
+    }
+
+    private function removeImagemAntiga(string $imagem)
+    {
+        $imagemCaminho = WRITEPATH . "uploads/usuarios/$imagem";
+
+        if (is_file($imagemCaminho)) {
+            unlink($imagemCaminho);
+        }
     }
 }

@@ -21,7 +21,7 @@ class GrupoUsuarioModel extends Model
     {
 
         $atributos = [
-            'grupos_usuarios.id',
+            'grupos_usuarios.id AS principal_id',
             'grupos.id AS grupo_id',
             'grupos.nome',
             'grupos.descricao',
