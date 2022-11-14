@@ -18,7 +18,14 @@ class Adm extends BaseController
     {
         $autenticacao = new Autenticacao();
 
-        dd($autenticacao->login('admin', 'serele21'));
+        $autenticacao->login('teste', 'teste123456');
+
+        $usuario = $autenticacao->pegaUsuarioLogado();
+
+        // dd($autenticacao->login('admin', 'admin123456'));
+        dd($usuario->temPermissaoPara('listar-usuarios'));
+        // $autenticacao->logout();
+        // return redirect()->to(site_url('adm'));
     }
 
     public function cursos()

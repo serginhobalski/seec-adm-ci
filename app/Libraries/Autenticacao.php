@@ -7,10 +7,12 @@ class Autenticacao
 
     private $usuario;
     private $usuarioModel;
+    private $grupoUsuarioModel;
 
     public function __construct()
     {
         $this->usuarioModel =  new \App\Models\UsuarioModel();
+        $this->grupoUsuarioModel =  new \App\Models\GrupoUsuarioModel();
     }
 
     /**
@@ -27,14 +29,23 @@ class Autenticacao
         $usuario = $this->usuarioModel->buscaUsuarioPorLogin($login);
 
         if ($usuario === null) {
+
+            exit('Usuário não encontrado');
+
             return false;
         }
 
         if ($usuario->verificaPassword($password) == false) {
+
+            exit('Senha incorreta');
+
             return false;
         }
 
         if ($usuario->ativo == false) {
+
+            exit('Usuário inativo');
+
             return false;
         }
 
@@ -50,11 +61,33 @@ class Autenticacao
      */
     public function logout(): void
     {
-
         session()->destroy();
     }
 
+    public function pegaUsuarioLogado()
+    {
 
+        if ($this->usuario === null) {
+
+
+            $this->usuario = $this->pegaUsuarioDaSessao();
+        }
+
+        return $this->usuario;
+    }
+
+    /**
+     * Método que verifica se o usuário está logado
+     *
+     * @return boolean
+     */
+    public function estaLogado(): bool
+    {
+
+        return $this->pegaUsuarioLogado() !== null;
+    }
+
+    // ----------------Métodos Privados-------------------------//
 
     /**
      * Método que insere na sessão o ID do usuário
@@ -119,7 +152,7 @@ class Autenticacao
         // Por isso, nós defendemos no controller
         $grupoAdmin = 1;
 
-        // Verificamos se o usuário logado está no grupo de admintrador
+        // Verificamos se o usuário logado está no grupo de administrador
         $administrador = $this->grupoUsuarioModel->usuarioEstaNoGrupo($grupoAdmin, session()->get('usuario_id'));
 
 
@@ -133,34 +166,32 @@ class Autenticacao
         return true;
     }
 
-
     /**
      * Método que verifica se o usuário logado (session()->get('usuario_id')) está associado ao grupo de clientes
      *
      * @return boolean
      */
-    private function isCliente(): bool
+    private function isUetp(): bool
     {
 
-        // Definimos o ID do grupo cliente.
+        // Definimos o ID do grupo UETP.
         // Não equeçam que esse ID jamais poderá ser alterado.
         // Por isso, nós defendemos no controller
-        $grupoCliente = 2;
+        $grupoUetp = 2;
 
-        // Verificamos se o usuário logado está no grupo de admintrador
-        $cliente = $this->grupoUsuarioModel->usuarioEstaNoGrupo($grupoCliente, session()->get('usuario_id'));
+        // Verificamos se o usuário logado está no grupo UETP
+        $uetp = $this->grupoUsuarioModel->usuarioEstaNoGrupo($grupoUetp, session()->get('usuario_id'));
 
 
         // Verificamos se foi encontrado o registro
-        if ($cliente == null) {
+        if ($uetp == null) {
 
             return false;
         }
 
-        // Retornamos true, ou seja, o usuário logado faz parte do grupo admin
+        // Retornamos true, ou seja, o usuário logado faz parte do grupo uetp
         return true;
     }
-
 
     /**
      * Método que define as permissões que o usuário logado possui.
@@ -179,38 +210,37 @@ class Autenticacao
         // Se for admin, então não é cliente
         if ($usuario->is_admin == true) {
 
-            $usuario->is_cliente = false;
+            $usuario->is_uetp = false;
         } else {
 
             // Nesse ponto, podemos verificar se o usuário logado é um cliente, visto que ele não é admin
-            $usuario->is_cliente = $this->isCliente();
+            $usuario->is_uetp = $this->isUetp();
         }
 
 
-        // Só recuperamos as permissões de um usuário que não seja admin e não seja cliente
+        // Só recuperamos as permissões de um usuário que não seja admin e não seja UETP
         // pois esses dois grupos não possuem permissões
         // O atributo $usuario->permissoes será examinado na Entity Usuario para verificarmos se
         // o mesmo pode ou não visualizar e acessar alguma rota.
         // Notem que se o usuário logado possui o atributo $usuario->permissoes,
-        // é porque ele não é admin e não é cliente
-        if ($usuario->is_admin == false && $usuario->is_cliente == false) {
+        // é porque ele não é admin e não é UETP
+        if ($usuario->is_admin == false && $usuario->is_uetp == false) {
 
             $usuario->permissoes = $this->recuperaPermissoesDoUsuarioLogado();
         }
 
 
-        // Nesse ponto já definimos se é admin ou se é cliente.
-        // Caso não seja nem admin e nem cliente, então o objeto possui o atributo permissões,
+        // Nesse ponto já definimos se é admin ou se é UETP.
+        // Caso não seja nem admin e nem UETP, então o objeto possui o atributo permissões,
         // que pode ou não estar vazio
         // Portanto, podemos retornar $usuario
         return $usuario;
     }
 
-
     /**
      * Método que retorna as permissões do usuário logado
      *
-     * @return array
+     * @return null|array
      */
     private function recuperaPermissoesDoUsuarioLogado(): array
     {

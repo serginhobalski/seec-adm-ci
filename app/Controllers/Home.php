@@ -2,6 +2,8 @@
 
 namespace App\Controllers;
 
+use App\Libraries\Autenticacao;
+
 class Home extends BaseController
 {
     public function index()
@@ -10,6 +12,16 @@ class Home extends BaseController
             'titulo' => 'Início',
         ];
         return view('Home/index', $data);
+    }
+
+    public function login()
+    {
+        $autenticacao = new Autenticacao();
+
+        // dd($autenticacao);
+        // dd($autenticacao->login('admin', 'admin123456'));
+        $autenticacao->logout();
+        return redirect()->to(site_url('adm'));
     }
 
     public function itq()
