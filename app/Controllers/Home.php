@@ -33,6 +33,24 @@ class Home extends BaseController
         return view('Home/itq', $data);
     }
 
+    public function professor()
+    {
+        $data = [
+            'titulo' => 'Olá, Professor!',
+            'subtitulo' => 'Esta é a sua área!',
+        ];
+        return view('Home/professor', $data);
+    }
+
+    public function aluno()
+    {
+        $data = [
+            'titulo' => 'Olá, Aluno!',
+            'subtitulo' => 'Esta é a sua área!',
+        ];
+        return view('Home/aluno', $data);
+    }
+
     public function postulantes()
     {
         $data = [

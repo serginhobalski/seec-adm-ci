@@ -23,6 +23,8 @@ class Filters extends BaseConfig
         'honeypot'      => Honeypot::class,
         'invalidchars'  => InvalidChars::class,
         'secureheaders' => SecureHeaders::class,
+        'login'         => \App\Filters\LoginFilter::class, // Filtro de login
+        'visitante'         => \App\Filters\VisitanteFilter::class, // Filtro p/ usuário já logado
     ];
 
     /**
@@ -68,5 +70,23 @@ class Filters extends BaseConfig
      *
      * @var array
      */
-    public $filters = [];
+    public $filters = [
+        'login' => [
+            'before' => [
+                'adm(/*)?',
+                'usuarios(/*)?',
+                'relatorios(/*)?',
+                'mensagens(/*)?',
+                'eventos(/*)?',
+                'grupos(/*)?',
+                'cursos(/*)?',
+            ],
+        ],
+        'visitante' => [
+            'before' => [
+                'login(/*)?',
+                'password(/*)?',
+            ],
+        ],
+    ];
 }

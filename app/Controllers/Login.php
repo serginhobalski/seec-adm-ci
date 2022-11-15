@@ -30,6 +30,7 @@ class Login extends BaseController
 
         $password = $this->request->getPost('password');
 
+        // Recupera instância do serviço de autenticação
         $autenticacao = service('autenticacao');
 
 
@@ -40,12 +41,40 @@ class Login extends BaseController
             return $this->response->setJSON($retorno);
         }
 
-        // recupero o usuário logado
+        // Recupera o usuário logado
         $usuarioLogado = $autenticacao->pegaUsuarioLogado();
 
         session()->setFlashdata('sucesso', "Olá $usuarioLogado->nome, seja bem-vindo!");
 
-        if ($usuarioLogado->is_uetp) {
+        if ($usuarioLogado->is_admin) {
+
+            $retorno['redirect'] = 'adm';
+            return $this->response->setJSON($retorno);
         }
+
+        if ($usuarioLogado->is_uetp) {
+
+            $retorno['redirect'] = 'adm/uetp';
+            return $this->response->setJSON($retorno);
+        }
+
+        $retorno['redirect'] = 'home';
+        return $this->response->setJSON($retorno);
+    }
+
+    public function logout()
+    {
+        $autenticacao = service('autenticacao');
+
+        $usuarioLogado = $autenticacao->pegaUsuarioLogado();
+
+        $autenticacao->logout();
+
+        return redirect()->to(site_url("login/mostramensagemlogout/$usuarioLogado->nome"));
+    }
+
+    public function mostraMensagemLogout($nome = null)
+    {
+        return redirect()->to(site_url("login"))->with("sucesso", "$nome saiu da aplicação.");
     }
 }

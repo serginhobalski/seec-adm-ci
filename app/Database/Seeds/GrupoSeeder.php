@@ -20,17 +20,25 @@ class GrupoSeeder extends Seeder
             [
                 // Grupo ID 2
                 'nome' => 'UETP',
-                'descricao' => 'Possui acesso a áreas destinadas a gestores de UETPs.',
+                'descricao' => 'Possui acesso às áreas destinadas aos gestores de UETPs.',
                 'exibir' => false,
             ],
             [
+                // Grupo ID 3
                 'nome' => 'Professor',
                 'descricao' => 'Possui acesso ao gerenciamento de alunos e cursos específicos.',
                 'exibir' => true,
             ],
             [
+                // Grupo ID 4
                 'nome' => 'Aluno',
                 'descricao' => 'Possui acesso ao conteúdo de cursos específicos.',
+                'exibir' => true,
+            ],
+            [
+                // Grupo ID 5
+                'nome' => 'Secretaria',
+                'descricao' => 'Possui acesso ao gerenciamento de usuários, cursos, aulas, alunos e professores.',
                 'exibir' => true,
             ],
 

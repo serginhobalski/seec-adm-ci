@@ -19,8 +19,8 @@
     <meta name="format-detection" content="telephone=no">
 
     <!-- FAVICONS ICON ============================================= -->
-    <link rel="icon" href="<?php echo site_url('src/') ?>assets/images/favicon.ico" type="image/x-icon">
-    <link rel="shortcut icon" type="image/x-icon" href="<?php echo site_url('src/') ?>assets/images/favicon.png">
+    <link rel="icon" href="<?php echo site_url('src/admin/') ?>assets/images/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" type="image/x-icon" href="<?php echo site_url('src/admin/') ?>assets/images/favicon.png">
 
     <!-- PAGE TITLE HERE ============================================= -->
     <title>SEEC-PA | <?php echo $this->renderSection('titulo'); ?></title>
@@ -180,6 +180,8 @@
         <?php echo $this->renderSection('header'); ?>
 
         <?php echo $this->renderSection('conteudo'); ?>
+
+        <?php echo $this->include('Layout/_mensagens') ?>
 
         <!-- Footer ==== -->
         <footer>

@@ -80,7 +80,7 @@
                 <!-- header left menu start -->
                 <ul class="ttr-header-navigation">
                     <li>
-                        <a href="..//" class="ttr-material-button ttr-submenu-toggle">HOME</a>
+                        <a href="adm" class="ttr-material-button ttr-submenu-toggle">HOME</a>
                     </li>
                     <li>
                         <a href="#" class="ttr-material-button ttr-submenu-toggle">MENU <i class="fa fa-angle-down"></i></a>
@@ -132,10 +132,10 @@
                         <a href="#" class="ttr-material-button ttr-submenu-toggle"><span class="ttr-user-avatar"><img alt="" src="<?php echo site_url('src/admin/') ?>assets/images/testimonials/pic3.jpg" width="32" height="32"></span></a>
                         <div class="ttr-header-submenu">
                             <ul>
-                                <li><a href="/perfil">Meu perfil</a></li>
-                                <li><a href="/relatorios">Relatórios</a></li>
-                                <li><a href="/mensagens">Mensagens</a></li>
-                                <li><a href="/logout">Sair</a></li>
+                                <li><a href="perfil">Meu perfil</a></li>
+                                <li><a href="relatorios">Relatórios</a></li>
+                                <li><a href="mensagens">Mensagens</a></li>
+                                <li><a href="logout">Sair</a></li>
                             </ul>
                         </div>
                     </li>
@@ -312,6 +312,23 @@
     <script src='<?php echo site_url('src/admin/') ?>assets/vendors/calendar/fullcalendar.js'></script>
 
     <script>
+        const hoje = new Date();
+
+        function formatDate(date, format) {
+            const map = {
+                mm: date.getMonth() + 1,
+                dd: date.getDate(),
+                aa: date.getFullYear().toString().slice(-2),
+                aaaa: date.getFullYear()
+            }
+
+            return format.replace(/mm|dd|aa|aaaa/gi, matched => map[matched])
+        }
+
+        formatDate(hoje, 'dd/mm/aaaa');
+
+
+
         $(document).ready(function() {
 
             $('#calendar').fullCalendar({
@@ -320,7 +337,7 @@
                     center: 'title',
                     right: 'month,agendaWeek,agendaDay,listWeek'
                 },
-                defaultDate: '2022-11-01',
+                defaultDate: hoje,
                 navLinks: true, // can click day/week names to navigate views
 
                 weekNumbers: true,
@@ -398,6 +415,8 @@
                 html: true,
             });
         })
+
+        $('.alert').alert();
     </script>
 
 </body>

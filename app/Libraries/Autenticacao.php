@@ -194,6 +194,87 @@ class Autenticacao
     }
 
     /**
+     * Método que verifica se o usuário logado (session()->get('usuario_id')) está associado ao grupo de professores
+     *
+     * @return boolean
+     */
+    private function isProfessor(): bool
+    {
+
+        // Definimos o ID do grupo Professor.
+        // Não equeçam que esse ID jamais poderá ser alterado.
+        // Por isso, nós defendemos no controller
+        $grupoProfessor = 3;
+
+        // Verificamos se o usuário logado está no grupo Professor
+        $professor = $this->grupoUsuarioModel->usuarioEstaNoGrupo($grupoProfessor, session()->get('usuario_id'));
+
+
+        // Verificamos se foi encontrado o registro
+        if ($professor == null) {
+
+            return false;
+        }
+
+        // Retornamos true, ou seja, o usuário logado faz parte do grupo professor
+        return true;
+    }
+
+    /**
+     * Método que verifica se o usuário logado (session()->get('usuario_id')) está associado ao grupo de alunos
+     *
+     * @return boolean
+     */
+    private function isAluno(): bool
+    {
+
+        // Definimos o ID do grupo Aluno.
+        // Não equeçam que esse ID jamais poderá ser alterado.
+        // Por isso, nós defendemos no controller
+        $grupoAluno = 4;
+
+        // Verificamos se o usuário logado está no grupo Aluno
+        $aluno = $this->grupoUsuarioModel->usuarioEstaNoGrupo($grupoAluno, session()->get('usuario_id'));
+
+
+        // Verificamos se foi encontrado o registro
+        if ($aluno == null) {
+
+            return false;
+        }
+
+        // Retornamos true, ou seja, o usuário logado faz parte do grupo aluno
+        return true;
+    }
+
+    /**
+     * Método que verifica se o usuário logado (session()->get('usuario_id')) está associado ao grupo de Secretaria
+     *
+     * @return boolean
+     */
+    private function isSecretaria(): bool
+    {
+
+        // Definimos o ID do grupo Secretaria.
+        // Não equeçam que esse ID jamais poderá ser alterado.
+        // Por isso, nós defendemos no controller
+        $grupoSecretaria = 5;
+
+        // Verificamos se o usuário logado está no grupo Secretaria
+        $secretaria = $this->grupoUsuarioModel->usuarioEstaNoGrupo($grupoSecretaria, session()->get('usuario_id'));
+
+
+        // Verificamos se foi encontrado o registro
+        if ($secretaria == null) {
+
+            return false;
+        }
+
+        // Retornamos true, ou seja, o usuário logado faz parte do grupo Secretaria
+        return true;
+    }
+
+    /**
      * Método que define as permissões que o usuário logado possui.
      * Usado exclusivamente no método pegaUsuarioDaSessao()
      *
@@ -207,13 +288,10 @@ class Autenticacao
         // Esse atributo será utilizado no método temPermissaoPara() na Entity Usuario
         $usuario->is_admin = $this->isAdmin();
 
-        // Se for admin, então não é cliente
+        // Se for admin
         if ($usuario->is_admin == true) {
-
             $usuario->is_uetp = false;
         } else {
-
-            // Nesse ponto, podemos verificar se o usuário logado é um cliente, visto que ele não é admin
             $usuario->is_uetp = $this->isUetp();
         }
 

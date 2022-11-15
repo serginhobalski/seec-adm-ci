@@ -299,7 +299,7 @@ class Grupos extends BaseController
 
         $this->grupoPermissaoModel->insertBatch($permissaoPush);
 
-        session()->setFlashdata('sucesso', 'Dadossalvos com sucesso!');
+        session()->setFlashdata('sucesso', 'Dados salvos com sucesso!');
 
         return $this->response->setJSON($retorno);
     }

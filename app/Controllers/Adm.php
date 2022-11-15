@@ -14,6 +14,22 @@ class Adm extends BaseController
         return view('Adm/index', $data);
     }
 
+    public function uetp()
+    {
+        $data = [
+            'titulo' => 'UETP',
+        ];
+        return view('Adm/uetp', $data);
+    }
+
+    public function secretaria()
+    {
+        $data = [
+            'titulo' => 'UETP',
+        ];
+        return view('Adm/secretaria', $data);
+    }
+
     public function login()
     {
         $autenticacao = service('autenticacao');

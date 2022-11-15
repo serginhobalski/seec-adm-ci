@@ -21,8 +21,8 @@
     <meta name="format-detection" content="telephone=no">
 
     <!-- FAVICONS ICON ============================================= -->
-    <link rel="icon" href="<?php echo site_url('src/') ?>assets/images/favicon.ico" type="image/x-icon" />
-    <link rel="shortcut icon" type="image/x-icon" href="<?php echo site_url('src/') ?>assets/images/favicon.png" />
+    <link rel="icon" href="<?php echo site_url('src/admin/') ?>assets/images/favicon.png" type="image/x-icon" />
+    <link rel="shortcut icon" type="image/x-icon" href="<?php echo site_url('src/admin/') ?>assets/images/favicon.png" />
 
     <!-- PAGE TITLE HERE ============================================= -->
     <title>SEEC-PA | Login </title>
@@ -66,6 +66,8 @@
                     <?php echo form_open('/', ['id' => 'form', 'class' => 'contact-bx']); ?>
 
                     <div id="response"></div>
+
+                    <?php echo $this->include('Layout/_mensagens') ?>
 
                     <div class="row placeani">
                         <div class="col-lg-12">
