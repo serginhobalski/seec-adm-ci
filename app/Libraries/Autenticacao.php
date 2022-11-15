@@ -291,8 +291,22 @@ class Autenticacao
         // Se for admin
         if ($usuario->is_admin == true) {
             $usuario->is_uetp = false;
+            $usuario->is_professor = false;
+            $usuario->is_aluno = false;
+            $usuario->is_secretaria = false;
         } else {
-            $usuario->is_uetp = $this->isUetp();
+            if ($usuario->is_uetp = true) {
+                $usuario->is_uetp = $this->isUetp();
+            }
+            if ($usuario->is_professor = true) {
+                $usuario->is_professor = $this->isProfessor();
+            }
+            if ($usuario->is_aluno = true) {
+                $usuario->is_aluno = $this->isAluno();
+            }
+            if ($usuario->is_secretaria = true) {
+                $usuario->is_secretaria = $this->isSecretaria();
+            }
         }
 
 

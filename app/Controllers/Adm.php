@@ -8,6 +8,8 @@ class Adm extends BaseController
 {
     public function index()
     {
+        // dd(usuario_logado());
+
         $data = [
             'titulo' => 'Painel',
         ];
@@ -17,7 +19,7 @@ class Adm extends BaseController
     public function uetp()
     {
         $data = [
-            'titulo' => 'UETP',
+            'titulo' => 'UETP ' . usuario_logado()->nome . '!',
         ];
         return view('Adm/uetp', $data);
     }
@@ -25,7 +27,7 @@ class Adm extends BaseController
     public function secretaria()
     {
         $data = [
-            'titulo' => 'UETP',
+            'titulo' => 'Área de' . usuario_logado()->nome . '!',
         ];
         return view('Adm/secretaria', $data);
     }
@@ -34,12 +36,12 @@ class Adm extends BaseController
     {
         $autenticacao = service('autenticacao');
 
-        $autenticacao->login('teste', 'teste123456');
+        // $autenticacao->login('teste', 'teste123456');
 
         $usuario = $autenticacao->pegaUsuarioLogado();
 
         // dd($autenticacao->login('admin', 'admin123456'));
-        dd($usuario);
+        // dd($usuario);
         // $autenticacao->logout();
         // return redirect()->to(site_url('adm'));
     }

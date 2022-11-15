@@ -129,13 +129,21 @@
                         </div>
                     </li>
                     <li>
-                        <a href="#" class="ttr-material-button ttr-submenu-toggle"><span class="ttr-user-avatar"><img alt="" src="<?php echo site_url('src/admin/') ?>assets/images/testimonials/pic3.jpg" width="32" height="32"></span></a>
+                        <a href="#" class="ttr-material-button ttr-submenu-toggle">
+                            <span class="ttr-user-avatar">
+                                <?php if (usuario_logado()->imagem != "") : ?>
+                                    <img alt="" src="<?php echo site_url("usuarios/imagem/$usuario->imagem"); ?>" width="32" height="32">
+                                <?php else : ?>
+                                    <img alt="" src="<?php echo site_url('src/assets/images/user-avatar.png') ?>" width="32" height="32">
+                                <?php endif; ?>
+                            </span></a>
                         <div class="ttr-header-submenu">
                             <ul>
-                                <li><a href="perfil">Meu perfil</a></li>
-                                <li><a href="relatorios">Relatórios</a></li>
-                                <li><a href="mensagens">Mensagens</a></li>
-                                <li><a href="logout">Sair</a></li>
+                                <li><a href="<?php echo site_url("perfil") ?>"><?php echo usuario_logado()->nome; ?></a></li>
+                                <li><a href="<?php echo site_url("relatorios") ?>">Relatórios</a></li>
+                                <li><a href="<?php echo site_url("mensagens") ?> ">Mensagens</a></li>
+                                <li><a href="<?php echo site_url("usuarios/editarsenha") ?> ">Alterar senha</a></li>
+                                <li><a href="<?php echo site_url("logout") ?>">Sair</a></li>
                             </ul>
                         </div>
                     </li>
@@ -264,6 +272,12 @@
                         </ul> -->
                     </li>
                     <li class="ttr-seperate"></li>
+                    <li>
+                        <a href="usuarios/editarsenha" class="ttr-material-button">
+                            <span class="ttr-icon"><i class="fa fa-key"></i></span>
+                            <span class="ttr-label">Alterar minha senha</span>
+                        </a>
+                    </li>
                 </ul>
                 <!-- sidebar menu end -->
             </nav>

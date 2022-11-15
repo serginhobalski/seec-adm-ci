@@ -58,6 +58,24 @@ class Login extends BaseController
             return $this->response->setJSON($retorno);
         }
 
+        if ($usuarioLogado->is_professor) {
+
+            $retorno['redirect'] = 'home/professor';
+            return $this->response->setJSON($retorno);
+        }
+
+        if ($usuarioLogado->is_aluno) {
+
+            $retorno['redirect'] = 'home/aluno';
+            return $this->response->setJSON($retorno);
+        }
+
+        if ($usuarioLogado->is_secretaria) {
+
+            $retorno['redirect'] = 'adm/secretaria';
+            return $this->response->setJSON($retorno);
+        }
+
         $retorno['redirect'] = 'home';
         return $this->response->setJSON($retorno);
     }

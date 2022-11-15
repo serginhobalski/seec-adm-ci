@@ -3,7 +3,7 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
-
+use App\Database\Seeds\UsuarioSeeder;
 use App\Entities\Usuario;
 
 use App\Models\UsuarioModel;
@@ -119,6 +119,7 @@ class Usuarios extends BaseController
 
         return view('Usuarios/editar', $data);
     }
+
 
     public function atualizar(int $id = null)
     {
@@ -438,6 +439,64 @@ class Usuarios extends BaseController
 
         // Se não for via POST
         return redirect()->back();
+    }
+
+    public function editarSenha()
+    {
+
+        $data = [
+            'titulo' => "Alterando senha de acesso.",
+        ];
+
+        return view('Usuarios/editar_senha', $data);
+    }
+
+    public function atualizarSenha()
+    {
+        if (!$this->request->isAJAX()) {
+            return redirect()->back();
+        }
+
+
+        // Envia o hash do token do form
+        $retorno['token'] = csrf_hash();
+
+
+        $current_password = $this->request->getPost('current_password');
+
+        // Recupera o usuário logado
+        $usuario = usuario_logado();
+
+
+
+        if ($usuario->verificaPassword($current_password) === false) {
+            $retorno['erro'] = 'Por favor verifique os erros abaixo e tente novamente';
+            $retorno['erros_model'] = ['current_password' => 'Senha atual inválida'];
+            return $this->response->setJSON($retorno);
+        }
+
+
+        $usuario->fill($this->request->getPost());
+
+
+        if ($usuario->hasChanged() === false) {
+            $retorno['info'] = 'Não há dados para atualizar';
+            return $this->response->setJSON($retorno);
+        }
+
+        if ($this->usuarioModel->save($usuario)) {
+            $retorno['sucesso'] = 'Senha atualiza com sucesso';
+
+            return $this->response->setJSON($retorno);
+        }
+
+        // Retornamos os erros de validação
+        $retorno['erro'] = 'Por favor verifique os abaixo e tente novamente';
+        $retorno['erros_model'] = $this->usuarioModel->errors();
+
+
+        // Retorno para o ajax request
+        return $this->response->setJSON($retorno);
     }
 
     public function criar()

@@ -8,6 +8,8 @@ class Home extends BaseController
 {
     public function index()
     {
+        // dd(usuario_logado());
+
         $data = [
             'titulo' => 'Início',
         ];
@@ -16,12 +18,12 @@ class Home extends BaseController
 
     public function login()
     {
-        $autenticacao = new Autenticacao();
-
+        dd(usuario_logado());
+        // $autenticacao = new Autenticacao();
         // dd($autenticacao);
         // dd($autenticacao->login('admin', 'admin123456'));
-        $autenticacao->logout();
-        return redirect()->to(site_url('adm'));
+        // $autenticacao->logout();
+        // return redirect()->to(site_url('adm'));
     }
 
     public function itq()
@@ -36,7 +38,7 @@ class Home extends BaseController
     public function professor()
     {
         $data = [
-            'titulo' => 'Olá, Professor!',
+            'titulo' => 'Área de ' . usuario_logado()->nome . '!',
             'subtitulo' => 'Esta é a sua área!',
         ];
         return view('Home/professor', $data);
@@ -45,7 +47,7 @@ class Home extends BaseController
     public function aluno()
     {
         $data = [
-            'titulo' => 'Olá, Aluno!',
+            'titulo' => 'Área de ' . usuario_logado()->nome . '!',
             'subtitulo' => 'Esta é a sua área!',
         ];
         return view('Home/aluno', $data);

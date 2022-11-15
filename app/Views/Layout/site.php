@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <!-- META ============================================= -->
@@ -72,8 +72,35 @@
                         </div>
                         <div class="topbar-right">
                             <ul>
-                                <li><a class="btn btn-success" href="login"><i class="fa fa-user"></i> Login</a></li>
-                                <li><a class="btn btn-danger" href="adm"><i class="fa fa-lock"></i> Área ADM</a></li>
+                                <?php if (usuario_logado() === null) : ?>
+                                    <li><a class="btn btn-success" href="login"><i class="fa fa-user"></i> Login</a></li>
+                                <?php else : ?>
+                                    <li>
+                                        <div class="dropdown">
+                                            <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+                                                <?php if (usuario_logado()->imagem == "") : ?>
+                                                    <?php echo strtoupper(usuario_logado()->nome); ?>
+                                                <?php else : ?>
+                                                    <img class="rounded-circle" src="<?php echo site_url("usuarios/imagem/$usuario->imagem"); ?>" alt="">
+                                                <?php endif; ?>
+                                            </button>
+                                            <div class="dropdown-menu bg-primary">
+                                                <?php if (usuario_logado()->is_admin === true) : ?>
+                                                    <a class="dropdown-item text-primary" href="<?php echo site_url("adm"); ?>"><i class="fa fa-dashboard"></i><b class="bg-primary text-white p-1">Meu painel</b> </a>
+                                                <?php elseif (usuario_logado()->is_uetp === true) : ?>
+                                                    <a class="dropdown-item text-primary" href="<?php echo site_url("adm/uetp"); ?>"><i class="fa fa-dashboard"></i><b class="bg-primary text-white p-1">Meu painel</b> </a>
+                                                <?php elseif (usuario_logado()->is_professor === true) : ?>
+                                                    <a class="dropdown-item text-primary" href="<?php echo site_url("home/professor"); ?>"><i class="fa fa-dashboard"></i><b class="bg-primary text-white p-1">Meu painel</b> </a>
+                                                <?php elseif (usuario_logado()->is_aluno === true) : ?>
+                                                    <a class="dropdown-item text-primary" href="<?php echo site_url("home/aluno"); ?>"><i class="fa fa-dashboard"></i><b class="bg-primary text-white p-1">Meu painel</b> </a>
+                                                <?php elseif (usuario_logado()->is_secretaria === true) : ?>
+                                                    <a class="dropdown-item text-primary" href="<?php echo site_url("adm/secretaria"); ?>"><i class="fa fa-dashboard"></i><b class="bg-primary text-white p-1">Meu painel</b> </a>
+                                                <?php endif; ?>
+                                                <a class="dropdown-item text-primary" href="<?php echo site_url("logout"); ?>"><i class="ti-fa-arrow-circle-left"></i><b class="bg-primary text-white p-1">Sair</b> </a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                <?php endif; ?>
                             </ul>
                         </div>
                     </div>
@@ -180,8 +207,6 @@
         <?php echo $this->renderSection('header'); ?>
 
         <?php echo $this->renderSection('conteudo'); ?>
-
-        <?php echo $this->include('Layout/_mensagens') ?>
 
         <!-- Footer ==== -->
         <footer>

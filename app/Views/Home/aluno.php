@@ -33,6 +33,9 @@
     </div>
     <!-- Breadcrumb row -->
     <div class="breadcrumb-row">
+
+        <?php echo $this->include('Layout/_mensagens') ?>
+
         <div class="container">
             <ul class="list-inline">
                 <li><a href="/"><i class="fa fa-home"></i> Home</a></li>
