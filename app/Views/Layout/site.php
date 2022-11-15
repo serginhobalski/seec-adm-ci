@@ -72,8 +72,8 @@
                         </div>
                         <div class="topbar-right">
                             <ul>
-                                <li><a class="btn btn-success" href="/login"><i class="fa fa-user"></i> Login</a></li>
-                                <li><a class="btn btn-danger" href="/adm"><i class="fa fa-lock"></i> Área ADM</a></li>
+                                <li><a class="btn btn-success" href="login"><i class="fa fa-user"></i> Login</a></li>
+                                <li><a class="btn btn-danger" href="adm"><i class="fa fa-lock"></i> Área ADM</a></li>
                             </ul>
                         </div>
                     </div>

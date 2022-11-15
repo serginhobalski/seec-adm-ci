@@ -108,9 +108,6 @@ class Usuarios extends BaseController
         return view('Usuarios/exibir', $data);
     }
 
-
-
-
     public function editar(int $id = null)
     {
         $usuario = $this->buscaUsuarioOu404($id);
@@ -360,7 +357,6 @@ class Usuarios extends BaseController
 
         return view('Usuarios/grupos', $data);
     }
-
 
     public function salvarGrupos()
     {

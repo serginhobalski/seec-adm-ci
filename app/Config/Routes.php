@@ -36,25 +36,26 @@ $routes->setAutoRoute(true);
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
-$routes->get('/itq', 'Home::itq');
-$routes->get('/postulantes', 'Home::postulantes');
-$routes->get('/enaq', 'Home::enaq');
-$routes->get('/treinamentos', 'Home::treinamentos');
-$routes->get('/nossos_cursos', 'Home::nossos_cursos');
-$routes->get('/resultados_enaq', 'Home::resultados_enaq');
-$routes->get('/seec', 'Home::seec');
-$routes->get('/departamentos', 'Home::departamentos');
-$routes->get('/calendario_geral', 'Home::calendario_geral');
-$routes->get('/calendario_eventos', 'Home::calendario_eventos');
-$routes->get('/contato', 'Home::contato');
-$routes->get('/adm', 'Adm::index');
-$routes->get('/cursos', 'Adm::cursos');
-$routes->get('/mensagens', 'Adm::mensagens');
-$routes->get('/calendario', 'Adm::calendario');
-$routes->get('/usuarios', 'Usuarios::index');
-$routes->get('/grupos', 'Grupos::index');
-$routes->get('/relatorios', 'Relatorios::index');
-$routes->get('/perfil', 'Adm::perfil');
+$routes->get('login', 'Login::novo');
+$routes->get('itq', 'Home::itq');
+$routes->get('postulantes', 'Home::postulantes');
+$routes->get('enaq', 'Home::enaq');
+$routes->get('treinamentos', 'Home::treinamentos');
+$routes->get('nossos_cursos', 'Home::nossos_cursos');
+$routes->get('resultados_enaq', 'Home::resultados_enaq');
+$routes->get('seec', 'Home::seec');
+$routes->get('departamentos', 'Home::departamentos');
+$routes->get('calendario_geral', 'Home::calendario_geral');
+$routes->get('calendario_eventos', 'Home::calendario_eventos');
+$routes->get('contato', 'Home::contato');
+$routes->get('adm', 'Adm::index');
+$routes->get('cursos', 'Adm::cursos');
+$routes->get('mensagens', 'Adm::mensagens');
+$routes->get('calendario', 'Adm::calendario');
+$routes->get('usuarios', 'Usuarios::index');
+$routes->get('grupos', 'Grupos::index');
+$routes->get('relatorios', 'Relatorios::index');
+$routes->get('perfil', 'Adm::perfil');
 
 /*
  * --------------------------------------------------------------------

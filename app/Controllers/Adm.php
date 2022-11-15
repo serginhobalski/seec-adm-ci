@@ -16,14 +16,14 @@ class Adm extends BaseController
 
     public function login()
     {
-        $autenticacao = new Autenticacao();
+        $autenticacao = service('autenticacao');
 
         $autenticacao->login('teste', 'teste123456');
 
         $usuario = $autenticacao->pegaUsuarioLogado();
 
         // dd($autenticacao->login('admin', 'admin123456'));
-        dd($usuario->temPermissaoPara('listar-usuarios'));
+        dd($usuario);
         // $autenticacao->logout();
         // return redirect()->to(site_url('adm'));
     }

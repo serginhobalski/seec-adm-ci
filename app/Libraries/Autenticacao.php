@@ -30,21 +30,21 @@ class Autenticacao
 
         if ($usuario === null) {
 
-            exit('Usuário não encontrado');
+            // exit('Usuário não encontrado');
 
             return false;
         }
 
         if ($usuario->verificaPassword($password) == false) {
 
-            exit('Senha incorreta');
+            // exit('Senha incorreta');
 
             return false;
         }
 
         if ($usuario->ativo == false) {
 
-            exit('Usuário inativo');
+            // exit('Usuário inativo');
 
             return false;
         }
