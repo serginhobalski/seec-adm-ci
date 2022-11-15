@@ -120,6 +120,16 @@ class Usuarios extends BaseController
         return view('Usuarios/editar', $data);
     }
 
+    public function editarUsuarioLogado()
+    {
+        $data = [
+            'titulo' => "Editando " . esc(usuario_logado()->nome),
+            'usuario' => usuario_logado(),
+        ];
+
+        return view('Usuarios/editar_usuario_logado', $data);
+    }
+
 
     public function atualizar(int $id = null)
     {

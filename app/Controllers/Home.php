@@ -26,6 +26,18 @@ class Home extends BaseController
         // return redirect()->to(site_url('adm'));
     }
 
+    public function editarUsuarioLogado()
+    {
+        $data = [
+            'titulo' => "Atualizando " . esc(usuario_logado()->nome),
+            'subtitulo' => "Atualize suas informações",
+            'usuario' => usuario_logado(),
+        ];
+
+        return view('Home/editar_usuario_logado', $data);
+    }
+
+
     public function itq()
     {
         $data = [

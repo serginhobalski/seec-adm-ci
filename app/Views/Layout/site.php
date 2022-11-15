@@ -96,6 +96,7 @@
                                                 <?php elseif (usuario_logado()->is_secretaria === true) : ?>
                                                     <a class="dropdown-item text-primary" href="<?php echo site_url("adm/secretaria"); ?>"><i class="fa fa-dashboard"></i><b class="bg-primary text-white p-1">Meu painel</b> </a>
                                                 <?php endif; ?>
+                                                <a class="dropdown-item text-primary" href="<?php echo site_url("home/editarusuariologado"); ?>"><i class="fa fa-wrench"></i><b class="bg-primary text-white p-1">Atualizar meus dados</b> </a>
                                                 <a class="dropdown-item text-primary" href="<?php echo site_url("logout"); ?>"><i class="ti-fa-arrow-circle-left"></i><b class="bg-primary text-white p-1">Sair</b> </a>
                                             </div>
                                         </div>

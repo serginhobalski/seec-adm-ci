@@ -139,11 +139,28 @@
                             </span></a>
                         <div class="ttr-header-submenu">
                             <ul>
-                                <li><a href="<?php echo site_url("perfil") ?>"><?php echo usuario_logado()->nome; ?></a></li>
-                                <li><a href="<?php echo site_url("relatorios") ?>">Relatórios</a></li>
-                                <li><a href="<?php echo site_url("mensagens") ?> ">Mensagens</a></li>
-                                <li><a href="<?php echo site_url("usuarios/editarsenha") ?> ">Alterar senha</a></li>
-                                <li><a href="<?php echo site_url("logout") ?>">Sair</a></li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-user-circle"></i> <?php echo usuario_logado()->nome; ?>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="<?php echo site_url("relatorios") ?>">
+                                        <i class="fa fa-paperclip"></i> Relatório
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="<?php echo site_url("mensagens") ?> ">
+                                        <i class="fa fa-paper-plane"></i> Mensagens</a>
+                                </li>
+                                <li>
+                                    <a href="<?php echo site_url("usuarios/editarusuariologado") ?> ">
+                                        <i class="fa fa-wrench"></i> Atualizar meus dados</a>
+                                </li>
+                                <li>
+                                    <a href="<?php echo site_url("logout") ?>">
+                                        <i class="fa fa-arrow-circle-left"></i> Sair</a>
+                                </li>
                             </ul>
                         </div>
                     </li>
@@ -187,7 +204,7 @@
                     <li>
                         <a href="/adm" class="ttr-material-button">
                             <span class="ttr-icon"><i class="fa fa-dashboard"></i></span>
-                            <span class="ttr-label">Dashborad</span>
+                            <span class="ttr-label">Painel</span>
                         </a>
                     </li>
                     <li>
@@ -275,7 +292,7 @@
                     <li>
                         <a href="usuarios/editarsenha" class="ttr-material-button">
                             <span class="ttr-icon"><i class="fa fa-key"></i></span>
-                            <span class="ttr-label">Alterar minha senha</span>
+                            <span class="ttr-label">Atualizar meus dados</span>
                         </a>
                     </li>
                 </ul>
@@ -290,9 +307,8 @@
     <main class="ttr-wrapper">
         <div class="container-fluid">
             <div class="db-breadcrumb">
-                <h4 class="breadcrumb-title">Dashboard</h4>
+                <h4 class="breadcrumb-title">Painel</h4>
                 <ul class="db-breadcrumb-list">
-                    <li><a href="/adm"><i class="fa fa-home"></i>Home</a></li>
                     <li><?php echo $titulo; ?></li>
                 </ul>
             </div>

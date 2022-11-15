@@ -26,156 +26,90 @@
     <div class="col-lg-12 m-b30">
         <div class="widget-box">
             <div class="wc-title">
-                <h4>Prefil de <?php echo 'Usuário' ?></h4>
+                <h4>Perfil de <?php echo 'Usuário' ?></h4>
             </div>
             <div class="widget-inner">
-                <form class="edit-profile m-b30">
+                <form id="form" class="edit-profile m-b30">
                     <div class="">
                         <div class="form-group row">
-                            <div class="col-sm-10  ml-auto">
-                                <h3>1. Personal Details</h3>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-12 col-form-label">Nome</label>
+                            <div class="col-sm-12">
+                                <h3><?php echo usuario_logado()->nome ?></h3>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Full Name</label>
-                            <div class="col-sm-7">
-                                <input class="form-control" type="text" value="Mark Andre">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Occupation</label>
-                            <div class="col-sm-7">
-                                <input class="form-control" type="text" value="CTO">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Company Name</label>
-                            <div class="col-sm-7">
-                                <input class="form-control" type="text" value="EduChamp">
-                                <span class="help">If you want your invoices addressed to a company. Leave blank to use your full name.</span>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Phone No.</label>
-                            <div class="col-sm-7">
-                                <input class="form-control" type="text" value="+120 012345 6789">
-                            </div>
-                        </div>
-
-                        <div class="seperator"></div>
-
-                        <div class="form-group row">
-                            <div class="col-sm-10 ml-auto">
-                                <h3>2. Address</h3>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Address</label>
-                            <div class="col-sm-7">
-                                <input class="form-control" type="text" value="5-S2-20 Dummy City, UK">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">City</label>
-                            <div class="col-sm-7">
-                                <input class="form-control" type="text" value="US">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">State</label>
-                            <div class="col-sm-7">
-                                <input class="form-control" type="text" value="California">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Postcode</label>
-                            <div class="col-sm-7">
-                                <input class="form-control" type="text" value="000702">
-                            </div>
-                        </div>
-
-                        <div class="m-form__seperator m-form__seperator--dashed m-form__seperator--space-2x"></div>
-
-                        <div class="form-group row">
-                            <div class="col-sm-10 ml-auto">
-                                <h3 class="m-form__section">3. Social Links</h3>
+                            <label class="col-sm-12 col-form-label">Tipo de acesso</label>
+                            <div class="col-sm-12">
+                                <?php if (usuario_logado()->is_admin === true) : ?>
+                                    <h3>Administrador</h3>
+                                <?php elseif (usuario_logado()->is_uetp === true) : ?>
+                                    <h3>UETP</h3>
+                                    <span class="help text-info">*UETP: Unidade de Ensino Teológico-Pastoral.</span>
+                                <?php elseif (usuario_logado()->is_professor === true) : ?>
+                                    <h3>Professor</h3>
+                                <?php elseif (usuario_logado()->is_aluno === true) : ?>
+                                    <h3>Aluno</h3>
+                                <?php elseif (usuario_logado()->is_secretaria === true) : ?>
+                                    <h3>Secretaria</h3>
+                                <?php endif; ?>
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Linkedin</label>
-                            <div class="col-sm-7">
-                                <input class="form-control" type="text" value="www.linkedin.com">
+                            <label class="col-sm-12 col-form-label">E-mail</label>
+                            <div class="col-sm-12">
+                                <?php if (usuario_logado()->email = "") : ?>
+                                    <h3>Nenhum e-amil cadastrado...</h3>
+                                <?php else : ?>
+                                    <h3><?php echo usuario_logado()->email ?></h3>
+                                <?php endif; ?>
                             </div>
                         </div>
+
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Facebook</label>
-                            <div class="col-sm-7">
-                                <input class="form-control" type="text" value="www.facebook.com">
+                            <label class="col-sm-12 col-form-label">Telefone</label>
+                            <div class="col-sm-12">
+                                <?php if (usuario_logado()->email = "") : ?>
+                                    <h3>Nenhum telefone cadastrado...</h3>
+                                <?php else : ?>
+                                    <h3><?php echo usuario_logado()->telefone ?></h3>
+                                <?php endif; ?>
                             </div>
                         </div>
+
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Twitter</label>
-                            <div class="col-sm-7">
-                                <input class="form-control" type="text" value="www.twitter.com">
+                            <label class="col-sm-12 col-form-label">Local</label>
+                            <div class="col-sm-12">
+                                <?php if (usuario_logado()->email = "") : ?>
+                                    <h3>Nenhum local cadastrado... </h3>
+                                <?php else : ?>
+                                    <h3><?php echo usuario_logado()->local ?></h3>
+                                <?php endif; ?>
                             </div>
                         </div>
+
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Instagram</label>
-                            <div class="col-sm-7">
-                                <input class="form-control" type="text" value="www.instagram.com">
+                            <label class="col-sm-12 col-form-label">Status</label>
+                            <div class="col-sm-12">
+                                <h3><?php echo usuario_logado()->exibeSituacao(); ?></h3>
                             </div>
                         </div>
-                    </div>
-                    <div class="">
-                        <div class="">
-                            <div class="row">
-                                <div class="col-sm-2">
-                                </div>
-                                <div class="col-sm-7">
-                                    <button type="reset" class="btn">Save changes</button>
-                                    <button type="reset" class="btn-secondry">Cancel</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
+                        <script>
+                            function goBack() {
+                                window.history.back()
+                            }
+                        </script>
+
+                        <body>
+                            <button class="btn" onclick="goBack()">
+                                <i class="fa fa-arrow-circle-left"></i> Voltar
+                            </button>
+                        </body>
                 </form>
-                <form class="edit-profile">
-                    <div class="">
-                        <div class="form-group row">
-                            <div class="col-sm-10 ml-auto">
-                                <h3>4. Password</h3>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Current Password</label>
-                            <div class="col-sm-7">
-                                <input class="form-control" type="password" value="">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">New Password</label>
-                            <div class="col-sm-7">
-                                <input class="form-control" type="password" value="">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Re Type Password</label>
-                            <div class="col-sm-7">
-                                <input class="form-control" type="password" value="">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-2">
-                        </div>
-                        <div class="col-sm-7">
-                            <button type="reset" class="btn">Save changes</button>
-                            <button type="reset" class="btn-secondry">Cancel</button>
-                        </div>
-                    </div>
 
-                </form>
             </div>
         </div>
     </div>
@@ -187,5 +121,6 @@
 
 <!-- Custom scripts -->
 <?php echo $this->section('scripts'); ?>
-<!-- Scripts content here -->
+
+
 <?php $this->endSection(); ?>
