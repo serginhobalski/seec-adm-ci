@@ -48,6 +48,9 @@
                 <?php if ($usuario->ativo == true) : ?>
                     <option value="1" selected>Ativo</option>
                     <option value="0">Inativo</option>
+                <?php elseif ($usuario->ativo == "") : ?>
+                    <option value="1" selected>Ativo</option>
+                    <option value="0">Inativo</option>
                 <?php else : ?>
                     <option value="1">Ativo</option>
                     <option value="0" selected>Inativo</option>

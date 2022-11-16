@@ -38,6 +38,7 @@ $routes->setAutoRoute(true);
 $routes->get('/', 'Home::index');
 $routes->get('login', 'Login::novo');
 $routes->get('logout', 'Login::logout');
+$routes->get('esqueci', 'Password::esqueci');
 $routes->get('itq', 'Home::itq');
 $routes->get('postulantes', 'Home::postulantes');
 $routes->get('enaq', 'Home::enaq');

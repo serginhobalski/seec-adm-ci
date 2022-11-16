@@ -23,42 +23,31 @@
 
 <div class="account-container">
     <div class="heading-bx left">
-        <h2 class="title-head">Faça login com <span>sua conta</span></h2>
-        <p>Não possui acesso? <a href="#">fale conosco</a></p>
+        <h2 class="title-head">Esqueceu <span>sua senha?</span></h2>
+        <p>Coloque abaixo o e-mail associado à sua conta, para solicitar uma nova senha. <br>
+            Em caso de dúvida, <a href="https://wa.me/5591991882198">fale conosco.</a></p>
     </div>
     <?php echo form_open('/', ['id' => 'form', 'class' => 'contact-bx']); ?>
 
     <div id="response"></div>
 
-
     <div class="row placeani">
         <div class="col-lg-12">
             <div class="form-group">
                 <div class="input-group">
-                    <label>Seu login</label>
-                    <input name="login" type="text" required="" class="form-control">
+                    <label>Seu e-mail</label>
+                    <input name="email" type="mail" required="" class="form-control">
                 </div>
             </div>
         </div>
-        <div class="col-lg-12">
-            <div class="form-group">
-                <div class="input-group">
-                    <label>Sua senha</label>
-                    <input name="password" type="password" class="form-control" required="">
-                </div>
-            </div>
-        </div>
+
         <div class="col-lg-12">
             <div class="form-group form-forget">
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="customControlAutosizing" checked>
-                    <label class="custom-control-label" for="customControlAutosizing">Lembar</label>
-                </div>
-                <a href="<?php echo site_url("esqueci"); ?>" class="ml-auto">Esqueceu a senha?</a>
+                Lembrou a senha?<a href="<?php echo site_url("login"); ?>" class="ml-auto"> Faça seu login aqui.</a>
             </div>
         </div>
         <div class="col-lg-12 m-b30">
-            <input id="btn-login" name="btn-login" type="submit" value="Entrar" class="btn button-md">
+            <input id="btn-esqueci" name="btn-esqueci" type="submit" value="Enviar" class="btn button-md">
         </div>
     </div>
 
@@ -81,7 +70,7 @@
             $.ajax({
 
                 type: 'POST',
-                url: '<?php echo site_url('login/criar'); ?>',
+                url: '<?php echo site_url('password/processaesqueci'); ?>',
                 data: new FormData(this),
                 dataType: 'json',
                 contentType: false,
@@ -89,18 +78,18 @@
                 processData: false,
                 beforeSend: function() {
                     $("#response").html('');
-                    $("#btn-login").val('Processando requisição...');
+                    $("#btn-esqueci").val('Processando requisição...');
                 },
                 success: function(response) {
-                    $("#btn-login").val('Salvar');
-                    $("#btn-login").removeAttr("disabled");
+                    $("#btn-esqueci").val('Enviar');
+                    $("#btn-esqueci").removeAttr("disabled");
 
                     $('[name=csrf_test_name]').val(response.token);
 
                     if (!response.erro) {
 
                         // Tudo certo! Pode redirecionar!
-                        window.location.href = "<?php echo site_url(); ?>" + response.redirect;
+                        window.location.href = "<?php echo site_url("password/resetenviado"); ?>";
 
                     }
                     if (response.erro) {
@@ -122,8 +111,8 @@
                 },
                 error: function() {
                     alert('Não foi possível processar a solicitação');
-                    $("#btn-login").val('Salvar');
-                    $("#btn-login").removeAttr("disabled");
+                    $("#btn-esqueci").val('Enviar');
+                    $("#btn-esqueci").removeAttr("disabled");
                 },
 
             });

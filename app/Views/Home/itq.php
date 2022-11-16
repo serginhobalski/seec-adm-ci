@@ -11,7 +11,6 @@
 <!-- Styles content here -->
 <?php $this->endSection(); ?>
 
-
 <!-- Custom header -->
 <?php echo $this->section('header'); ?>
 <?php $this->endSection(); ?>
@@ -24,7 +23,7 @@
         <div class="container">
             <div class="page-banner-entry pt-5">
                 <br><br>
-                <h1 class="text-white"><?php echo $titulo; ?></h1>
+                <h1 class="text-white mt-5"><?php echo $titulo; ?></h1>
                 <h3 class="text-white"><?php echo $subtitulo; ?></h3>
             </div>
         </div>
@@ -40,6 +39,7 @@
     </div>
     <!-- Breadcrumb row END -->
     <!-- inner page banner END -->
+
     <div class="content-block">
         <!-- About Us -->
         <div class="section-area section-sp1">
