@@ -147,7 +147,7 @@
 
                         } else {
                             // Tudo certo! Pode redirecionar!
-                            window.location.href = "<?php echo site_url("usuarios/exibir/$usuario->id"); ?>";
+                            window.history.back();
                         }
 
                     }

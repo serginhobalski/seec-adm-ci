@@ -80,20 +80,29 @@
                 <!-- header left menu start -->
                 <ul class="ttr-header-navigation">
                     <li>
-                        <a href="adm" class="ttr-material-button ttr-submenu-toggle">HOME</a>
+                        <a href="adm" class="ttr-material-button ttr-submenu-toggle">
+                            <i class="fa fa-paper-plane"></i> Mensagens</a>
                     </li>
                     <li>
-                        <a href="#" class="ttr-material-button ttr-submenu-toggle">MENU <i class="fa fa-angle-down"></i></a>
-                        <div class="ttr-header-submenu">
-                            <ul>
-                                <li><a href="/relatorios">Relatórios</a></li>
-                                <li><a href="/usuarios">Usuários</a></li>
-                                <li><a href="/mensagens">Mensagens</a></li>
-                                <li><a href="/calendario">Calendário</a></li>
-                                <li><a href="/perfil">Perfil</a></li>
-                            </ul>
-                        </div>
+                        <a href="adm" class="ttr-material-button ttr-submenu-toggle">
+                            <i class="fa fa-calendar"></i> Calendário</a>
                     </li>
+                    <?php if (usuario_logado()->is_admin === true) : ?>
+                        <li>
+                            <a href="<?php echo site_url('relatorios') ?>" class="ttr-material-button ttr-submenu-toggle">
+                                <i class="fa fa-paste"></i> Relatórios Enviados</a>
+                        </li>
+                    <?php elseif (usuario_logado()->is_uetp === true) : ?>
+                        <li>
+                            <a href="<?php echo site_url('relatorios') ?>" class="ttr-material-button ttr-submenu-toggle">
+                                <i class="fa fa-paste"></i> Meus relatórios</a>
+                        </li>
+                    <?php elseif (usuario_logado()->is_secretaria === true) : ?>
+                        <li>
+                            <a href="<?php echo site_url('relatorios') ?>" class="ttr-material-button ttr-submenu-toggle">
+                                <i class="fa fa-paste"></i> Ver relatórios</a>
+                        </li>
+                    <?php endif; ?>
                 </ul>
                 <!-- header left menu end -->
             </div>
@@ -142,11 +151,6 @@
                                 <li>
                                     <a href="#">
                                         <i class="fa fa-user-circle"></i> <?php echo usuario_logado()->nome; ?>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="<?php echo site_url("relatorios") ?>">
-                                        <i class="fa fa-paperclip"></i> Relatório
                                     </a>
                                 </li>
                                 <li>

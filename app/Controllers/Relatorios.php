@@ -21,6 +21,15 @@ class Relatorios extends BaseController
         return view('Relatorios/index', $data);
     }
 
+    public function meusRelatorios()
+    {
+        $data = [
+            'titulo' => 'Relatórios',
+        ];
+        return view('Relatorios/meus_relatorios', $data);
+    }
+
+
     public function recuperaRelatorios()
     {
         if (!$this->request->isAJAX()) {
