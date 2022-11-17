@@ -57,10 +57,10 @@
                         <?php echo form_open('/', ['id' => 'form'], ['id' => "$usuario->id"]) ?>
 
                         <div class="form-group row">
-                            <label class="col-sm-12 col-form-label">Escolha uma ou mais permissões</label>
+                            <label class="col-sm-12 col-form-label">Escolha um grupo de acesso</label>
 
                             <div class="col-sm-12">
-                                <select name="grupo_id[]" class="selectize" multiple>
+                                <select name="grupo_id[]" class="selectize">
                                     <?php foreach ($gruposDisponiveis as $grupo) : ?>
                                         <option value="<?php echo $grupo->id ?>"><?php echo $grupo->nome ?></option>
                                     <?php endforeach; ?>

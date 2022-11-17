@@ -73,7 +73,7 @@
                         <div class="topbar-right">
                             <ul>
                                 <?php if (usuario_logado() === null) : ?>
-                                    <li><a class="btn btn-success" href="login"><i class="fa fa-user"></i> Login</a></li>
+                                    <li><a class="btn btn-success" href="<?php echo site_url('login') ?>"><i class="fa fa-user"></i> Login</a></li>
                                 <?php else : ?>
                                     <li>
                                         <div class="dropdown">

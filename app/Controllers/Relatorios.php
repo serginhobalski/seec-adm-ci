@@ -73,6 +73,53 @@ class Relatorios extends BaseController
         return $this->response->setJSON($retorno);
     }
 
+    public function recuperaMeusRelatorios()
+    {
+        if (!$this->request->isAJAX()) {
+
+            return redirect()->back();
+        }
+
+        $atributos = [
+            'id',
+            'nome',
+            'local',
+            'mes',
+            'ano',
+            'valor',
+        ];
+
+
+        $relatorios = $this->relatorioModel->select($atributos)
+            // $relatorios = $this->relatorioModel->select('*')
+            ->where('nome', usuario_logado()->nome)
+            ->orderBy('criado_em', 'DESC')
+            ->findAll();
+
+        $data = [];
+
+
+        foreach ($relatorios as $relatorio) {
+
+            $nomeRelatorio = esc($relatorio->nome);
+
+            $data[] = [
+                'id' => $relatorio->id,
+                'nome' => anchor("relatorios/exibir/$relatorio->id", esc($relatorio->nome), 'title="Exibir ' . $nomeRelatorio . '"'),
+                'local' => esc($relatorio->local),
+                'mes' => esc($relatorio->mes),
+                'ano' => esc($relatorio->ano),
+                'valor' => ($relatorio->valor > 0 ? 'R$ ' . implode(',', explode('.', $relatorio->valor)) : '*Sem movimento'),
+            ];
+        }
+
+        $retorno = [
+            'data' => $data,
+        ];
+
+        return $this->response->setJSON($retorno);
+    }
+
     public function exibir(int $id = null)
     {
         $relatorio = $this->buscaRelatorioOu404($id);
@@ -123,5 +170,39 @@ class Relatorios extends BaseController
         $relatorio->fill($post);
 
         return $this->response->setJSON($retorno);
+    }
+
+    public function excluir(int $id = null)
+    {
+        $relatorio = $this->buscaRelatorioOu404($id);
+
+        // Verificar se o relatório já foi excluído anteriormente
+        if ($relatorio->deletado_em != null) {
+            return redirect()->back()->with('info', "Este relatório já encontra-se excluído.");
+        }
+
+        if ($this->request->getMethod() === 'post') {
+
+            // Deletar usuário
+            $this->relatorioModel->delete($relatorio->id);
+
+            // Remove arquivos do relatorio
+            /**
+             * @todo Criar função para remover os arquivos...
+             */
+
+
+            $this->relatorioModel->protect(false)->save($relatorio);
+
+
+            return redirect()->to(site_url("relatorios"))->with('sucesso', "Relatório de  $relatorio->nome excluído com sucesso.");
+        }
+
+        $data = [
+            'titulo' => "Excluindo relatório " . esc($relatorio->nome),
+            'relatorio' => $relatorio,
+        ];
+
+        return view('Relatorios/excluir', $data);
     }
 }

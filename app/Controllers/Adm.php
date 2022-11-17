@@ -8,7 +8,9 @@ class Adm extends BaseController
 {
     public function index()
     {
-        // dd(usuario_logado());
+        if (!usuario_logado()->is_admin) {
+            return redirect()->back()->with("info", "Você não possui permissão para visualizar esta página.");
+        }
 
         $data = [
             'titulo' => 'Painel',
@@ -18,6 +20,10 @@ class Adm extends BaseController
 
     public function uetp()
     {
+        if (!usuario_logado()->is_admin && !usuario_logado()->is_uetp) {
+            return redirect()->back()->with("info", "Você não possui permissão para visualizar esta página.");
+        }
+
         $data = [
             'titulo' => 'UETP ' . usuario_logado()->nome . '!',
         ];
@@ -26,6 +32,9 @@ class Adm extends BaseController
 
     public function secretaria()
     {
+        if (!usuario_logado()->is_admin && !usuario_logado()->is_secretaria) {
+            return redirect()->back()->with("info", "Você não possui permissão para visualizar esta página.");
+        }
         $data = [
             'titulo' => 'Área de' . usuario_logado()->nome . '!',
         ];
@@ -34,11 +43,16 @@ class Adm extends BaseController
 
     public function login()
     {
-        $autenticacao = service('autenticacao');
+        if (!usuario_logado()->is_admin) {
+            return redirect()->back()->with("info", "Você não possui permissão para visualizar esta página.");
+        }
+
+        // $autenticacao = service('autenticacao');
 
         // $autenticacao->login('teste', 'teste123456');
 
-        $usuario = $autenticacao->pegaUsuarioLogado();
+        // $usuario = $autenticacao->pegaUsuarioLogado();
+
 
         // dd($autenticacao->login('admin', 'admin123456'));
         // dd($usuario);
@@ -48,6 +62,9 @@ class Adm extends BaseController
 
     public function cursos()
     {
+        if (!usuario_logado()->is_admin && !usuario_logado()->is_secretaria) {
+            return redirect()->back()->with("info", "Você não possui permissão para visualizar esta página.");
+        }
         $data = [
             'titulo' => 'Cursos',
         ];

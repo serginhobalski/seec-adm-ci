@@ -62,9 +62,10 @@
             </div>
             <div class="account-form-inner">
 
+                <?php echo $this->include('Layout/_mensagens') ?>
+
                 <?php echo $this->renderSection('conteudo'); ?>
 
-                <?php echo $this->include('Layout/_mensagens') ?>
 
             </div>
         </div>

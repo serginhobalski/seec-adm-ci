@@ -98,9 +98,6 @@
                     data: 'login'
                 },
                 {
-                    data: 'admin'
-                },
-                {
                     data: 'ativo'
                 },
             ],

@@ -50,8 +50,10 @@ class Usuarios extends BaseController
 
         $usuarios = $this->usuarioModel->select($atributos)
             ->withDeleted(true)
-            ->orderBy('nome', 'ASC')
+            ->orderBy('nome', 'DESC')
             ->findAll();
+
+
 
         $data = [];
 
@@ -73,14 +75,13 @@ class Usuarios extends BaseController
                 ];
             }
 
-            $nomeUsuario = esc($usuario->nome);
 
             $data[] = [
                 'imagem' => $usuario->imagem = img($imagem),
-                'nome' => anchor("usuarios/exibir/$usuario->id", esc($usuario->nome), 'title="Exibir ' . $nomeUsuario . '"'),
+                'nome' => anchor("usuarios/exibir/$usuario->id", esc($usuario->nome), 'title="Exibir ' . esc($usuario->nome) . '"'),
                 'local' => esc($usuario->local),
                 'login' => esc($usuario->login),
-                'admin' => ($usuario->admin == true ? '<span class="text-success">Admin Geral </span>' : '<span class="text-warning">UETP </span>'),
+                // 'admin' => ($usuario->admin == true ? '<span class="text-success">Admin Geral </span>' : '<span class="text-warning">UETP </span>'),
                 'ativo' => $usuario->exibeSituacao(),
             ];
         }

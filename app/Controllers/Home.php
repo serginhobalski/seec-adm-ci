@@ -18,6 +18,9 @@ class Home extends BaseController
 
     public function login()
     {
+        // if (!usuario_logado()->is_admin) {
+        //     return redirect()->back()->with("info", "Você não possui permissão para visualizar esta página.");
+        // }
         dd(usuario_logado());
         // $autenticacao = new Autenticacao();
         // dd($autenticacao);
@@ -28,6 +31,10 @@ class Home extends BaseController
 
     public function email()
     {
+        if (!usuario_logado()->is_admin) {
+            return redirect()->back()->with("info", "Você não possui permissão para visualizar esta página.");
+        }
+
         $email = service('email');
 
         $email->setFrom('host@ead.seecpa.com.br', 'SEEC Pará');
@@ -45,6 +52,10 @@ class Home extends BaseController
 
     public function editarUsuarioLogado()
     {
+        if (!usuario_logado()) {
+            return redirect()->back()->with("info", "Você não possui permissão para visualizar esta página.");
+        }
+
         $data = [
             'titulo' => "Atualizando " . esc(usuario_logado()->nome),
             'subtitulo' => "Atualize suas informações",
@@ -66,6 +77,12 @@ class Home extends BaseController
 
     public function professor()
     {
+        if (usuario_logado() === null) {
+            return redirect()->back()->with("info", "Você precisa fazer login para visualizar esta página.");
+        }
+        if (usuario_logado()->is_admin === false && usuario_logado()->is_professor === false) {
+            return redirect()->back()->with("info", "Você não possui permissão para visualizar esta página.");
+        }
         $data = [
             'titulo' => 'Área de ' . usuario_logado()->nome . '!',
             'subtitulo' => 'Esta é a sua área!',
@@ -75,10 +92,17 @@ class Home extends BaseController
 
     public function aluno()
     {
+        if (usuario_logado() === null) {
+            return redirect()->back()->with("info", "Você precisa fazer login para visualizar esta página.");
+        }
+        if (!usuario_logado()->is_admin && !usuario_logado()->is_aluno) {
+            return redirect()->back()->with("info", "Você não possui permissão para visualizar esta página.");
+        }
         $data = [
             'titulo' => 'Área de ' . usuario_logado()->nome . '!',
             'subtitulo' => 'Esta é a sua área!',
         ];
+
         return view('Home/aluno', $data);
     }
 

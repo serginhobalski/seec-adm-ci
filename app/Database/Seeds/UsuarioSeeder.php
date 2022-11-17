@@ -11,6 +11,9 @@ class UsuarioSeeder extends Seeder
         // Primeiramente semeamos os usuários
         $usuarioModel = new \App\Models\UsuarioModel();
 
+        $grupoUsuarioModel = new \App\Models\GrupoUsuarioModel();
+
+
         $usuarios = [
             [
                 'nome' => 'ITQ/PA/001 – Pedreira ',
@@ -469,9 +472,6 @@ class UsuarioSeeder extends Seeder
         foreach ($usuarios as $usuario) {
 
             $usuarioModel->skipValidation(true)->protect(false)->insert($usuario);
-            // Simple Queries
-            // $this->db->query('INSERT INTO usuarios (nome, local, login, ativo, admin, password_hash, criado_em) VALUES(:nome:, :local:, :login:, :ativo:, :admin:, :password:, :criado_em:)', $usuario);
-
 
             // Segunda parte.... inserimos o usuário no grupo de UETP
 

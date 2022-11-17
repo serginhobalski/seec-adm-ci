@@ -13,24 +13,34 @@ class UsuarioAdminSeeder extends Seeder
         $grupos = [
 
             [
+                // ID 1
                 'nome' => 'Administrador',
                 'exibir' => false, // 0
-                'descricao' => 'Grupo com acesso total ao sistema', // false
+                'descricao' => 'Grupo com acesso total ao sistema',
             ],
             [
+                // ID 2
                 'nome' => 'UETP',
                 'exibir' => false, // 0
-                'descricao' => 'Acessa o sistema como UETP para visualizar os seus relatórios e informações.', // false
+                'descricao' => 'Acessa o sistema como UETP para visualizar os seus relatórios e informações.',
             ],
             [
+                // ID 3
                 'nome' => 'Professor',
                 'exibir' => true, // 0
-                'descricao' => 'Acessa as áreas de cursos, gerencia suas disciplinas e seus alunos.', // false
+                'descricao' => 'Acessa as áreas de cursos, gerencia suas disciplinas e seus alunos.',
             ],
             [
+                // ID 4
                 'nome' => 'Aluno',
                 'exibir' => true, // 0
-                'descricao' => 'Acessa as áreas de seus cursos e suas disciplinas.', // false
+                'descricao' => 'Acessa as áreas de seus cursos e suas disciplinas.',
+            ],
+            [
+                // ID 5
+                'nome' => 'Secretaria',
+                'exibir' => true, // 0
+                'descricao' => 'Gerencia professores, alunos e cursos.',
             ],
 
         ];
@@ -46,10 +56,10 @@ class UsuarioAdminSeeder extends Seeder
         $usuarioModel = new \App\Models\UsuarioModel();
 
         $usuario = [
-            'nome' => 'Usuario admin',
+            'nome' => 'SEEC Admin',
             'local' => 'Belém',
             'login' => 'admin',
-            'email' => 'admin@admin.com',
+            'email' => 'admin@seecpa.com.br',
             'password' => 'admin123456',
             'ativo' => true,
             'admin' => true,
@@ -73,32 +83,4 @@ class UsuarioAdminSeeder extends Seeder
 
         echo 'Usuario admin semeado com sucesso!';
     }
-    // public function run()
-    // {
-    //     $usuarios = [
-    //         [
-    //             'nome' => 'Administrador',
-    //             'local' => 'Belém',
-    //             'login' => 'admin',
-    //             'ativo' => 1,
-    //             'admin' => 1,
-    //             'password' => 'serele21',
-    //             'criado_em' => '2022-11-09 15:51:22',
-    //         ],
-    //         [
-    //             'nome' => 'Eurides',
-    //             'local' => 'Ananindeua',
-    //             'login' => 'eurides',
-    //             'ativo' => 1,
-    //             'admin' => 1,
-    //             'password' => 'sereu123456',
-    //             'criado_em' => '2022-11-09 15:52:01',
-    //         ]
-    //     ];
-
-    //     foreach ($usuarios as $usuario) {
-    //         // Simple Queries
-    //         $this->db->query('INSERT INTO usuarios (nome, local, login, ativo, admin, password_hash, criado_em) VALUES(:nome:, :local:, :login:, :ativo:, :admin:, :password:, :criado_em:)', $usuario);
-    //     }
-    // }
 }

@@ -316,10 +316,10 @@ class Autenticacao
         // o mesmo pode ou não visualizar e acessar alguma rota.
         // Notem que se o usuário logado possui o atributo $usuario->permissoes,
         // é porque ele não é admin e não é UETP
-        if ($usuario->is_admin == false && $usuario->is_uetp == false) {
+        // if ($usuario->is_admin == false && $usuario->is_uetp == false) {
 
-            $usuario->permissoes = $this->recuperaPermissoesDoUsuarioLogado();
-        }
+        //     $usuario->permissoes = $this->recuperaPermissoesDoUsuarioLogado();
+        // }
 
 
         // Nesse ponto já definimos se é admin ou se é UETP.
