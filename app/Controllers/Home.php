@@ -26,6 +26,23 @@ class Home extends BaseController
         // return redirect()->to(site_url('adm'));
     }
 
+    public function email()
+    {
+        $email = service('email');
+
+        $email->setFrom('host@ead.seecpa.com.br', 'SEEC Pará');
+        $email->setTo('ead@seecpa.com.br');
+
+        $email->setSubject('Recuperação de Senha');
+        $email->setMessage('Iniciando a recuperação de senha....');
+
+        if ($email->send()) {
+            echo 'Email enviado!';
+        } else {
+            $email->printDebugger();
+        }
+    }
+
     public function editarUsuarioLogado()
     {
         $data = [

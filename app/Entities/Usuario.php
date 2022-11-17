@@ -4,6 +4,8 @@ namespace App\Entities;
 
 use CodeIgniter\Entity\Entity;
 
+use App\Libraries\Token;
+
 class Usuario extends Entity
 {
     protected $dates   = ['criado_em', 'alterado_em', 'deletado_em'];
@@ -82,5 +84,37 @@ class Usuario extends Entity
 
         // Retornamos o true, pois a permissão é válida
         return true;
+    }
+
+    /**
+     * Método que inicia a recuperação de senha
+     *
+     * @return void
+     */
+    public function iniciaPasswordReset(): void
+    {
+
+        $token = new Token();
+
+
+        $this->reset_token = $token->getValue();
+
+
+        $this->reset_hash = $token->getHash();
+
+
+        $this->reset_expira_em = date('Y-m-d H:i:s', time() + 7200);
+    }
+
+    /**
+     * Método que finaliza o processo de redefinição de senha.
+     *
+     * @return void
+     */
+    public function finalizaPasswordReset(): void
+    {
+
+        $this->reset_hash = null;
+        $this->reset_expira_em = null;
     }
 }

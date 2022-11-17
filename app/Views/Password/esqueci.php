@@ -21,6 +21,8 @@
 <!-- Custom page content -->
 <?php echo $this->section('conteudo'); ?>
 
+<?php echo $this->include('Layout/_mensagens') ?>
+
 <div class="account-container">
     <div class="heading-bx left">
         <h2 class="title-head">Esqueceu <span>sua senha?</span></h2>

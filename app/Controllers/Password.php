@@ -33,38 +33,139 @@ class Password extends BaseController
         // Envio o hash do token do form
         $retorno['token'] = csrf_hash();
 
+        // Recupero o e-mail da requisição
+        $email = $this->request->getPost('email');
+
+
+        $usuario = $this->usuarioModel->buscaUsuarioPorEmail($email);
+
+        if ($usuario === null || $usuario->ativo === false) {
+            $retorno['erro'] = 'Não encontramos uma conta válida com esse e-mail <br> Caso esta conta não possua e-mail cadastrado, favor entrar em contato com a administração do sistema através do e-mail: <b>ead@seecpa.com.br</b>';
+            return $this->response->setJSON($retorno);
+        }
+
+        $usuario->iniciaPasswordReset();
+
+        $this->usuarioModel->save($usuario);
+
+
+
+        $this->enviaEmailRedefinicaoSenha($usuario);
+
+
+        return $this->response->setJSON([]);
+    }
+
+    public function resetEnviado()
+    {
+        $usuario = $this->processaEsqueci();
+        $data = [
+            'titulo' => 'E-mail de recuperação enviado para a sua caixa de entrada.',
+        ];
+
+        return view('Password/reset_enviado', $data);
+    }
+
+    public function reset($token = null)
+    {
+
+
+        if ($token === null) {
+
+            return redirect()->to(site_url("password/esqueci"))->with("atencao", "Link inválido ou expirado");
+        }
+
+
+        // Buscamos o usuário na base de dados de acordo com hash do token que veio como parâmetro
+        $usuario = $this->usuarioModel->buscaUsuarioParaRedefinirSenha($token);
+
+        if ($usuario === null) {
+
+            return redirect()->to(site_url("password/esqueci"))->with("atencao", "Link inválido ou expirado");
+        }
+
+        $data = [
+            'titulo' => 'Crie a sua nova senha de acesso',
+            'token' => $token,
+        ];
+
+
+        return view('Password/reset', $data);
+    }
+
+    public function processaReset()
+    {
+
+        if (!$this->request->isAJAX()) {
+            return redirect()->back();
+        }
+
+
+        // Envio o hash do token do form
+        $retorno['token'] = csrf_hash();
+
+
+        // Recupero todos os dados do POST
         $post = $this->request->getPost();
 
 
-        echo '<pre>';
-        print_r($post);
-        exit;
+        // Buscamos o usuário na base de dados de acordo com hash do token que veio como parâmetro
+        $usuario = $this->usuarioModel->buscaUsuarioParaRedefinirSenha($post['token']);
 
 
+        if ($usuario === null) {
 
-        // Recupero o e-mail da requisição
-        // $email = $this->request->getPost('email');
-
-
-        // $usuario = $this->usuarioModel->buscaUsuarioPorEmail($email);
-
-        // if ($usuario === null || $usuario->ativo === false) {
-        //     $retorno['erro'] = 'Não encontramos uma conta válida com esse e-mail <br> Caso esta conta não possua e-mail cadastrado, favor solicitar nova senha para <b>ead@seecpa.com.br</b>';
-        //     return $this->response->setJSON($retorno);
-        // }
+            $retorno['erro'] = 'Por favor verifique os erros abaixo e tente novamente';
+            $retorno['erros_model'] = ['link_invalido' => 'Link inválido ou expirado'];
+            return $this->response->setJSON($retorno);
+        }
 
 
-        // $usuario->iniciaPasswordReset();
+        dd($post);
+
+        $usuario->fill($post);
 
 
+        $usuario->finalizaPasswordReset();
 
-        // $this->usuarioModel->save($usuario);
+        if ($this->usuarioModel->save($usuario)) {
+
+            session()->setFlashdata("sucesso", "Nova senha criada com sucesso!");
+
+            return $this->response->setJSON($retorno);
+        }
+
+        // Retornamos os erros de validação
+        $retorno['erro'] = 'Por favor verifique os abaixo e tente novamente';
+        $retorno['erros_model'] = $this->usuarioModel->errors();
 
 
+        // Retorno para o ajax request
+        return $this->response->setJSON($retorno);
+    }
 
-        // $this->enviaEmailRedefinicaoSenha($usuario);
+    /**
+     * Método que envia e-mail para redefinição de senha do usuário
+     *
+     * @param object $usuario
+     * @return void
+     */
+    private function enviaEmailRedefinicaoSenha(object $usuario): void
+    {
+        $email = service('email');
 
+        $email->setFrom('host@ead.seecpa.com.br', 'SEEC Pará');
+        $email->setTo($usuario->email);
 
-        // return $this->response->setJSON([]);
+        $data = [
+            'token' => $usuario->reset_token,
+        ];
+
+        $mensagem = view('Password/reset_email', $data);
+
+        $email->setSubject('Redefinição de Senha | Plataforma SEEC-PA');
+        $email->setMessage($mensagem);
+
+        $email->send();
     }
 }

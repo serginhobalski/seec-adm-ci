@@ -23,28 +23,30 @@
 
 <div class="account-container">
     <div class="heading-bx left">
-        <h2 class="title-head">Faça login com <span>sua conta</span></h2>
-        <p>Não possui acesso? <a href="#">fale conosco</a></p>
+        <h2 class="title-head">Atualize a <span>sua senha</span></h2>
+        <p>Crie uma nova senha de acesso.</p>
     </div>
-    <?php echo form_open('/', ['id' => 'form', 'class' => 'contact-bx']); ?>
+    <?php echo form_open('/', ['id' => 'form', 'class' => 'contact-bx'], ['token' => $token]); ?>
 
     <div id="response"></div>
 
 
     <div class="row placeani">
+
         <div class="col-lg-12">
             <div class="form-group">
                 <div class="input-group">
-                    <label>Seu login</label>
-                    <input name="login" type="text" required="" class="form-control">
+                    <label>Digite a nova senha</label>
+                    <input name="password" type="password" class="form-control" required="">
                 </div>
             </div>
         </div>
+
         <div class="col-lg-12">
             <div class="form-group">
                 <div class="input-group">
-                    <label>Sua senha</label>
-                    <input name="password" type="password" class="form-control" required="">
+                    <label>Confirme a nova senha</label>
+                    <input name="password_confirmation" type="password" class="form-control" required="">
                 </div>
             </div>
         </div>
@@ -54,11 +56,11 @@
                     <input type="checkbox" class="custom-control-input" id="customControlAutosizing" checked>
                     <label class="custom-control-label" for="customControlAutosizing">Lembar</label>
                 </div>
-                <a href="<?php echo site_url("esqueci"); ?>" class="ml-auto">Esqueceu a senha?</a>
+
             </div>
         </div>
         <div class="col-lg-12 m-b30">
-            <input id="btn-login" name="btn-login" type="submit" value="Entrar" class="btn button-md">
+            <input id="btn-reset" name="btn-reset" type="submit" value="Salvar" class="btn button-md">
         </div>
     </div>
 
@@ -81,7 +83,7 @@
             $.ajax({
 
                 type: 'POST',
-                url: '<?php echo site_url('login/criar'); ?>',
+                url: '<?php echo site_url('password/processareset'); ?>',
                 data: new FormData(this),
                 dataType: 'json',
                 contentType: false,
@@ -89,18 +91,18 @@
                 processData: false,
                 beforeSend: function() {
                     $("#response").html('');
-                    $("#btn-login").val('Processando requisição...');
+                    $("#btn-reset").val('Processando requisição...');
                 },
                 success: function(response) {
-                    $("#btn-login").val('Entrar');
-                    $("#btn-login").removeAttr("disabled");
+                    $("#btn-reset").val('Salvar');
+                    $("#btn-reset").removeAttr("disabled");
 
                     $('[name=csrf_test_name]').val(response.token);
 
                     if (!response.erro) {
 
                         // Tudo certo! Pode redirecionar!
-                        window.location.href = "<?php echo site_url(); ?>" + response.redirect;
+                        window.location.href = "<?php echo site_url('login'); ?>";
 
                     }
                     if (response.erro) {
@@ -122,8 +124,8 @@
                 },
                 error: function() {
                     alert('Não foi possível processar a solicitação');
-                    $("#btn-login").val('Entrar');
-                    $("#btn-login").removeAttr("disabled");
+                    $("#btn-reset").val('Salvar');
+                    $("#btn-reset").removeAttr("disabled");
                 },
 
             });
