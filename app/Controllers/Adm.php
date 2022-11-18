@@ -6,14 +6,44 @@ use App\Libraries\Autenticacao;
 
 class Adm extends BaseController
 {
+    private $usuariosCadastrados;
+    private $relatoriosCadastrados;
+    private $gruposUsuarios;
+
+    public function __construct()
+    {
+        $this->usuariosCadastrados = new \App\Models\UsuarioModel();
+        $this->relatoriosCadastrados = new \App\Models\RelatorioModel();
+        $this->gruposUsuarios = new \App\Models\GrupoUsuarioModel();
+    }
+
     public function index()
     {
         if (!usuario_logado()->is_admin) {
             return redirect()->back()->with("info", "Você não possui permissão para visualizar esta página.");
         }
 
+        $anoAtual = date('Y');
+
+        $quantidadeUsuarios = $this->usuariosCadastrados->countAllResults();
+        $quantidadeRelatorios = $this->relatoriosCadastrados->countAllResults();
+        $admins = $this->gruposUsuarios->where('grupo_id', 1)->countAllResults();
+        $uetps = $this->gruposUsuarios->where('grupo_id', 2)->countAllResults();
+        $professores = $this->gruposUsuarios->where('grupo_id', 3)->countAllResults();
+        $alunos = $this->gruposUsuarios->where('grupo_id', 4)->countAllResults();
+        $secretarios = $this->gruposUsuarios->where('grupo_id', 5)->countAllResults();
+        $relatoriosAno = $this->relatoriosCadastrados->where('ano', $anoAtual)->countAllResults();
+
         $data = [
             'titulo' => 'Painel',
+            'usuarios' => $quantidadeUsuarios,
+            'relatorios' => $quantidadeRelatorios,
+            'admins' => $admins,
+            'uetps' => $uetps,
+            'professores' => $professores,
+            'alunos' => $alunos,
+            'secretarios' => $secretarios,
+            'relatoriosAno' => $relatoriosAno,
         ];
         return view('Adm/index', $data);
     }

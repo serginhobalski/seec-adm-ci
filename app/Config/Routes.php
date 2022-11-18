@@ -51,7 +51,7 @@ $routes->get('calendario_geral', 'Home::calendario_geral');
 $routes->get('calendario_eventos', 'Home::calendario_eventos');
 $routes->get('contato', 'Home::contato');
 $routes->get('adm', 'Adm::index');
-$routes->get('cursos', 'Adm::cursos');
+$routes->get('cursos', 'Cursos::index');
 $routes->get('mensagens', 'Adm::mensagens');
 $routes->get('calendario', 'Adm::calendario');
 $routes->get('usuarios', 'Usuarios::index');

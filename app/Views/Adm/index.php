@@ -27,13 +27,14 @@
         <div class="widget-card widget-bg1">
             <div class="wc-item">
                 <h4 class="wc-title">
-                    Taxas do mês
+                    Relatórios <br>
+                    Enviados
                 </h4>
                 <span class="wc-des">
-                    valor total
+                    Nº total
                 </span>
                 <span class="wc-stats">
-                    R$ <span class="counter">0</span>
+                    <span class="counter"><?php echo $relatorios; ?></span>
                 </span>
                 <div class="progress wc-progress">
                     <div class="progress-bar" role="progressbar" style="width: 78%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
@@ -53,13 +54,13 @@
         <div class="widget-card widget-bg2">
             <div class="wc-item">
                 <h4 class="wc-title">
-                    UETPs
+                    Usuários
                 </h4>
                 <span class="wc-des">
-                    cadastradas
+                    cadastrados
                 </span>
                 <span class="wc-stats counter">
-                    0
+                    <?php echo $usuarios; ?>
                 </span>
                 <div class="progress wc-progress">
                     <div class="progress-bar" role="progressbar" style="width: 88%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
@@ -76,16 +77,16 @@
         </div>
     </div>
     <div class="col-md-6 col-lg-3 col-xl-3 col-sm-6 col-12">
-        <div class="widget-card widget-bg3">
+        <div class="widget-card widget-bg5">
             <div class="wc-item">
                 <h4 class="wc-title">
-                    Cursos
+                    UETPs
                 </h4>
                 <span class="wc-des">
-                    cursos disponíveis
+                    cadastradas
                 </span>
                 <span class="wc-stats counter">
-                    0
+                    <?php echo $uetps; ?>
                 </span>
                 <div class="progress wc-progress">
                     <div class="progress-bar" role="progressbar" style="width: 65%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
@@ -108,10 +109,10 @@
                     Alunos
                 </h4>
                 <span class="wc-des">
-                    alunos matriculados
+                    cadastrados
                 </span>
                 <span class="wc-stats counter">
-                    0
+                    <?php echo $alunos; ?>
                 </span>
                 <div class="progress wc-progress">
                     <div class="progress-bar" role="progressbar" style="width: 90%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
@@ -127,6 +128,113 @@
             </div>
         </div>
     </div>
+</div>
+<div class="row">
+    <div class="col-md-6 col-lg-3 col-xl-3 col-sm-6 col-12">
+        <div class="widget-card widget-bg1">
+            <div class="wc-item">
+                <h4 class="wc-title">
+                    Administradores
+                </h4>
+                <span class="wc-des">
+                    Nº total
+                </span>
+                <span class="wc-stats">
+                    <span class="counter"><?php echo $admins; ?></span>
+                </span>
+                <div class="progress wc-progress">
+                    <div class="progress-bar" role="progressbar" style="width: 78%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <span class="wc-progress-bx">
+                    <span class="wc-change">
+                        --
+                    </span>
+                    <span class="wc-number ml-auto">
+                        --
+                    </span>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-lg-3 col-xl-3 col-sm-6 col-12">
+        <div class="widget-card widget-bg2">
+            <div class="wc-item">
+                <h4 class="wc-title">
+                    Professores
+                </h4>
+                <span class="wc-des">
+                    cadastrados
+                </span>
+                <span class="wc-stats counter">
+                    <?php echo $professores; ?>
+                </span>
+                <div class="progress wc-progress">
+                    <div class="progress-bar" role="progressbar" style="width: 88%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <span class="wc-progress-bx">
+                    <span class="wc-change">
+                        --
+                    </span>
+                    <span class="wc-number ml-auto">
+                        --
+                    </span>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-lg-3 col-xl-3 col-sm-6 col-12">
+        <div class="widget-card widget-bg7">
+            <div class="wc-item">
+                <h4 class="wc-title">
+                    Secretarios
+                </h4>
+                <span class="wc-des">
+                    cadastradas
+                </span>
+                <span class="wc-stats counter">
+                    <?php echo $secretarios; ?>
+                </span>
+                <div class="progress wc-progress">
+                    <div class="progress-bar" role="progressbar" style="width: 65%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <span class="wc-progress-bx">
+                    <span class="wc-change">
+                        --
+                    </span>
+                    <span class="wc-number ml-auto">
+                        --
+                    </span>
+                </span>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="col-md-6 col-lg-3 col-xl-3 col-sm-6 col-12">
+        <div class="widget-card widget-bg4">
+            <div class="wc-item">
+                <h4 class="wc-title">
+                    Relatórios <br>
+                    de <?php echo date('Y'); ?>
+                </h4>
+                <span class="wc-des">
+                    relatórios
+                </span>
+                <span class="wc-stats counter">
+                    R$ <?php echo $relatoriosAno; ?>
+                </span>
+                <div class="progress wc-progress">
+                    <div class="progress-bar" role="progressbar" style="width: 90%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <span class="wc-progress-bx">
+                    <span class="wc-change">
+                        --
+                    </span>
+                    <span class="wc-number ml-auto">
+                        --
+                    </span>
+                </span>
+            </div>
+        </div>
+    </div> -->
 </div>
 <!-- Card END -->
 <div class="row">

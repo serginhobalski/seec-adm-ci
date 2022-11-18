@@ -80,11 +80,11 @@
                 <!-- header left menu start -->
                 <ul class="ttr-header-navigation">
                     <li>
-                        <a href="adm" class="ttr-material-button ttr-submenu-toggle">
+                        <a href="<?php echo site_url('mensagens'); ?>" class="ttr-material-button ttr-submenu-toggle">
                             <i class="fa fa-paper-plane"></i> Mensagens</a>
                     </li>
                     <li>
-                        <a href="adm" class="ttr-material-button ttr-submenu-toggle">
+                        <a href="<?php echo site_url('calendario'); ?>" class="ttr-material-button ttr-submenu-toggle">
                             <i class="fa fa-calendar"></i> Calendário</a>
                     </li>
                     <?php if (usuario_logado()->is_admin === true) : ?>
@@ -193,115 +193,238 @@
             <!-- side menu logo start -->
             <div class="ttr-sidebar-logo">
                 <a href="#"><img alt="" src="<?php echo site_url('src/admin/') ?>assets/images/logo.png" width="122" height="27"></a>
-                <!-- <div class="ttr-sidebar-pin-button" title="Pin/Unpin Menu">
-					<i class="material-icons ttr-fixed-icon">gps_fixed</i>
-					<i class="material-icons ttr-not-fixed-icon">gps_not_fixed</i>
-				</div> -->
                 <div class="ttr-sidebar-toggle-button">
                     <i class="ti-arrow-left"></i>
                 </div>
             </div>
             <!-- side menu logo end -->
             <!-- sidebar menu start -->
-            <nav class="ttr-sidebar-navi">
-                <ul>
-                    <li>
-                        <a href="/adm" class="ttr-material-button">
-                            <span class="ttr-icon"><i class="fa fa-dashboard"></i></span>
-                            <span class="ttr-label">Painel</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/grupos" class="ttr-material-button">
-                            <span class="ttr-icon"><i class="fa fa-wrench"></i></span>
-                            <span class="ttr-label">Grupos & Permissões</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/cursos" class="ttr-material-button">
-                            <span class="ttr-icon"><i class="fa fa-book"></i></span>
-                            <span class="ttr-label">Cursos</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/mensagens" class="ttr-material-button">
-                            <span class="ttr-icon"><i class="fa fa-paper-plane"></i></span>
-                            <span class="ttr-label">Mensagens</span>
-                            <!-- <span class="ttr-arrow-icon"><i class="fa fa-angle-down"></i></span> -->
-                        </a>
-                        <!-- <ul>
-                            <li>
-                                <a href="/mensagens" class="ttr-material-button"><span class="ttr-label">Mail Box</span></a>
-                            </li>
-                            <li>
-                                <a href="/mensagens" class="ttr-material-button"><span class="ttr-label">Compose</span></a>
-                            </li>
-                            <li>
-                                <a href="mailbox-read.html" class="ttr-material-button"><span class="ttr-label">Mail Read</span></a>
-                            </li>
-                        </ul> -->
-                    </li>
-                    <li>
-                        <a href="/calendario" class="ttr-material-button">
-                            <span class="ttr-icon"><i class="fa fa-calendar"></i></span>
-                            <span class="ttr-label">Calendário</span>
-                            <!-- <span class="ttr-arrow-icon"><i class="fa fa-angle-down"></i></span> -->
-                        </a>
-                        <!-- <ul>
-                            <li>
-                                <a href="/calendario" class="ttr-material-button"><span class="ttr-label">Basic Calendar</span></a>
-                            </li>
-                            <li>
-                                <a href="/calendario" class="ttr-material-button"><span class="ttr-label">List View</span></a>
-                            </li>
-                        </ul> -->
-                    </li>
-                    <li>
-                        <a href="/usuarios" class="ttr-material-button">
-                            <span class="ttr-icon"><i class="fa fa-users"></i></span>
-                            <span class="ttr-label">Usuários</span>
-                            <!-- <span class="ttr-arrow-icon"><i class="fa fa-angle-down"></i></span> -->
-                        </a>
-                        <!-- <ul>
-                            <li>
-                                <a href="/usuarios" class="ttr-material-button"><span class="ttr-label">Listar Usuários</span></a>
-                            </li>
-                            <li>
-                                <a href="/grupos" class="ttr-material-button"><span class="ttr-label">Grupos de acesso</span></a>
-                            </li>
-                        </ul> -->
-                    </li>
-                    <li>
-                        <a href="/relatorios" class="ttr-material-button">
-                            <span class="ttr-icon"><i class="fa fa-paste"></i></span>
-                            <span class="ttr-label">Relatórios</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/perfil" class="ttr-material-button">
-                            <span class="ttr-icon"><i class="fa fa-user"></i></span>
-                            <span class="ttr-label">Meu perfil</span>
-                            <!-- <span class="ttr-arrow-icon"><i class="fa fa-angle-down"></i></span> -->
-                        </a>
-                        <!-- <ul>
-                            <li>
-                                <a href="/perfil" class="ttr-material-button"><span class="ttr-label">User Profile</span></a>
-                            </li>
-                            <li>
-                                <a href="/perfil" class="ttr-material-button"><span class="ttr-label">Teacher Profile</span></a>
-                            </li>
-                        </ul> -->
-                    </li>
-                    <li class="ttr-seperate"></li>
-                    <li>
-                        <a href="usuarios/editarsenha" class="ttr-material-button">
-                            <span class="ttr-icon"><i class="fa fa-key"></i></span>
-                            <span class="ttr-label">Atualizar meus dados</span>
-                        </a>
-                    </li>
-                </ul>
-                <!-- sidebar menu end -->
-            </nav>
+            <?php if (usuario_logado()->is_admin === true) : ?>
+                <nav class="ttr-sidebar-navi">
+                    <ul>
+                        <li>
+                            <a href="<?php echo site_url('adm'); ?>" class="ttr-material-button">
+                                <span class="ttr-icon"><i class="fa fa-dashboard"></i></span>
+                                <span class="ttr-label">Painel</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?php echo site_url('grupos'); ?>" class="ttr-material-button">
+                                <span class="ttr-icon"><i class="fa fa-wrench"></i></span>
+                                <span class="ttr-label">Grupos & Permissões</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?php echo site_url('cursos'); ?>" class="ttr-material-button">
+                                <span class="ttr-icon"><i class="fa fa-book"></i></span>
+                                <span class="ttr-label">Cursos</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?php echo site_url('mensagens'); ?>" class="ttr-material-button">
+                                <span class="ttr-icon"><i class="fa fa-paper-plane"></i></span>
+                                <span class="ttr-label">Mensagens</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?php echo site_url('calendario'); ?>" class="ttr-material-button">
+                                <span class="ttr-icon"><i class="fa fa-calendar"></i></span>
+                                <span class="ttr-label">Calendário</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?php echo site_url('usuarios'); ?>" class="ttr-material-button">
+                                <span class="ttr-icon"><i class="fa fa-users"></i></span>
+                                <span class="ttr-label">Usuários</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?php echo site_url('relatorios'); ?>" class="ttr-material-button">
+                                <span class="ttr-icon"><i class="fa fa-paste"></i></span>
+                                <span class="ttr-label">Relatórios</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?php echo site_url('perfil'); ?>" class="ttr-material-button">
+                                <span class="ttr-icon"><i class="fa fa-user"></i></span>
+                                <span class="ttr-label">Meu perfil</span>
+                            </a>
+                        </li>
+                        <li class="ttr-seperate"></li>
+                        <li>
+                            <a href="<?php echo site_url('usuarios/editarusuariologado'); ?>" class="ttr-material-button">
+                                <span class="ttr-icon"><i class="fa fa-edit"></i></span>
+                                <span class="ttr-label">Atualizar meus dados</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- sidebar menu end -->
+                </nav>
+
+            <?php elseif (usuario_logado()->is_uetp === true) : ?>
+                <nav class="ttr-sidebar-navi">
+                    <ul>
+                        <li>
+                            <a href="<?php echo site_url('adm/uetp'); ?>" class="ttr-material-button">
+                                <span class="ttr-icon"><i class="fa fa-dashboard"></i></span>
+                                <span class="ttr-label">Painel</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?php echo site_url('mensagens'); ?>" class="ttr-material-button">
+                                <span class="ttr-icon"><i class="fa fa-paper-plane"></i></span>
+                                <span class="ttr-label">Mensagens</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?php echo site_url('relatorios/meusrelatorios'); ?>" class="ttr-material-button">
+                                <span class="ttr-icon"><i class="fa fa-paste"></i></span>
+                                <span class="ttr-label">Meus Relatórios</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?php echo site_url('relatorios/criar'); ?>" class="ttr-material-button">
+                                <span class="ttr-icon"><i class="fa fa-newspaper-o"></i></span>
+                                <span class="ttr-label">Enviar Relatório</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?php echo site_url('perfil'); ?>" class="ttr-material-button">
+                                <span class="ttr-icon"><i class="fa fa-user"></i></span>
+                                <span class="ttr-label">Meu perfil</span>
+                            </a>
+                        </li>
+                        <li class="ttr-seperate"></li>
+                        <li>
+                            <a href="<?php echo site_url('usuarios/editarusuariologado'); ?>" class="ttr-material-button">
+                                <span class="ttr-icon"><i class="fa fa-edit"></i></span>
+                                <span class="ttr-label">Atualizar meus dados</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- sidebar menu end -->
+                </nav>
+
+            <?php elseif (usuario_logado()->is_secretaria === true) : ?>
+                <nav class="ttr-sidebar-navi">
+                    <ul>
+                        <li>
+                            <a href="<?php echo site_url('adm/uetp'); ?>" class="ttr-material-button">
+                                <span class="ttr-icon"><i class="fa fa-dashboard"></i></span>
+                                <span class="ttr-label">Painel</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?php echo site_url('mensagens'); ?>" class="ttr-material-button">
+                                <span class="ttr-icon"><i class="fa fa-paper-plane"></i></span>
+                                <span class="ttr-label">Mensagens</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?php echo site_url('adm/cursos'); ?>" class="ttr-material-button">
+                                <span class="ttr-icon"><i class="fa fa-book"></i></span>
+                                <span class="ttr-label">Gerenciar Cursos</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?php echo site_url('usuarios'); ?>" class="ttr-material-button">
+                                <span class="ttr-icon"><i class="fa fa-users"></i></span>
+                                <span class="ttr-label">Gerenciar Usuários</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?php echo site_url('perfil'); ?>" class="ttr-material-button">
+                                <span class="ttr-icon"><i class="fa fa-user"></i></span>
+                                <span class="ttr-label">Meu perfil</span>
+                            </a>
+                        </li>
+                        <li class="ttr-seperate"></li>
+                        <li>
+                            <a href="<?php echo site_url('usuarios/editarusuariologado'); ?>" class="ttr-material-button">
+                                <span class="ttr-icon"><i class="fa fa-edit"></i></span>
+                                <span class="ttr-label">Atualizar meus dados</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- sidebar menu end -->
+                </nav>
+
+            <?php elseif (usuario_logado()->is_professor === true) : ?>
+                <nav class="ttr-sidebar-navi">
+                    <ul>
+                        <li>
+                            <a href="<?php echo site_url('adm/professor'); ?>" class="ttr-material-button">
+                                <span class="ttr-icon"><i class="fa fa-dashboard"></i></span>
+                                <span class="ttr-label">Painel do Professor</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?php echo site_url('mensagens'); ?>" class="ttr-material-button">
+                                <span class="ttr-icon"><i class="fa fa-paper-plane"></i></span>
+                                <span class="ttr-label">Mensagens</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?php echo site_url('adm/cursos'); ?>" class="ttr-material-button">
+                                <span class="ttr-icon"><i class="fa fa-book"></i></span>
+                                <span class="ttr-label">Gerenciar Cursos</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?php echo site_url('perfil'); ?>" class="ttr-material-button">
+                                <span class="ttr-icon"><i class="fa fa-user"></i></span>
+                                <span class="ttr-label">Meu perfil</span>
+                            </a>
+                        </li>
+                        <li class="ttr-seperate"></li>
+                        <li>
+                            <a href="<?php echo site_url('usuarios/editarusuariologado'); ?>" class="ttr-material-button">
+                                <span class="ttr-icon"><i class="fa fa-edit"></i></span>
+                                <span class="ttr-label">Atualizar meus dados</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- sidebar menu end -->
+                </nav>
+
+            <?php elseif (usuario_logado()->is_aluno === true) : ?>
+                <nav class="ttr-sidebar-navi">
+                    <ul>
+                        <li>
+                            <a href="<?php echo site_url('adm/aluno'); ?>" class="ttr-material-button">
+                                <span class="ttr-icon"><i class="fa fa-dashboard"></i></span>
+                                <span class="ttr-label">Painel do Aluno</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?php echo site_url('mensagens'); ?>" class="ttr-material-button">
+                                <span class="ttr-icon"><i class="fa fa-paper-plane"></i></span>
+                                <span class="ttr-label">Mensagens</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?php echo site_url('adm/cursos'); ?>" class="ttr-material-button">
+                                <span class="ttr-icon"><i class="fa fa-book"></i></span>
+                                <span class="ttr-label">Meus Cursos</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?php echo site_url('perfil'); ?>" class="ttr-material-button">
+                                <span class="ttr-icon"><i class="fa fa-user"></i></span>
+                                <span class="ttr-label">Meu perfil</span>
+                            </a>
+                        </li>
+                        <li class="ttr-seperate"></li>
+                        <li>
+                            <a href="<?php echo site_url('usuarios/editarusuariologado'); ?>" class="ttr-material-button">
+                                <span class="ttr-icon"><i class="fa fa-edit"></i></span>
+                                <span class="ttr-label">Atualizar meus dados</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- sidebar menu end -->
+                </nav>
+            <?php endif; ?>
             <!-- sidebar menu end -->
         </div>
     </div>
@@ -311,7 +434,7 @@
     <main class="ttr-wrapper">
         <div class="container-fluid">
             <div class="db-breadcrumb">
-                <h4 class="breadcrumb-title">Painel</h4>
+                <h4 class="breadcrumb-title"><?php echo strtoupper(usuario_logado()->login); ?></h4>
                 <ul class="db-breadcrumb-list">
                     <li><?php echo $titulo; ?></li>
                 </ul>
