@@ -27,13 +27,13 @@ class Curso extends Entity
 
         if ($this->ativo == true) {
 
-            return '<i class="fa fa-eye fa-lg text-success"></i>&nbsp;Exibir grupo';
+            return '<i class="fa fa-eye fa-lg text-success"></i>&nbsp;Curso Ativo';
         }
 
 
         if ($this->ativo == false) {
 
-            return '<i class="fa fa-eye-slash fa-lg text-danger"></i>&nbsp;Não exibir grupo ';
+            return '<i class="fa fa-eye-slash fa-lg text-danger"></i>&nbsp;Curso Inativo ';
         }
     }
 }

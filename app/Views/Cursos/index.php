@@ -28,7 +28,8 @@
             <tr>
                 <th class="text-primary">ID</th>
                 <th class="text-primary">Curso</th>
-                <th class="text-primary">Descrição</th>
+                <th class="text-primary">Valor</th>
+                <th class="text-primary">Categoria</th>
                 <th class="text-primary">Status</th>
             </tr>
         </thead>
@@ -91,7 +92,10 @@
                     data: 'nome'
                 },
                 {
-                    data: 'descricao'
+                    data: 'valor'
+                },
+                {
+                    data: 'categoria'
                 },
                 {
                     data: 'ativo'
