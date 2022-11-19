@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Entities\Relatorio;
 
 class Relatorios extends BaseController
 {
@@ -91,7 +92,6 @@ class Relatorios extends BaseController
 
 
         $relatorios = $this->relatorioModel->select($atributos)
-            // $relatorios = $this->relatorioModel->select('*')
             ->where('nome', usuario_logado()->nome)
             ->orderBy('criado_em', 'DESC')
             ->findAll();
@@ -125,11 +125,106 @@ class Relatorios extends BaseController
         $relatorio = $this->buscaRelatorioOu404($id);
 
         $data = [
-            'titulo' => "Detalhes de " . esc($relatorio->nome),
-            'usuario' => $relatorio,
+            'titulo' => "Detalhes do relatório",
+            'relatorio' => $relatorio,
         ];
 
         return view('Relatorios/exibir', $data);
+    }
+
+    public function criar()
+    {
+        $relatorio = new Relatorio();
+
+        $atributos = [
+            'id',
+            'nome',
+            'local',
+            'mes',
+            'ano',
+            'valor',
+        ];
+
+        $opcoes = $this->relatorioModel->select($atributos)
+            ->findAll();
+
+        $data = [
+            'titulo' => 'Cadastro de relatório',
+            'relatorio' => $relatorio,
+            'opcoes' => $opcoes,
+
+        ];
+        return view('relatorios/criar', $data);
+    }
+
+    public function uploadComprovante(int $id = null)
+    {
+        if (!$this->request->isAJAX()) {
+
+            return redirect()->back();
+        }
+
+        // Enviar hash do token do form
+        $retorno['token'] = csrf_hash();
+
+        $validacao = service('validation');
+
+        $regras = [
+            'comprovante' => 'uploaded[comprovante]|ext_in[comprovante,pdf,png,jpg,jpeg,gif]',
+        ];
+
+        $mensagens = [   // Errors
+            'comprovante' => [
+                'uploaded' => '<b class="text-danger">Por favor anexar o comprovante.</b>',
+                'ext_in' => '<b class="text-danger">Tipo de arquivo não suportado.<br> Use somente arquivo do tipo ".pdf", ".jpg", ".gif" ou ".png".</b>',
+            ],
+        ];
+
+        $validacao->setRules($regras, $mensagens);
+
+        if ($validacao->withRequest($this->request)->run() == false) {
+
+            $retorno['erro'] = 'Por favor verifique os erros abaixo.';
+            $retorno['erros_model'] = $validacao->getErrors();
+
+            // Retorno para o AJAX request
+            return $this->response->setJSON($retorno);
+        }
+
+        // Recuperar o post da requisição
+        $post = $this->request->getPost();
+
+        // Validar a existência do usuário
+        $relatorio = $this->buscaRelatorioOu404($post['id']);
+
+
+        $comprovante = $this->request->getFile('comprovante');
+
+
+        // list($largura, $altura) = getimagesize($comprovante->getPathName());
+
+
+        $arquivoCaminho = $comprovante->store('relatorios');
+
+        $arquivoCaminho = WRITEPATH . "uploads/$arquivoCaminho";
+
+
+        $comprovanteAntigo = $relatorio->comprovante;
+
+        $relatorio->comprovante = $comprovante->getName();
+
+        $this->relatorioModel->save($relatorio);
+
+        if ($comprovanteAntigo != null) {
+            $this->removeComprovanteAntigo($comprovanteAntigo);
+        }
+
+
+        session()->setFlashdata('sucesso', 'Comprovante enviado com sucesso!');
+
+
+        // Retorno para o AJAX request
+        return $this->response->setJSON($retorno);
     }
 
     private function buscaRelatorioOu404(int $id = null)
@@ -204,5 +299,49 @@ class Relatorios extends BaseController
         ];
 
         return view('Relatorios/excluir', $data);
+    }
+
+    public function cadastrar(int $id = null)
+    {
+        if (!$this->request->isAJAX()) {
+
+            return redirect()->back();
+        }
+
+        // Enviar hash do token do form
+        $retorno['token'] = csrf_hash();
+
+        // Recuperar o post da requisição
+        $post = $this->request->getPost();
+
+        // Criar novo objeto da entidade Relatório
+        $relatorio = new Relatorio($post);
+
+
+        if ($this->relatorioModel->protect(false)->save($relatorio)) {
+            $btnCriar = anchor("relatorios/criar", 'Cadastrar outro relatório', ['class' => 'btn mt-2']);
+
+            session()->setFlashdata('sucesso', "Dados salvos com sucesso! $btnCriar");
+
+            $retorno['id'] = $this->relatorioModel->getInsertID();
+
+            return $this->response->setJSON($retorno);
+        }
+
+        $retorno['erro'] = 'Por favor verifique os erros abaixo.';
+        $retorno['erros_model'] = $this->relatorioModel->errors();
+
+
+        // Retorno para o AJAX request
+        return $this->response->setJSON($retorno);
+    }
+
+    private function removeComprovanteAntigo(string $comprovante)
+    {
+        $arquivoCaminho = WRITEPATH . "uploads/relatorios/$comprovante";
+
+        if (is_file($arquivoCaminho)) {
+            unlink($arquivoCaminho);
+        }
     }
 }

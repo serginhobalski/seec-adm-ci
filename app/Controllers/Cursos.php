@@ -62,10 +62,10 @@ class Cursos extends BaseController
             'data' => $data,
         ];
 
-        // echo '<pre>';
-        // print_r($retorno);
-        // exit;
+        echo '<pre>';
+        print_r($retorno);
+        exit;
 
-        return $this->response->setJSON($retorno);
+        // return $this->response->setJSON($retorno);
     }
 }

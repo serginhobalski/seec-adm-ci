@@ -20,6 +20,7 @@
 <?php echo $this->section('conteudo'); ?>
 
 <div class="table-responsive radius-md">
+    <a class="btn" href="<?php echo site_url("relatorios/criar") ?>"><i class="fa fa-save"></i> Cadastrar Novo Relatório</a>
     <table id="ajaxTableRelatorios" class="table" style="width: 100%;">
         <thead>
             <tr>
