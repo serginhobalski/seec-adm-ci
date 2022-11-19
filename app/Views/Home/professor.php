@@ -38,7 +38,7 @@
 
         <div class="container">
             <ul class="list-inline">
-                <li><a href="/"><i class="fa fa-home"></i> Home</a></li>
+                <li><a href="<?php echo site_url("adm/professor") ?>"><i class="fa fa-dashboard"></i> Painel</a></li>
                 <li><?php echo $titulo; ?></li>
             </ul>
         </div>

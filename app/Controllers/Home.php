@@ -8,8 +8,6 @@ class Home extends BaseController
 {
     public function index()
     {
-        // dd(usuario_logado());
-
         $data = [
             'titulo' => 'Início',
         ];
@@ -18,15 +16,7 @@ class Home extends BaseController
 
     public function login()
     {
-        // if (!usuario_logado()->is_admin) {
-        //     return redirect()->back()->with("info", "Você não possui permissão para visualizar esta página.");
-        // }
         dd(usuario_logado());
-        // $autenticacao = new Autenticacao();
-        // dd($autenticacao);
-        // dd($autenticacao->login('admin', 'admin123456'));
-        // $autenticacao->logout();
-        // return redirect()->to(site_url('adm'));
     }
 
     public function email()
@@ -84,8 +74,8 @@ class Home extends BaseController
             return redirect()->back()->with("info", "Você não possui permissão para visualizar esta página.");
         }
         $data = [
-            'titulo' => 'Área de ' . usuario_logado()->nome . '!',
-            'subtitulo' => 'Esta é a sua área!',
+            'titulo' => 'Área do Professor',
+            'subtitulo' => usuario_logado()->nome,
         ];
         return view('Home/professor', $data);
     }
@@ -99,8 +89,8 @@ class Home extends BaseController
             return redirect()->back()->with("info", "Você não possui permissão para visualizar esta página.");
         }
         $data = [
-            'titulo' => 'Área de ' . usuario_logado()->nome . '!',
-            'subtitulo' => 'Esta é a sua área!',
+            'titulo' => 'Área do Aluno',
+            'subtitulo' => usuario_logado()->nome,
         ];
 
         return view('Home/aluno', $data);

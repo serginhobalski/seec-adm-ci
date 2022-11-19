@@ -21,7 +21,7 @@
 <!-- Custom page content -->
 <?php echo $this->section('conteudo'); ?>
 
-<!-- Card -->
+<!-- Área de Cards -->
 <div class="row">
     <div class="col-md-6 col-lg-3 col-xl-3 col-sm-6 col-12">
         <div class="widget-card widget-bg1">
@@ -236,7 +236,7 @@
         </div>
     </div> -->
 </div>
-<!-- Card END -->
+<!-- Áera do Calendário -->
 <div class="row">
     <!-- Your Profile Views Chart -->
     <div class="col-lg-12 m-b30">

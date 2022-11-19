@@ -66,7 +66,7 @@ class Adm extends BaseController
             return redirect()->back()->with("info", "Você não possui permissão para visualizar esta página.");
         }
         $data = [
-            'titulo' => 'Área de' . usuario_logado()->nome . '!',
+            'titulo' => 'Painel | Secretaria',
         ];
         return view('Adm/secretaria', $data);
     }
@@ -90,15 +90,26 @@ class Adm extends BaseController
         // return redirect()->to(site_url('adm'));
     }
 
-    public function cursos()
+    public function professor()
     {
-        if (!usuario_logado()->is_admin && !usuario_logado()->is_secretaria) {
+        if (!usuario_logado()->is_admin && !usuario_logado()->is_professor) {
             return redirect()->back()->with("info", "Você não possui permissão para visualizar esta página.");
         }
         $data = [
-            'titulo' => 'Cursos',
+            'titulo' => 'Painel | Professor',
         ];
-        return view('Adm/cursos', $data);
+        return view('Adm/professor', $data);
+    }
+
+    public function aluno()
+    {
+        if (!usuario_logado()->is_admin && !usuario_logado()->is_aluno) {
+            return redirect()->back()->with("info", "Você não possui permissão para visualizar esta página.");
+        }
+        $data = [
+            'titulo' => 'Painel | Aluno',
+        ];
+        return view('Adm/aluno', $data);
     }
 
     public function mensagens()

@@ -15,7 +15,7 @@ class CursoModel extends Model
         'descricao',
         'valor',
         'ativo',
-        'imagem',
+        'categoria',
     ];
 
     // Dates

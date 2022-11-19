@@ -20,18 +20,19 @@
 
 <!-- Custom page content -->
 <?php echo $this->section('conteudo'); ?>
+<a href="<?php echo site_url('cursos/criar'); ?>" class="btn mb-2"><i class="fa fa-save"> Criar Novo Curso</i></a>
 
-<a href="<?php echo site_url('cursos/criar'); ?>" class="btn mb-2"><i class="fa fa-save"> Cadastrar Novo Curso</i></a>
 <div class="table-responsive radius-md">
-    <table id="ajaxTableCursos" class="table" style="width: 100%;">
+    <table id="ajaxTableGrupos" class="table" style="width: 100%;">
         <thead>
             <tr>
                 <th class="text-primary">ID</th>
                 <th class="text-primary">Curso</th>
+                <th class="text-primary">Descrição</th>
                 <th class="text-primary">Status</th>
-                <!-- <th class="text-primary">Ações</th> -->
             </tr>
         </thead>
+
 
     </table>
 </div>
@@ -77,16 +78,20 @@
     }
 
     $(document).ready(function() {
-        $('#ajaxTableCursos').DataTable({
+        $('#ajaxTableGrupos').DataTable({
 
             "oLanguage": DATATABLE_PTBR,
 
-            ajax: "<?php echo site_url('cursos/recuperacursos'); ?>",
+            ajax: "<?php echo site_url('cursos/recuperacursos');
+                    ?>",
             columns: [{
                     data: 'id'
                 },
                 {
                     data: 'nome'
+                },
+                {
+                    data: 'descricao'
                 },
                 {
                     data: 'ativo'

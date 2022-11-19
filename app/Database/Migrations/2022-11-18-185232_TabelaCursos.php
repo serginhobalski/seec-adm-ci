@@ -33,9 +33,9 @@ class TabelaCursos extends Migration
                 'null' => true,
                 'default' => true,
             ],
-            'imagem' => [
+            'categoria' => [
                 'type'       => 'VARCHAR',
-                'constraint' => '250',
+                'constraint' => '100',
             ],
             'criado_em' => [
                 'type'       => 'TIMESTAMP',

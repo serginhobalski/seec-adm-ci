@@ -15,6 +15,13 @@ class Cursos extends BaseController
 
     public function index()
     {
+        $atributos = [
+            'id',
+            'nome',
+            'descricao',
+            'ativo',
+        ];
+
         $data = [
             'titulo' => 'Cursos',
         ];
@@ -23,23 +30,21 @@ class Cursos extends BaseController
 
     public function recuperaCursos()
     {
-        // if (!$this->request->isAJAX()) {
+        if (!$this->request->isAJAX()) {
 
-        //     return redirect()->back();
-        // }
+            return redirect()->back();
+        }
 
         $atributos = [
             'id',
             'nome',
             'descricao',
-            'valor',
             'ativo',
-            'imagem',
-            'deletado_em',
         ];
 
-
         $cursos = $this->cursoModel->select($atributos)
+            ->withDeleted(true)
+            ->orderBy('id', 'DESC')
             ->findAll();
 
         $data = [];
@@ -47,25 +52,17 @@ class Cursos extends BaseController
         foreach ($cursos as $curso) {
 
             $data[] = [
-                'id' => $curso->id,
-                'nome' => esc($curso->nome),
-                // 'nome' => anchor("cursos/exibir/$curso->id", esc($curso->nome), 'title="Exibir ' . esc($curso->nome) . '"'),
-                'ativo' => ($curso->ativo === true ? '<b>Ativo</b>' : '<b>Inativo</b>'),
+                'id' =>  $curso->id,
+                'nome' => anchor("cursos/exibir/$curso->id", esc($curso->nome), 'title="Exibir curso ' . esc($curso->nome) . '"'),
+                'descricao' => esc($curso->descricao),
+                'ativo' => $curso->exibeSituacao(),
             ];
         }
-
-        dd($data);
-        exit;
-
 
         $retorno = [
             'data' => $data,
         ];
 
-        echo '<pre>';
-        print_r($retorno);
-        exit;
-
-        // return $this->response->setJSON($retorno);
+        return $this->response->setJSON($retorno);
     }
 }

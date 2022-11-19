@@ -66,13 +66,6 @@
                             <label class="col-sm-2 col-form-label">Status</label>
                             <div class="col-sm-7">
                                 <h3><?php echo $usuario->exibeSituacao(); ?></h3>
-                                <!-- <?php if ($usuario->ativo == 0) : ?>
-                                    <h3 class="text-danger">Inativo</h3>
-                                    <span class="help text-danger">*Usuário foi excluído do sistema.</span>
-                                <?php else : ?>
-                                    <h3 class="text-info">Ativo</h3>
-                                    <span class="help text-info">*Usuário ativo do sistema.</span>
-                                <?php endif; ?> -->
                             </div>
                         </div>
 

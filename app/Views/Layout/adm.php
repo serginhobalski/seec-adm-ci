@@ -488,7 +488,9 @@
 
         $(document).ready(function() {
 
+
             $('#calendar').fullCalendar({
+
                 header: {
                     left: 'prev,next today',
                     center: 'title',
@@ -510,7 +512,7 @@
                     {
                         title: 'Long Event',
                         start: '2022-03-07',
-                        end: '2019-03-10'
+                        end: '2022-03-10'
                     },
                     {
                         id: 999,
