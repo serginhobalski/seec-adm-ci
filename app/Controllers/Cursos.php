@@ -47,12 +47,11 @@ class Cursos extends BaseController
             'valor',
             'categoria',
             'ativo',
-            'deletado_em',
         ];
 
         $cursos = $this->cursoModel->select($atributos)
             // $cursos = $this->cursoModel->select($atributos)
-            ->withDeleted(true)
+            // ->withDeleted(true)
             ->orderBy('id', 'DESC')
             ->findAll();
 

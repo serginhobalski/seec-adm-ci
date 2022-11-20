@@ -42,7 +42,7 @@
 
                     <?php if (empty($alunosDisponiveis)) : ?>
 
-                        <h4> Este curso já possui todos os alunos disponíveis.</h4>
+                        <!-- <h4> Este curso já possui todos os alunos disponíveis.</h4> -->
 
                     <?php else : ?>
 
@@ -76,37 +76,7 @@
                     <?php endif; ?>
 
 
-                    <div class="form-group row">
-                        <label class="col-sm-2 col-form-label">Alunos</label>
-                        <div class="col-sm-7">
-                            <h4 class="help">*Alunos matriculados no curso.</h4>
-                            <?php if (empty($curso->alunos) || $curso->alunos == null) : ?>
-                                <h5>Este curso não possui alunos matriculados.</h5>
-                            <?php else : ?>
-                                <div>
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th>Aluno(a)</th>
-                                                <!-- <th>Excluir</th> -->
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php foreach ($curso->alunos as $aluno) : ?>
-                                                <tr>
-                                                    <td><?php echo esc($aluno->nome); ?></td>
-                                                </tr>
-                                            <?php endforeach; ?>
-                                        </tbody>
-                                    </table>
-
-                                    <?php echo $curso->pager->links(); ?>
-
-
-                                </div>
-                            <?php endif; ?>
-                        </div>
-                    </div>
+                    <!-- Área de alunos matriculados -->
 
 
                     <div class="seperator"></div>
