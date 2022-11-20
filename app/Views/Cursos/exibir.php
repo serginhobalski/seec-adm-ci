@@ -78,26 +78,50 @@
                         </div>
 
                     </div>
+
+                    <hr class="separator">
+
+                    <div>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Aluno(a)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($alunos as $aluno) : ?>
+                                    <tr>
+                                        <td><?php echo esc($aluno->nome); ?></td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+
+                        <!-- <?php // echo $aluno->pager->links(); 
+                                ?> -->
+
+
+                    </div>
+
                     <div class="">
                         <div class="">
                             <div class="row">
                                 <div class="col-sm-2">
                                 </div>
                                 <div class="col-sm-7 d-flex">
-                                    <?php if ($curso->id > 1) : ?>
-                                        <div class="dropdown">
-                                            <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
-                                                Ações
-                                            </button>
-                                            <div class="dropdown-menu">
-                                                <a class="dropdown-item" href="<?php echo site_url("cursos/editar/$curso->id"); ?>"><i class="ti-pencil-alt"></i> Editar</a>
-                                                <hr>
-                                                <a class="dropdown-item" href="<?php echo site_url("cursos/excluir/$curso->id"); ?>">
-                                                    <i class="ti-trash"></i> Excluir
-                                                </a>
-                                            </div>
+                                    <div class="dropdown">
+                                        <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+                                            Ações
+                                        </button>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="<?php echo site_url("cursos/alunos/$curso->id"); ?>"><i class="fa fa-users "></i> Gerenciar alunos</a>
+                                            <hr>
+                                            <a class="dropdown-item" href="<?php echo site_url("cursos/editar/$curso->id"); ?>"><i class="ti-pencil-alt"></i> Editar</a>
+                                            <a class="dropdown-item" href="<?php echo site_url("cursos/excluir/$curso->id"); ?>">
+                                                <i class="ti-trash"></i> Excluir
+                                            </a>
                                         </div>
-                                    <?php endif; ?>
+                                    </div>
                                     <a href="<?php echo site_url("cursos") ?>" class="btn btn-dark ml-3"><i class="ti-arrow-left"></i> Voltar</a>
                                 </div>
                             </div>

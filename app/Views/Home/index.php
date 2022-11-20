@@ -241,121 +241,52 @@
                 <div class="row">
                     <div class="col-md-12 heading-bx left">
                         <h2 class="title-head">Principais <span>Cursos</span></h2>
-                        <p>
-                            Conheça os nossos principais cursos oferecidos em nossa <a class="btn radius-xl" href="https://seecpa.com.br/cursos" target="_blank">Plataforma de ensino.</a>
-                        </p>
+                        <p>Cursos que te ajudam a crescer!</p>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="courses-carousel owl-carousel owl-btn-1 col-12 p-lr0 owl-loaded owl-drag">
+                    <div class="courses-carousel owl-carousel owl-btn-1 col-12 p-lr0">
 
+                        <?php foreach ($cursos as $curso) : ?>
 
+                            <div class="item">
+                                <div class="cours-bx">
+                                    <div class="action-box">
+                                        <?php if ($curso->categoria === "itq") : ?>
+                                            <img src="<?php echo site_url("src/assets/images/courses/curso_itq.jpg") ?>" alt="">
+                                        <?php elseif ($curso->categoria === "postulantes") : ?>
+                                            <img src="<?php echo site_url("src/assets/images/courses/curso_postulantes.jpg") ?>" alt="">
+                                        <?php elseif ($curso->categoria === "lideranca") : ?>
+                                            <img src="<?php echo site_url("src/assets/images/courses/curso_lideranca.jpg") ?>" alt="">
+                                        <?php endif; ?>
 
-
-                        <div class="owl-stage-outer">
-                            <div class="owl-stage" style="transform: translate3d(-1170px, 0px, 0px); transition: all 0s ease 0s; width: 3510px;">
-                                <div class="owl-item cloned" style="width: 292.5px;">
-                                    <div class="item">
-                                        <div class="cours-bx">
-                                            <div class="action-box">
-                                                <img src="<?php echo site_url('src/') ?>assets/images/courses/pic1.jpg" alt="">
-                                                <a href="/itq" class="btn">Saiba mais</a>
-                                            </div>
-                                            <div class="info-bx text-center">
-                                                <h5>
-                                                    <a href="#">ITQ EAD</a>
-                                                </h5>
-                                                <span>Teologia</span>
-                                            </div>
-                                            <div class="cours-more-info">
-                                                <div class="review">
-                                                    <span></span>
-                                                    <ul class="cours-star">
-                                                        <li class="active"><i class="fa fa-star"></i></li>
-                                                        <li class="active"><i class="fa fa-star"></i></li>
-                                                        <li class="active"><i class="fa fa-star"></i></li>
-                                                        <li class="active"><i class="fa fa-star"></i></li>
-                                                        <li class="active"><i class="fa fa-star"></i></li>
-                                                    </ul>
-                                                </div>
-                                                <div class="price">
-                                                    <del>R$ 380,00</del>
-                                                    <h5>R$ 250,00</h5>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <a href="<?php echo site_url("home/cursos") ?>" class="btn">Saiba mais</a>
                                     </div>
-                                </div>
-                                <div class="owl-item cloned" style="width: 292.5px;">
-                                    <div class="item">
-                                        <div class="cours-bx">
-                                            <div class="action-box">
-                                                <img src="<?php echo site_url('src/') ?>assets/images/courses/pic2.jpg" alt="">
-                                                <a href="/postulantes" class="btn">Saiba mais</a>
-                                            </div>
-                                            <div class="info-bx text-center">
-                                                <h5>
-                                                    <a href="#">Cursos de Postulantes</a>
-                                                </h5>
-                                                <span>Ministério</span>
-                                            </div>
-                                            <div class="cours-more-info">
-                                                <div class="review">
-                                                    <span></span>
-                                                    <ul class="cours-star">
-                                                        <li class="active"><i class="fa fa-star"></i></li>
-                                                        <li class="active"><i class="fa fa-star"></i></li>
-                                                        <li class="active"><i class="fa fa-star"></i></li>
-                                                        <li class="active"><i class="fa fa-star"></i></li>
-                                                        <li class="active"><i class="fa fa-star"></i></li>
-                                                    </ul>
-                                                </div>
-                                                <div class="price">
-                                                    <del>R$ 250,00</del>
-                                                    <h5>R$ 120,00</h5>
-                                                </div>
-                                            </div>
-                                        </div>
+                                    <div class="info-bx text-center">
+                                        <h5><a href="#"><?php echo $curso->nome ?></a></h5>
+                                        <span><?php echo strtoupper($curso->categoria) ?></span>
                                     </div>
-                                </div>
-                                <div class="owl-item cloned" style="width: 292.5px;">
-                                    <div class="item">
-                                        <div class="cours-bx">
-                                            <div class="action-box">
-                                                <img src="<?php echo site_url('src/') ?>assets/images/courses/pic3.jpg" alt="">
-                                                <a href="/treinamentos" class="btn">Saiba mais</a>
-                                            </div>
-                                            <div class="info-bx text-center">
-                                                <h5>
-                                                    <a href="#">Treinamentos para líderes</a>
-                                                </h5>
-                                                <span>Liderança</span>
-                                            </div>
-                                            <div class="cours-more-info">
-                                                <div class="review">
-                                                    <span></span>
-                                                    <ul class="cours-star">
-                                                        <li class="active"><i class="fa fa-star"></i></li>
-                                                        <li class="active"><i class="fa fa-star"></i></li>
-                                                        <li class="active"><i class="fa fa-star"></i></li>
-                                                        <li class="active"><i class="fa fa-star"></i></li>
-                                                        <li class="active"><i class="fa fa-star"></i></li>
-                                                    </ul>
-                                                </div>
-                                                <div class="price">
-                                                    <h5>*sob demanda</h5>
-                                                </div>
-                                            </div>
+                                    <div class="cours-more-info">
+                                        <div class="review">
+                                            <span>Reviews</span>
+                                            <ul class="cours-star">
+                                                <li class="active"><i class="fa fa-star"></i></li>
+                                                <li class="active"><i class="fa fa-star"></i></li>
+                                                <li class="active"><i class="fa fa-star"></i></li>
+                                                <li class="active"><i class="fa fa-star"></i></li>
+                                                <li class="active"><i class="fa fa-star"></i></li>
+                                            </ul>
+                                        </div>
+                                        <div class="price">
+                                            <del>R$ <?php echo implode(",", explode(".", $curso->valor + 95)) ?></del>
+                                            <h5>R$ <?php echo implode(",", explode(".", $curso->valor)) ?></h5>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="owl-nav disabled">
-                            <div class="owl-prev"><i class="fa fa-angle-left"></i></div>
-                            <div class="owl-next"><i class="fa fa-angle-right"></i></div>
-                        </div>
-                        <div class="owl-dots disabled"></div>
+
+                        <?php endforeach; ?>
+
                     </div>
                 </div>
             </div>

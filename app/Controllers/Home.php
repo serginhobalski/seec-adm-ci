@@ -6,12 +6,54 @@ use App\Libraries\Autenticacao;
 
 class Home extends BaseController
 {
+    private $cursoModel;
+
+    public function __construct()
+    {
+        $this->cursoModel = new \App\Models\CursoModel();
+    }
+
     public function index()
     {
+        $atributos = [
+            'id',
+            'nome',
+            'descricao',
+            'valor',
+            'categoria',
+            'ativo',
+        ];
+
+        $cursos = $this->cursoModel->select($atributos)
+            ->findAll();
+
         $data = [
             'titulo' => 'Início',
+            'cursos' => $cursos,
         ];
         return view('Home/index', $data);
+    }
+
+    public function cursos()
+    {
+        $atributos = [
+            'id',
+            'nome',
+            'descricao',
+            'valor',
+            'categoria',
+            'ativo',
+        ];
+
+        $cursos = $this->cursoModel->select($atributos)
+            ->findAll();
+
+        $data = [
+            'titulo' => 'Cursos SEEC-PA',
+            'subtitulo' => 'Promovendo seu crescimento contínuo!',
+            'cursos' => $cursos,
+        ];
+        return view('Home/cursos', $data);
     }
 
     public function login()
@@ -88,9 +130,23 @@ class Home extends BaseController
         if (!usuario_logado()->is_admin && !usuario_logado()->is_aluno) {
             return redirect()->back()->with("info", "Você não possui permissão para visualizar esta página.");
         }
+
+        $atributos = [
+            'id',
+            'nome',
+            'descricao',
+            'valor',
+            'categoria',
+            'ativo',
+        ];
+
+        $cursos = $this->cursoModel->select($atributos)
+            ->findAll();
+
         $data = [
             'titulo' => 'Área do Aluno',
             'subtitulo' => usuario_logado()->nome,
+            'cursos' => $cursos,
         ];
 
         return view('Home/aluno', $data);

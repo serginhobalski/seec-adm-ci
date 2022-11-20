@@ -157,6 +157,16 @@
                                     <a href="<?php echo site_url("mensagens") ?> ">
                                         <i class="fa fa-paper-plane"></i> Mensagens</a>
                                 </li>
+                                <hr>
+                                <li><a class="dropdown-item text-primary" href="<?php echo site_url("home/aluno") ?>"><i class="ti-settings"></i> Home | Aluno</a></li>
+                                <li><a class="dropdown-item text-primary" href="<?php echo site_url("adm/aluno") ?>"><i class="ti-settings"></i> Adm | Aluno</a></li>
+                                <li><a class="dropdown-item text-primary" class="dropdown-item text-primary" href="<?php echo site_url("home/professor") ?>"><i class="ti-settings"></i> Home | Professor</a></li>
+                                <li><a class="dropdown-item text-primary" href="<?php echo site_url("adm/professor") ?>"><i class="ti-settings"></i> Adm | Professor</a></li>
+                                <li><a class="dropdown-item text-primary" href="<?php echo site_url("adm/secretaria") ?>"><i class="ti-settings"></i> Adm | Secretaria</a></li>
+                                <li></li>
+                                <li><a class="dropdown-item text-primary" href="<?php echo site_url("adm/uetp") ?>"><i class="ti-settings"></i> Adm | UETP</a></li>
+                                <li><a class="dropdown-item text-primary" href="<?php echo site_url("relatorios/meusrelatorios") ?>"><i class="ti-settings"></i> Relatorios | UETP</a></li>
+                                <hr>
                                 <li>
                                     <a href="<?php echo site_url("usuarios/editarusuariologado") ?> ">
                                         <i class="fa fa-wrench"></i> Atualizar meus dados</a>

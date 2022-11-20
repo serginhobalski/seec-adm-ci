@@ -35,7 +35,7 @@
     <div class="breadcrumb-row">
         <div class="container">
             <ul class="list-inline">
-                <li><a href="/"><i class="fa fa-home"></i> Home</a></li>
+                <li><a href="<?php echo site_url("/") ?>"><i class="fa fa-home"></i> Home</a></li>
                 <li><?php echo $titulo; ?></li>
             </ul>
         </div>

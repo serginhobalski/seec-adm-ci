@@ -33,12 +33,9 @@
     </div>
     <!-- Breadcrumb row -->
     <div class="breadcrumb-row">
-
-        <?php echo $this->include('Layout/_mensagens') ?>
-
         <div class="container">
             <ul class="list-inline">
-                <li><a href="/"><i class="fa fa-home"></i> Home</a></li>
+                <li><a href="<?php echo site_url("/") ?>"><i class="fa fa-home"></i> Home</a></li>
                 <li><?php echo $titulo; ?></li>
             </ul>
         </div>
@@ -46,7 +43,8 @@
     <!-- Breadcrumb row END -->
     <!-- inner page banner END -->
 
-    <!-- contact area -->
+
+
     <div class="content-block">
         <!-- Portfolio  -->
         <div class="section-area section-sp1 gallery-bx">
@@ -82,7 +80,7 @@
                                     <div class="info-bx d-flex">
                                         <div>
                                             <div class="event-time">
-                                                <div class="event-date">--</div>
+                                                <div class="event-date"></div>
                                                 <div class="event-month"><?php echo strtoupper($curso->categoria) ?></div>
                                             </div>
                                         </div>
@@ -92,10 +90,10 @@
                                                 <li><a href="#"><i class="fa fa-bookmark"></i>R$ <?php echo implode(",", explode(".", $curso->valor)) ?></a></li>
                                                 <li>
                                                     <a href="#"><i class="fa fa-map-marker"></i>
-                                                        <?php if ($curso->ativo === true) : ?>
+                                                        <?php if ($curso->ativo == true) : ?>
                                                             <b class="text-success">Ativo</b>
                                                         <?php else : ?>
-                                                            <b class="text-success">Inativo</b>
+                                                            <b class="text-danger">Inativo</b>
                                                         <?php endif; ?>
                                                     </a>
                                                 </li>
@@ -114,7 +112,7 @@
             </div>
         </div>
     </div>
-    <!-- contact area END -->
+
 
 </div>
 <!-- Content END-->

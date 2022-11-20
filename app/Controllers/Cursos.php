@@ -9,11 +9,13 @@ class Cursos extends BaseController
 {
     private $cursoModel;
     private $alunoCursoModel;
+    private $usuarioModel;
 
     public function __construct()
     {
         $this->cursoModel = new \App\Models\CursoModel();
         $this->alunoCursoModel = new \App\Models\AlunoCursoModel();
+        $this->usuarioModel = new \App\Models\UsuarioModel();
     }
 
     public function index()
@@ -124,9 +126,12 @@ class Cursos extends BaseController
     {
         $curso = $this->buscaCursoOu404($id);
 
+        $alunos = $this->alunoCursoModel->recuperaAlunosDoCurso($id, 10);
+
         $data = [
             'titulo' => "Detalhes do curso " . esc($curso->nome),
             'curso' => $curso,
+            'alunos' => $alunos,
         ];
 
         return view('Cursos/exibir', $data);
@@ -236,14 +241,57 @@ class Cursos extends BaseController
 
         if (!empty($curso->alunos)) {
 
-            $alunosExistentes = array_column($curso->alunos, 'permissao_id');
+            $alunosExistentes = array_column($curso->alunos, 'alunos_id');
 
-            $data['alunosDisponiveis'] = $this->permissaoModel->whereNotIn('id', $alunosExistentes)->findAll();
+            $data['alunosDisponiveis'] = $this->usuarioModel->whereNotIn('id', $alunosExistentes)->findAll();
         } else {
-            $data['alunosDisponiveis'] = $this->permissaoModel->findAll();
+            $data['alunosDisponiveis'] = $this->usuarioModel->findAll();
         }
 
         return view('cursos/alunos', $data);
+    }
+
+    public function salvarAlunos()
+    {
+
+        if (!$this->request->isAJAX()) {
+
+            return redirect()->back();
+        }
+
+        // Enviar hash do token do form
+        $retorno['token'] = csrf_hash();
+
+        // Recuperar o post da requisição
+        $post = $this->request->getPost();
+
+        // Validar a existência do grupo
+        $curso = $this->buscaCursoOu404($post['id']);
+
+        if (empty($post['aluno_id'])) {
+
+            $retorno['erro'] = 'Por favor verifique os erros abaixo.';
+            $retorno['erros_model'] = ['aluno_id' => '<b class="text-danger">Escolha um ou mais alunos para salvar.</b>'];
+            // Retorno para o AJAX request
+            return $this->response->setJSON($retorno);
+        }
+
+        // Receberá as permissões do POST
+        $alunoPush = [];
+
+        foreach ($post['aluno_id'] as $aluno) {
+
+            array_push($alunoPush, [
+                'curso_id' => $curso->id,
+                'aluno_id' => $aluno,
+            ]);
+        }
+
+        $this->alunoCursoModel->protect(false)->insertBatch($alunoPush);
+
+        session()->setFlashdata('sucesso', 'Dados salvos com sucesso!');
+
+        return $this->response->setJSON($retorno);
     }
 
     private function buscaCursoOu404(int $id = null)

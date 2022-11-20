@@ -26,7 +26,7 @@
     <div class="col-lg-12 m-b30">
         <div class="widget-box">
             <div class="wc-title">
-                <h4>Permissões do grupo <?php echo $grupo->nome; ?></h4>
+                <h4>Alunos do curso <?php echo $curso->nome; ?></h4>
             </div>
             <div class="widget-inner">
 
@@ -34,15 +34,15 @@
                     <div class="seperator"></div>
 
                     <div class="form-group row">
-                        <label class="col-sm-2 col-form-label">Nome do grupo</label>
+                        <label class="col-sm-2 col-form-label">Nome do curso</label>
                         <div class="col-sm-7">
-                            <h4><?php echo $grupo->nome; ?></h4>
+                            <h4><?php echo $curso->nome; ?></h4>
                         </div>
                     </div>
 
-                    <?php if (empty($permissoesDisponiveis)) : ?>
+                    <?php if (empty($alunosDisponiveis)) : ?>
 
-                        <h4> Este grupo já possui toda as permissões disponíveis.</h4>
+                        <h4> Este curso já possui todos os alunos disponíveis.</h4>
 
                     <?php else : ?>
 
@@ -50,15 +50,15 @@
 
                         </div>
 
-                        <?php echo form_open('/', ['id' => 'form'], ['id' => "$grupo->id"]) ?>
+                        <?php echo form_open('/', ['id' => 'form'], ['id' => "$curso->id"]) ?>
 
                         <div class="form-group row">
-                            <label class="col-sm-4 col-form-label">Escolha uma ou mais permissões</label>
+                            <label class="col-sm-4 col-form-label">Escolha um ou mais alunos</label>
 
                             <div class="col-sm-8">
-                                <select name="permissao_id[]" class="selectize" multiple>
-                                    <?php foreach ($permissoesDisponiveis as $permissaoDisponivel) : ?>
-                                        <option value="<?php echo $permissaoDisponivel->id ?>"><?php echo $permissaoDisponivel->nome ?></option>
+                                <select name="aluno_id[]" class="selectize" multiple>
+                                    <?php foreach ($alunosDisponiveis as $alunoDisponivel) : ?>
+                                        <option value="<?php echo $alunoDisponivel->id; ?>"><?php echo $alunoDisponivel->nome; ?></option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>
@@ -68,7 +68,7 @@
                         <div class="form-group mt-5 mb-4 d-flex">
 
                             <input id="btn-salvar" type="submit" value="Salvar" class="btn btn-danger mr-2">
-                            <a class="btn" href="<?php echo site_url("grupos/exibir/$grupo->id"); ?>"><i class="ti-arrow-left"></i> Voltar</a>
+                            <a class="btn" href="<?php echo site_url("cursos/exibir/$curso->id"); ?>"><i class="ti-arrow-left"></i> Voltar</a>
 
                         </div>
 
@@ -77,44 +77,34 @@
                     <?php endif; ?>
 
                     <div class="form-group row">
-                        <label class="col-sm-2 col-form-label">Permissões</label>
+                        <label class="col-sm-2 col-form-label">Alunos</label>
                         <div class="col-sm-7">
-                            <?php if (empty($grupo->permissoes) || $grupo->permissoes == null) : ?>
-                                <h3>Este grupo não possui nenhuma permissão de gerenciamento.</h3>
+                            <?php if (empty($curso->alunos) || $curso->alunos == null) : ?>
+                                <h3>Este curso não possui alunos matriculados.</h3>
                             <?php else : ?>
                                 <div>
                                     <table class="table">
                                         <thead>
                                             <tr>
-                                                <th>Permissão</th>
-                                                <th>Excluir</th>
+                                                <th>Aluno(a)</th>
+                                                <!-- <th>Excluir</th> -->
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <?php foreach ($grupo->permissoes as $permissao) : ?>
+                                            <?php foreach ($curso->alunos as $aluno) : ?>
                                                 <tr>
-                                                    <td><?php echo esc($permissao->nome); ?></td>
-                                                    <td>
-                                                        <?php
-                                                        $atributos = [
-                                                            'onSubmit' => "return confirm('Tem certeza de que deseja excluir esta permissão?');",
-                                                        ];
-                                                        ?>
-                                                        <?php echo form_open("grupos/removepermissao/$permissao->principal_id", $atributos) ?>
-                                                        <button class="bg-danger text-white" type="submit"><i class="fa fa-trash"></i> Excluir</button>
-                                                        <?php echo form_close(); ?>
-                                                    </td>
+                                                    <td><?php echo esc($aluno->nome); ?></td>
                                                 </tr>
                                             <?php endforeach; ?>
                                         </tbody>
                                     </table>
 
-                                    <?php echo $grupo->pager->links(); ?>
+                                    <?php echo $curso->pager->links(); ?>
 
 
                                 </div>
                             <?php endif; ?>
-                            <span class="help">*Permissões de acesso do grupo.</span>
+                            <span class="help">*Alunos matriculados no curso.</span>
                         </div>
                     </div>
 
@@ -129,7 +119,7 @@
                             <div class="col-sm-2">
                             </div>
                             <div class="col-sm-7 d-flex">
-                                <a href="/grupos" class="btn btn-dark ml-3"><i class="ti-arrow-left"></i> Voltar</a>
+                                <a href="<?php echo site_url("cursos") ?>" class="btn btn-dark ml-3"><i class="ti-arrow-left"></i> Voltar</a>
                             </div>
                         </div>
                     </div>
@@ -166,7 +156,7 @@
             $.ajax({
 
                 type: 'POST',
-                url: '<?php echo site_url('grupos/salvarpermissoes'); ?>',
+                url: '<?php echo site_url('cursos/salvaralunos'); ?>',
                 data: new FormData(this),
                 dataType: 'json',
                 contentType: false,
@@ -185,7 +175,7 @@
                     if (!response.erro) {
 
                         // Tudo certo! Pode redirecionar!
-                        window.location.href = "<?php echo site_url("grupos/exibir/$grupo->id"); ?>";
+                        window.location.href = "<?php echo site_url("cursos/exibir/$curso->id"); ?>";
 
                     }
                     if (response.erro) {
