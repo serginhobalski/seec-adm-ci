@@ -125,6 +125,10 @@ class Cursos extends BaseController
     public function exibir(int $id = null)
     {
         $curso = $this->buscaCursoOu404($id);
+        $curso->alunos = $this->alunoCursoModel->recuperaAlunosDoCurso($curso->id, 10);
+        $curso->pager = $this->alunoCursoModel->pager;
+
+
 
         $alunos = $this->alunoCursoModel->recuperaAlunosDoCurso($id, 10);
 

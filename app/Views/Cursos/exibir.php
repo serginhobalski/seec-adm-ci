@@ -97,8 +97,7 @@
                             </tbody>
                         </table>
 
-                        <!-- <?php // echo $aluno->pager->links(); 
-                                ?> -->
+                        <?php echo $curso->pager->links(); ?>
 
 
                     </div>

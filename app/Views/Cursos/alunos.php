@@ -68,7 +68,6 @@
                         <div class="form-group mt-5 mb-4 d-flex">
 
                             <input id="btn-salvar" type="submit" value="Salvar" class="btn btn-danger mr-2">
-                            <a class="btn" href="<?php echo site_url("cursos/exibir/$curso->id"); ?>"><i class="ti-arrow-left"></i> Voltar</a>
 
                         </div>
 
@@ -76,11 +75,13 @@
 
                     <?php endif; ?>
 
+
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Alunos</label>
                         <div class="col-sm-7">
+                            <h4 class="help">*Alunos matriculados no curso.</h4>
                             <?php if (empty($curso->alunos) || $curso->alunos == null) : ?>
-                                <h3>Este curso não possui alunos matriculados.</h3>
+                                <h5>Este curso não possui alunos matriculados.</h5>
                             <?php else : ?>
                                 <div>
                                     <table class="table">
@@ -104,7 +105,6 @@
 
                                 </div>
                             <?php endif; ?>
-                            <span class="help">*Alunos matriculados no curso.</span>
                         </div>
                     </div>
 
@@ -114,16 +114,13 @@
 
                 </div>
                 <div class="">
-                    <div class="">
-                        <div class="row">
-                            <div class="col-sm-2">
-                            </div>
-                            <div class="col-sm-7 d-flex">
-                                <a href="<?php echo site_url("cursos") ?>" class="btn btn-dark ml-3"><i class="ti-arrow-left"></i> Voltar</a>
-                            </div>
+                    <div class="row">
+                        <div class="form-group mt-5 mb-4 d-flex">
+                            <a href="<?php echo site_url("cursos") ?>" class="btn btn-dark ml-3"><i class="ti-arrow-left"></i> Voltar</a>
                         </div>
                     </div>
                 </div>
+
 
             </div>
         </div>
