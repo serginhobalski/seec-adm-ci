@@ -7,10 +7,13 @@ use App\Controllers\BaseController;
 class Mensagens extends BaseController
 {
     private $mensagemModel;
+    private $mensagemUsuarioModel;
+
 
     public function __construct()
     {
         $this->mensagemModel = new \App\Models\MensagemModel();
+        $this->mensagemUsuarioModel = new \App\Models\MensagenUsuarioModel();
     }
 
     public function index()
@@ -19,58 +22,46 @@ class Mensagens extends BaseController
             return redirect()->back()->with("info", "Faça o login para acessar esta página.");
         }
 
+        $mensagens = $this->mensagemUsuarioModel->recuperaMensagensDoUsuario(usuario_logado()->id, 10);
+
         $data = [
             'titulo' => 'Mensagens de ' . usuario_logado()->nome,
+            'mensagens' => $mensagens,
         ];
 
         return view('Mensagens/index', $data);
     }
 
-    public function recuperaMensagens()
+    public function recuperaMensagens(int $id = null)
     {
-        if (!$this->request->isAJAX()) {
+        // if (!$this->request->isAJAX()) {
 
-            return redirect()->back();
+        //     return redirect()->back();
+        // }
+
+        $mensagens = $this->mensagemUsuarioModel->recuperaMensagensDoUsuario(usuario_logado()->id, 10);
+
+        dd($mensagens);
+
+
+        // $data = [
+        //     'titulo' => 'Mensagens de ' . usuario_logado()->nome,
+        //     'mensagens' => $mensagens,
+        // ];
+
+
+        // return $this->response->setJSON($data);
+    }
+
+
+
+    private function buscaMensagemOu404(int $id = null)
+    {
+        if (!$id || !$mensagem = $this->mensagemModel->withDeleted(true)->find($id)) {
+
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound("Não encontramos esta mensagem");
         }
 
-        $atributos = [
-            'mensagens.id',
-            'mensagens.remetente_id',
-            'mensagens.destinatario_id',
-            'mensagens.assunto',
-            'mensagens.mensagem',
-            'mensagens.criado_em',
-            'mensagens.deletado_em',
-            'usuarios.nome AS nome'
-        ];
-
-        $mensagens = $this->mensagemModel->select($atributos)
-            ->withDeleted(true)
-            ->join('usuarios', 'usuarios.id = mensagens.remetente_id')
-            ->join('usuarios', 'usuarios.id = mensagens.destinatario_id')
-            ->where('remetente_id', usuario_logado()->id)
-            ->where('destinatario_id', usuario_logado()->id)
-            ->groupBy('usuarios.nome')
-            ->orderBy('criado_em', 'DESC')
-            ->findAll();
-
-        $data = [];
-
-        foreach ($mensagens as $mensagem) {
-
-            $data[] = [
-                'id' =>  $mensagem->id,
-                'nome' => anchor("mensagens/exibir/$mensagem->id", esc($mensagem->nome), 'title="Exibir curso ' . esc($mensagem->nome) . '"'),
-                'valor' => 'R$ ' . implode(",", explode(".", $mensagem->valor)),
-                'categoria' => strtoupper($mensagem->categoria),
-                'ativo' => $mensagem->exibeSituacao(),
-            ];
-        }
-
-        $retorno = [
-            'data' => $data,
-        ];
-
-        return $this->response->setJSON($retorno);
+        return $mensagem;
     }
 }

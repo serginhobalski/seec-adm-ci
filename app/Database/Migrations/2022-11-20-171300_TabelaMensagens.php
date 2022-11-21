@@ -15,15 +15,9 @@ class TabelaMensagens extends Migration
                 'unsigned'       => true,
                 'auto_increment' => true,
             ],
-            'remetente_id' => [
-                'type'           => 'INT',
-                'constraint'     => 5,
-                'unsigned'       => true,
-            ],
-            'destinatario_id' => [
-                'type'           => 'INT',
-                'constraint'     => 5,
-                'unsigned'       => true,
+            'destinatario' => [
+                'type'       => 'VARCHAR',
+                'constraint' => '100',
             ],
             'assunto' => [
                 'type'       => 'VARCHAR',

@@ -32,9 +32,9 @@
                     </div>
                     <div class="email-menu-bar-inner">
                         <ul>
-                            <li class="active"><a href="mailbox.html"><i class="fa fa-envelope-o"></i>Entrada <span class="badge badge-success">8</span></a></li>
-                            <li><a href="mailbox.html"><i class="fa fa-send-o"></i>Enviadas</a></li>
-                            <li><a href="mailbox.html"><i class="fa fa-trash-o"></i>Excluídas</a></li>
+                            <li class="active"><a href=""><i class="fa fa-envelope-o"></i>Entrada <span class="badge badge-success">8</span></a></li>
+                            <li><a href=""><i class="fa fa-send-o"></i>Enviadas</a></li>
+                            <li><a href=""><i class="fa fa-trash-o"></i>Excluídas</a></li>
                         </ul>
                     </div>
                 </div>
@@ -64,475 +64,51 @@
                         </div>
                     </div>
                     <div class="mail-box-list">
-                        <div class="mail-list-info">
-                            <div class="checkbox-list">
-                                <div class="custom-control custom-checkbox checkbox-st1">
-                                    <input type="checkbox" class="custom-control-input" id="check2">
-                                    <label class="custom-control-label" for="check2"></label>
+                        <?php foreach ($mensagens as $mensagem) : ?>
+
+                            <?php // if ($mensagem === null) : 
+                            ?>
+                            <!-- <div class="mail-list-info text-center">
+                                    <br><br>
+                                    <p>Caixa de mensagens vazia...</p>
+                                </div> -->
+                            <?php // else : 
+                            ?>
+
+                            <div class="mail-list-info">
+                                <div class="checkbox-list">
+                                    <div class="custom-control custom-checkbox checkbox-st1">
+                                        <input type="checkbox" class="custom-control-input" id="check2">
+                                        <label class="custom-control-label" for="check2"></label>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="mail-rateing">
-                                <span><i class="fa fa-star-o"></i></span>
-                            </div>
-                            <div class="mail-list-title">
-                                <h6>David Moore</h6>
-                            </div>
-                            <div class="mail-list-title-info">
-                                <p>Change the password for your Micr</p>
-                            </div>
-                            <div class="mail-list-time">
-                                <span>10:59 AM</span>
-                            </div>
-                            <ul class="mailbox-toolbar">
-                                <li data-toggle="tooltip" title="Delete"><i class="fa fa-trash-o"></i></li>
-                                <li data-toggle="tooltip" title="Archive"><i class="fa fa-arrow-down"></i></li>
-                                <li data-toggle="tooltip" title="Snooze"><i class="fa fa-clock-o"></i></li>
-                                <li data-toggle="tooltip" title="Mark as unread"><i class="fa fa-envelope-open"></i></li>
-                            </ul>
-                        </div>
-                        <div class="mail-list-info">
-                            <div class="checkbox-list">
-                                <div class="custom-control custom-checkbox checkbox-st1">
-                                    <input type="checkbox" class="custom-control-input" id="check3">
-                                    <label class="custom-control-label" for="check3"></label>
+                                <div class="mail-rateing">
+                                    <span><i class="fa fa-star-o"></i></span>
                                 </div>
-                            </div>
-                            <div class="mail-rateing">
-                                <span><i class="fa fa-star-o"></i></span>
-                            </div>
-                            <div class="mail-list-title">
-                                <h6>David Moore</h6>
-                            </div>
-                            <div class="mail-list-title-info">
-                                <p>Change the password for your Micr</p>
-                            </div>
-                            <div class="mail-list-time">
-                                <span>10:59 AM</span>
-                            </div>
-                            <ul class="mailbox-toolbar">
-                                <li data-toggle="tooltip" title="Delete"><i class="fa fa-trash-o"></i></li>
-                                <li data-toggle="tooltip" title="Archive"><i class="fa fa-arrow-down"></i></li>
-                                <li data-toggle="tooltip" title="Snooze"><i class="fa fa-clock-o"></i></li>
-                                <li data-toggle="tooltip" title="Mark as unread"><i class="fa fa-envelope-open"></i></li>
-                            </ul>
-                        </div>
-                        <div class="mail-list-info">
-                            <div class="checkbox-list">
-                                <div class="custom-control custom-checkbox checkbox-st1">
-                                    <input type="checkbox" class="custom-control-input" id="check4">
-                                    <label class="custom-control-label" for="check4"></label>
+                                <div class="mail-list-title">
+                                    <h6><?php echo $mensagem->destinatario ?></h6>
                                 </div>
-                            </div>
-                            <div class="mail-rateing">
-                                <span><i class="fa fa-star-o"></i></span>
-                            </div>
-                            <div class="mail-list-title">
-                                <h6>David Moore</h6>
-                            </div>
-                            <div class="mail-list-title-info">
-                                <p>Change the password for your Micr</p>
-                            </div>
-                            <div class="mail-list-time">
-                                <span>10:59 AM</span>
-                            </div>
-                            <ul class="mailbox-toolbar">
-                                <li data-toggle="tooltip" title="Delete"><i class="fa fa-trash-o"></i></li>
-                                <li data-toggle="tooltip" title="Archive"><i class="fa fa-arrow-down"></i></li>
-                                <li data-toggle="tooltip" title="Snooze"><i class="fa fa-clock-o"></i></li>
-                                <li data-toggle="tooltip" title="Mark as unread"><i class="fa fa-envelope-open"></i></li>
-                            </ul>
-                        </div>
-                        <div class="mail-list-info">
-                            <div class="checkbox-list">
-                                <div class="custom-control custom-checkbox checkbox-st1">
-                                    <input type="checkbox" class="custom-control-input" id="check5">
-                                    <label class="custom-control-label" for="check5"></label>
+                                <div class="mail-list-title-info">
+                                    <p><?php echo $mensagem->assunto ?></p>
                                 </div>
-                            </div>
-                            <div class="mail-rateing">
-                                <span><i class="fa fa-star-o"></i></span>
-                            </div>
-                            <div class="mail-list-title">
-                                <h6>David Moore</h6>
-                            </div>
-                            <div class="mail-list-title-info">
-                                <p>Change the password for your Micr</p>
-                            </div>
-                            <div class="mail-list-time">
-                                <span>10:59 AM</span>
-                            </div>
-                            <ul class="mailbox-toolbar">
-                                <li data-toggle="tooltip" title="Delete"><i class="fa fa-trash-o"></i></li>
-                                <li data-toggle="tooltip" title="Archive"><i class="fa fa-arrow-down"></i></li>
-                                <li data-toggle="tooltip" title="Snooze"><i class="fa fa-clock-o"></i></li>
-                                <li data-toggle="tooltip" title="Mark as unread"><i class="fa fa-envelope-open"></i></li>
-                            </ul>
-                        </div>
-                        <div class="mail-list-info">
-                            <div class="checkbox-list">
-                                <div class="custom-control custom-checkbox checkbox-st1">
-                                    <input type="checkbox" class="custom-control-input" id="check6">
-                                    <label class="custom-control-label" for="check6"></label>
+                                <div class="mail-list-time">
+                                    <span><?php echo date("d/m/Y - H:i", strtotime($mensagem->criado_em)) ?></span>
                                 </div>
-                            </div>
-                            <div class="mail-rateing">
-                                <span><i class="fa fa-star-o"></i></span>
-                            </div>
-                            <div class="mail-list-title">
-                                <h6>David Moore</h6>
-                            </div>
-                            <div class="mail-list-title-info">
-                                <p>Change the password for your Micr</p>
-                            </div>
-                            <div class="mail-list-time">
-                                <span>10:59 AM</span>
-                            </div>
-                            <ul class="mailbox-toolbar">
-                                <li data-toggle="tooltip" title="Delete"><i class="fa fa-trash-o"></i></li>
-                                <li data-toggle="tooltip" title="Archive"><i class="fa fa-arrow-down"></i></li>
-                                <li data-toggle="tooltip" title="Snooze"><i class="fa fa-clock-o"></i></li>
-                                <li data-toggle="tooltip" title="Mark as unread"><i class="fa fa-envelope-open"></i></li>
-                            </ul>
-                        </div>
-                        <div class="mail-list-info">
-                            <div class="checkbox-list">
-                                <div class="custom-control custom-checkbox checkbox-st1">
-                                    <input type="checkbox" class="custom-control-input" id="check7">
-                                    <label class="custom-control-label" for="check7"></label>
-                                </div>
-                            </div>
-                            <div class="mail-rateing">
-                                <span><i class="fa fa-star-o"></i></span>
-                            </div>
-                            <div class="mail-list-title">
-                                <h6>David Moore</h6>
-                            </div>
-                            <div class="mail-list-title-info">
-                                <p>Change the password for your Micr</p>
-                            </div>
-                            <div class="mail-list-time">
-                                <span>10:59 AM</span>
-                            </div>
-                            <ul class="mailbox-toolbar">
-                                <li data-toggle="tooltip" title="Delete"><i class="fa fa-trash-o"></i></li>
-                                <li data-toggle="tooltip" title="Archive"><i class="fa fa-arrow-down"></i></li>
-                                <li data-toggle="tooltip" title="Snooze"><i class="fa fa-clock-o"></i></li>
-                                <li data-toggle="tooltip" title="Mark as unread"><i class="fa fa-envelope-open"></i></li>
-                            </ul>
-                        </div>
-                        <div class="mail-list-info">
-                            <div class="checkbox-list">
-                                <div class="custom-control custom-checkbox checkbox-st1">
-                                    <input type="checkbox" class="custom-control-input" id="check8">
-                                    <label class="custom-control-label" for="check8"></label>
-                                </div>
-                            </div>
-                            <div class="mail-rateing">
-                                <span><i class="fa fa-star-o"></i></span>
-                            </div>
-                            <div class="mail-list-title">
-                                <h6>David Moore</h6>
-                            </div>
-                            <div class="mail-list-title-info">
-                                <p>Change the password for your Micr</p>
-                            </div>
-                            <div class="mail-list-time">
-                                <span>10:59 AM</span>
-                            </div>
-                            <ul class="mailbox-toolbar">
-                                <li data-toggle="tooltip" title="Delete"><i class="fa fa-trash-o"></i></li>
-                                <li data-toggle="tooltip" title="Archive"><i class="fa fa-arrow-down"></i></li>
-                                <li data-toggle="tooltip" title="Snooze"><i class="fa fa-clock-o"></i></li>
-                                <li data-toggle="tooltip" title="Mark as unread"><i class="fa fa-envelope-open"></i></li>
-                            </ul>
-                        </div>
-                        <div class="mail-list-info">
-                            <div class="checkbox-list">
-                                <div class="custom-control custom-checkbox checkbox-st1">
-                                    <input type="checkbox" class="custom-control-input" id="check9">
-                                    <label class="custom-control-label" for="check9"></label>
-                                </div>
-                            </div>
-                            <div class="mail-rateing">
-                                <span><i class="fa fa-star-o"></i></span>
-                            </div>
-                            <div class="mail-list-title">
-                                <h6>David Moore</h6>
-                            </div>
-                            <div class="mail-list-title-info">
-                                <p>Change the password for your Micr</p>
-                            </div>
-                            <div class="mail-list-time">
-                                <span>10:59 AM</span>
-                            </div>
-                            <ul class="mailbox-toolbar">
-                                <li data-toggle="tooltip" title="Delete"><i class="fa fa-trash-o"></i></li>
-                                <li data-toggle="tooltip" title="Archive"><i class="fa fa-arrow-down"></i></li>
-                                <li data-toggle="tooltip" title="Snooze"><i class="fa fa-clock-o"></i></li>
-                                <li data-toggle="tooltip" title="Mark as unread"><i class="fa fa-envelope-open"></i></li>
-                            </ul>
-                        </div>
-                        <div class="mail-list-info">
-                            <div class="checkbox-list">
-                                <div class="custom-control custom-checkbox checkbox-st1">
-                                    <input type="checkbox" class="custom-control-input" id="check10">
-                                    <label class="custom-control-label" for="check10"></label>
-                                </div>
-                            </div>
-                            <div class="mail-rateing">
-                                <span><i class="fa fa-star-o"></i></span>
-                            </div>
-                            <div class="mail-list-title">
-                                <h6>David Moore</h6>
-                            </div>
-                            <div class="mail-list-title-info">
-                                <p>Change the password for your Micr</p>
-                            </div>
-                            <div class="mail-list-time">
-                                <span>10:59 AM</span>
-                            </div>
-                            <ul class="mailbox-toolbar">
-                                <li data-toggle="tooltip" title="Delete"><i class="fa fa-trash-o"></i></li>
-                                <li data-toggle="tooltip" title="Archive"><i class="fa fa-arrow-down"></i></li>
-                                <li data-toggle="tooltip" title="Snooze"><i class="fa fa-clock-o"></i></li>
-                                <li data-toggle="tooltip" title="Mark as unread"><i class="fa fa-envelope-open"></i></li>
-                            </ul>
-                        </div>
-                        <div class="mail-list-info">
-                            <div class="checkbox-list">
-                                <div class="custom-control custom-checkbox checkbox-st1">
-                                    <input type="checkbox" class="custom-control-input" id="check11">
-                                    <label class="custom-control-label" for="check11"></label>
-                                </div>
-                            </div>
-                            <div class="mail-rateing">
-                                <span><i class="fa fa-star-o"></i></span>
-                            </div>
-                            <div class="mail-list-title">
-                                <h6>David Moore</h6>
-                            </div>
-                            <div class="mail-list-title-info">
-                                <p>Change the password for your Micr</p>
-                            </div>
-                            <div class="mail-list-time">
-                                <span>10:59 AM</span>
-                            </div>
-                            <ul class="mailbox-toolbar">
-                                <li data-toggle="tooltip" title="Delete"><i class="fa fa-trash-o"></i></li>
-                                <li data-toggle="tooltip" title="Archive"><i class="fa fa-arrow-down"></i></li>
-                                <li data-toggle="tooltip" title="Snooze"><i class="fa fa-clock-o"></i></li>
-                                <li data-toggle="tooltip" title="Mark as unread"><i class="fa fa-envelope-open"></i></li>
-                            </ul>
-                        </div>
-                        <div class="mail-list-info">
-                            <div class="checkbox-list">
-                                <div class="custom-control custom-checkbox checkbox-st1">
-                                    <input type="checkbox" class="custom-control-input" id="check12">
-                                    <label class="custom-control-label" for="check12"></label>
-                                </div>
-                            </div>
-                            <div class="mail-rateing">
-                                <span><i class="fa fa-star-o"></i></span>
-                            </div>
-                            <div class="mail-list-title">
-                                <h6>David Moore</h6>
-                            </div>
-                            <div class="mail-list-title-info">
-                                <p>Change the password for your Micr</p>
-                            </div>
-                            <div class="mail-list-time">
-                                <span>10:59 AM</span>
-                            </div>
-                            <ul class="mailbox-toolbar">
-                                <li data-toggle="tooltip" title="Delete"><i class="fa fa-trash-o"></i></li>
-                                <li data-toggle="tooltip" title="Archive"><i class="fa fa-arrow-down"></i></li>
-                                <li data-toggle="tooltip" title="Snooze"><i class="fa fa-clock-o"></i></li>
-                                <li data-toggle="tooltip" title="Mark as unread"><i class="fa fa-envelope-open"></i></li>
-                            </ul>
-                        </div>
-                        <div class="mail-list-info">
-                            <div class="checkbox-list">
-                                <div class="custom-control custom-checkbox checkbox-st1">
-                                    <input type="checkbox" class="custom-control-input" id="check13">
-                                    <label class="custom-control-label" for="check13"></label>
-                                </div>
-                            </div>
-                            <div class="mail-rateing">
-                                <span><i class="fa fa-star-o"></i></span>
-                            </div>
-                            <div class="mail-list-title">
-                                <h6>David Moore</h6>
-                            </div>
-                            <div class="mail-list-title-info">
-                                <p>Change the password for your Micr</p>
-                            </div>
-                            <div class="mail-list-time">
-                                <span>10:59 AM</span>
-                            </div>
-                            <ul class="mailbox-toolbar">
-                                <li data-toggle="tooltip" title="Delete"><i class="fa fa-trash-o"></i></li>
-                                <li data-toggle="tooltip" title="Archive"><i class="fa fa-arrow-down"></i></li>
-                                <li data-toggle="tooltip" title="Snooze"><i class="fa fa-clock-o"></i></li>
-                                <li data-toggle="tooltip" title="Mark as unread"><i class="fa fa-envelope-open"></i></li>
-                            </ul>
-                        </div>
-                        <div class="mail-list-info">
-                            <div class="checkbox-list">
-                                <div class="custom-control custom-checkbox checkbox-st1">
-                                    <input type="checkbox" class="custom-control-input" id="check14">
-                                    <label class="custom-control-label" for="check14"></label>
-                                </div>
-                            </div>
-                            <div class="mail-rateing">
-                                <span><i class="fa fa-star-o"></i></span>
-                            </div>
-                            <div class="mail-list-title">
-                                <h6>David Moore</h6>
-                            </div>
-                            <div class="mail-list-title-info">
-                                <p>Change the password for your Micr</p>
-                            </div>
-                            <div class="mail-list-time">
-                                <span>10:59 AM</span>
-                            </div>
-                            <ul class="mailbox-toolbar">
-                                <li data-toggle="tooltip" title="Delete"><i class="fa fa-trash-o"></i></li>
-                                <li data-toggle="tooltip" title="Archive"><i class="fa fa-arrow-down"></i></li>
-                                <li data-toggle="tooltip" title="Snooze"><i class="fa fa-clock-o"></i></li>
-                                <li data-toggle="tooltip" title="Mark as unread"><i class="fa fa-envelope-open"></i></li>
-                            </ul>
-                        </div>
-                        <div class="mail-list-info">
-                            <div class="checkbox-list">
-                                <div class="custom-control custom-checkbox checkbox-st1">
-                                    <input type="checkbox" class="custom-control-input" id="check15">
-                                    <label class="custom-control-label" for="check15"></label>
-                                </div>
-                            </div>
-                            <div class="mail-rateing">
-                                <span><i class="fa fa-star-o"></i></span>
-                            </div>
-                            <div class="mail-list-title">
-                                <h6>David Moore</h6>
-                            </div>
-                            <div class="mail-list-title-info">
-                                <p>Change the password for your Micr</p>
-                            </div>
-                            <div class="mail-list-time">
-                                <span>10:59 AM</span>
-                            </div>
-                            <ul class="mailbox-toolbar">
-                                <li data-toggle="tooltip" title="Delete"><i class="fa fa-trash-o"></i></li>
-                                <li data-toggle="tooltip" title="Archive"><i class="fa fa-arrow-down"></i></li>
-                                <li data-toggle="tooltip" title="Snooze"><i class="fa fa-clock-o"></i></li>
-                                <li data-toggle="tooltip" title="Mark as unread"><i class="fa fa-envelope-open"></i></li>
-                            </ul>
-                        </div>
-                        <div class="mail-list-info">
-                            <div class="checkbox-list">
-                                <div class="custom-control custom-checkbox checkbox-st1">
-                                    <input type="checkbox" class="custom-control-input" id="check16">
-                                    <label class="custom-control-label" for="check16"></label>
-                                </div>
-                            </div>
-                            <div class="mail-rateing">
-                                <span><i class="fa fa-star-o"></i></span>
-                            </div>
-                            <div class="mail-list-title">
-                                <h6>David Moore</h6>
-                            </div>
-                            <div class="mail-list-title-info">
-                                <p>Change the password for your Micr</p>
-                            </div>
-                            <div class="mail-list-time">
-                                <span>10:59 AM</span>
-                            </div>
-                            <ul class="mailbox-toolbar">
-                                <li data-toggle="tooltip" title="Delete"><i class="fa fa-trash-o"></i></li>
-                                <li data-toggle="tooltip" title="Archive"><i class="fa fa-arrow-down"></i></li>
-                                <li data-toggle="tooltip" title="Snooze"><i class="fa fa-clock-o"></i></li>
-                                <li data-toggle="tooltip" title="Mark as unread"><i class="fa fa-envelope-open"></i></li>
-                            </ul>
-                        </div>
-                        <div class="mail-list-info">
-                            <div class="checkbox-list">
-                                <div class="custom-control custom-checkbox checkbox-st1">
-                                    <input type="checkbox" class="custom-control-input" id="check17">
-                                    <label class="custom-control-label" for="check17"></label>
-                                </div>
-                            </div>
-                            <div class="mail-rateing">
-                                <span><i class="fa fa-star-o"></i></span>
-                            </div>
-                            <div class="mail-list-title">
-                                <h6>David Moore</h6>
-                            </div>
-                            <div class="mail-list-title-info">
-                                <p>Change the password for your Micr</p>
-                            </div>
-                            <div class="mail-list-time">
-                                <span>10:59 AM</span>
-                            </div>
-                            <ul class="mailbox-toolbar">
-                                <li data-toggle="tooltip" title="Delete"><i class="fa fa-trash-o"></i></li>
-                                <li data-toggle="tooltip" title="Archive"><i class="fa fa-arrow-down"></i></li>
-                                <li data-toggle="tooltip" title="Snooze"><i class="fa fa-clock-o"></i></li>
-                                <li data-toggle="tooltip" title="Mark as unread"><i class="fa fa-envelope-open"></i></li>
-                            </ul>
-                        </div>
-                        <div class="mail-list-info">
-                            <div class="checkbox-list">
-                                <div class="custom-control custom-checkbox checkbox-st1">
-                                    <input type="checkbox" class="custom-control-input" id="check18">
-                                    <label class="custom-control-label" for="check18"></label>
-                                </div>
-                            </div>
-                            <div class="mail-rateing">
-                                <span><i class="fa fa-star-o"></i></span>
-                            </div>
-                            <div class="mail-list-title">
-                                <h6>David Moore</h6>
-                            </div>
-                            <div class="mail-list-title-info">
-                                <p>Change the password for your Micr</p>
-                            </div>
-                            <div class="mail-list-time">
-                                <span>10:59 AM</span>
-                            </div>
-                            <ul class="mailbox-toolbar">
-                                <li data-toggle="tooltip" title="Delete"><i class="fa fa-trash-o"></i></li>
-                                <li data-toggle="tooltip" title="Archive"><i class="fa fa-arrow-down"></i></li>
-                                <li data-toggle="tooltip" title="Snooze"><i class="fa fa-clock-o"></i></li>
-                                <li data-toggle="tooltip" title="Mark as unread"><i class="fa fa-envelope-open"></i></li>
-                            </ul>
-                        </div>
-                        <div class="mail-list-info">
-                            <div class="checkbox-list">
-                                <div class="custom-control custom-checkbox checkbox-st1">
-                                    <input type="checkbox" class="custom-control-input" id="check19">
-                                    <label class="custom-control-label" for="check19"></label>
-                                </div>
-                            </div>
-                            <div class="mail-rateing">
-                                <span><i class="fa fa-star-o"></i></span>
-                            </div>
-                            <div class="mail-list-title">
-                                <h6>David Moore</h6>
-                            </div>
-                            <div class="mail-list-title-info">
-                                <p>Change the password for your Micr</p>
-                            </div>
-                            <div class="mail-list-time">
-                                <span>10:59 AM</span>
-                            </div>
-                            <ul class="mailbox-toolbar">
-                                <li data-toggle="tooltip" title="Delete"><i class="fa fa-trash-o"></i></li>
-                                <li data-toggle="tooltip" title="Archive"><i class="fa fa-arrow-down"></i></li>
-                                <li data-toggle="tooltip" title="Snooze"><i class="fa fa-clock-o"></i></li>
-                                <li data-toggle="tooltip" title="Mark as unread"><i class="fa fa-envelope-open"></i></li>
-                            </ul>
-                        </div>
+                                <ul class="mailbox-toolbar">
+                                    <li data-toggle="tooltip" title="Delete"><i class="fa fa-trash-o"></i></li>
+                                    <li data-toggle="tooltip" title="Archive"><i class="fa fa-arrow-down"></i></li>
+                                    <li data-toggle="tooltip" title="Snooze"><i class="fa fa-clock-o"></i></li>
+                                    <li data-toggle="tooltip" title="Mark as unread"><i class="fa fa-envelope-open"></i></li>
+                                </ul>
+                            </div>
+
+                            <?php // endif;
+                            ?>
+
+                        <?php endforeach; ?>
+
                     </div>
+
                 </div>
             </div>
         </div>
@@ -545,5 +121,6 @@
 
 <!-- Custom scripts -->
 <?php echo $this->section('scripts'); ?>
-<!-- Scripts content here -->
+
+
 <?php $this->endSection(); ?>
