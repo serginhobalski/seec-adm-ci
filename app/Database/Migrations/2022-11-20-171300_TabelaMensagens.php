@@ -15,9 +15,15 @@ class TabelaMensagens extends Migration
                 'unsigned'       => true,
                 'auto_increment' => true,
             ],
-            'destinatario' => [
-                'type'       => 'VARCHAR',
-                'constraint' => '100',
+            'remetente_id' => [
+                'type'           => 'INT',
+                'constraint'     => 5,
+                'unsigned'       => true,
+            ],
+            'destinatario_id' => [
+                'type'           => 'INT',
+                'constraint'     => 5,
+                'unsigned'       => true,
             ],
             'assunto' => [
                 'type'       => 'VARCHAR',
@@ -43,6 +49,8 @@ class TabelaMensagens extends Migration
             ],
         ]);
         $this->forge->addKey('id', true);
+        $this->forge->addForeignKey('remetente_id', 'usuarios', 'id', 'CASCADE', 'CASCADE');
+        $this->forge->addForeignKey('destinatario_id', 'usuarios', 'id', 'CASCADE', 'CASCADE');
         $this->forge->createTable('mensagens');
     }
 

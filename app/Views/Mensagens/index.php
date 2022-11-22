@@ -32,9 +32,9 @@
                     </div>
                     <div class="email-menu-bar-inner">
                         <ul>
-                            <li class="active"><a href=""><i class="fa fa-envelope-o"></i>Entrada <span class="badge badge-success">8</span></a></li>
-                            <li><a href=""><i class="fa fa-send-o"></i>Enviadas</a></li>
-                            <li><a href=""><i class="fa fa-trash-o"></i>Excluídas</a></li>
+                            <li class="active"><a href="#entrada"><i class="fa fa-envelope-o"></i>Entrada <span class="badge badge-success">8</span></a></li>
+                            <li><a href="#enviadas"><i class="fa fa-send-o"></i>Enviadas</a></li>
+                            <li><a href="#excluidas"><i class="fa fa-trash-o"></i>Excluídas</a></li>
                         </ul>
                     </div>
                 </div>
@@ -63,17 +63,10 @@
                             <a href="#"><i class="fa fa-angle-right"></i></a>
                         </div>
                     </div>
-                    <div class="mail-box-list">
-                        <?php foreach ($mensagens as $mensagem) : ?>
 
-                            <?php // if ($mensagem === null) : 
-                            ?>
-                            <!-- <div class="mail-list-info text-center">
-                                    <br><br>
-                                    <p>Caixa de mensagens vazia...</p>
-                                </div> -->
-                            <?php // else : 
-                            ?>
+                    <div id="entrada" class="mail-box-list" active>
+                        <?php foreach ($mensagensRecebidas as $mensagemRecebida) : ?>
+
 
                             <div class="mail-list-info">
                                 <div class="checkbox-list">
@@ -86,13 +79,89 @@
                                     <span><i class="fa fa-star-o"></i></span>
                                 </div>
                                 <div class="mail-list-title">
-                                    <h6><?php echo $mensagem->destinatario ?></h6>
+                                    <h6><?php echo $mensagemRecebida->nome ?></h6>
                                 </div>
                                 <div class="mail-list-title-info">
-                                    <p><?php echo $mensagem->assunto ?></p>
+                                    <p><?php echo $mensagemRecebida->assunto ?></p>
                                 </div>
                                 <div class="mail-list-time">
-                                    <span><?php echo date("d/m/Y - H:i", strtotime($mensagem->criado_em)) ?></span>
+                                    <span><?php echo date("d/m/Y - H:i", strtotime($mensagemRecebida->criado_em)) ?></span>
+                                </div>
+                                <ul class="mailbox-toolbar">
+                                    <li data-toggle="tooltip" title="Delete"><i class="fa fa-trash-o"></i></li>
+                                    <li data-toggle="tooltip" title="Archive"><i class="fa fa-arrow-down"></i></li>
+                                    <li data-toggle="tooltip" title="Snooze"><i class="fa fa-clock-o"></i></li>
+                                    <li data-toggle="tooltip" title="Mark as unread"><i class="fa fa-envelope-open"></i></li>
+                                </ul>
+                            </div>
+
+                            <?php // endif;
+                            ?>
+
+                        <?php endforeach; ?>
+
+                    </div>
+
+                    <div id="enviadas" class="mail-box-list">
+                        <?php foreach ($mensagensEnviadas as $mensagemEnviada) : ?>
+
+
+                            <div class="mail-list-info">
+                                <div class="checkbox-list">
+                                    <div class="custom-control custom-checkbox checkbox-st1">
+                                        <input type="checkbox" class="custom-control-input" id="check2">
+                                        <label class="custom-control-label" for="check2"></label>
+                                    </div>
+                                </div>
+                                <div class="mail-rateing">
+                                    <span><i class="fa fa-star-o"></i></span>
+                                </div>
+                                <div class="mail-list-title">
+                                    <h6><?php echo $mensagemEnviada->nome ?></h6>
+                                </div>
+                                <div class="mail-list-title-info">
+                                    <p><?php echo $mensagemEnviada->assunto ?></p>
+                                </div>
+                                <div class="mail-list-time">
+                                    <span><?php echo date("d/m/Y - H:i", strtotime($mensagemEnviada->criado_em)) ?></span>
+                                </div>
+                                <ul class="mailbox-toolbar">
+                                    <li data-toggle="tooltip" title="Delete"><i class="fa fa-trash-o"></i></li>
+                                    <li data-toggle="tooltip" title="Archive"><i class="fa fa-arrow-down"></i></li>
+                                    <li data-toggle="tooltip" title="Snooze"><i class="fa fa-clock-o"></i></li>
+                                    <li data-toggle="tooltip" title="Mark as unread"><i class="fa fa-envelope-open"></i></li>
+                                </ul>
+                            </div>
+
+                            <?php // endif;
+                            ?>
+
+                        <?php endforeach; ?>
+
+                    </div>
+
+                    <div id="excluidas" class="mail-box-list">
+                        <?php foreach ($mensagensRecebidas as $mensagemRecebida) : ?>
+
+
+                            <div class="mail-list-info">
+                                <div class="checkbox-list">
+                                    <div class="custom-control custom-checkbox checkbox-st1">
+                                        <input type="checkbox" class="custom-control-input" id="check2">
+                                        <label class="custom-control-label" for="check2"></label>
+                                    </div>
+                                </div>
+                                <div class="mail-rateing">
+                                    <span><i class="fa fa-star-o"></i></span>
+                                </div>
+                                <div class="mail-list-title">
+                                    <h6><?php echo $mensagemRecebida->nome ?></h6>
+                                </div>
+                                <div class="mail-list-title-info">
+                                    <p><?php echo $mensagemRecebida->assunto ?></p>
+                                </div>
+                                <div class="mail-list-time">
+                                    <span><?php echo date("d/m/Y - H:i", strtotime($mensagemRecebida->criado_em)) ?></span>
                                 </div>
                                 <ul class="mailbox-toolbar">
                                     <li data-toggle="tooltip" title="Delete"><i class="fa fa-trash-o"></i></li>

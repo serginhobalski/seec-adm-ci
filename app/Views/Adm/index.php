@@ -208,18 +208,17 @@
             </div>
         </div>
     </div>
-    <!-- <div class="col-md-6 col-lg-3 col-xl-3 col-sm-6 col-12">
+    <div class="col-md-6 col-lg-3 col-xl-3 col-sm-6 col-12">
         <div class="widget-card widget-bg4">
             <div class="wc-item">
                 <h4 class="wc-title">
-                    Relatórios <br>
-                    de <?php echo date('Y'); ?>
+                    Cursos <br>
                 </h4>
                 <span class="wc-des">
-                    relatórios
+                    total
                 </span>
                 <span class="wc-stats counter">
-                    R$ <?php echo $relatoriosAno; ?>
+                    <?php echo $quantidadeCursos; ?>
                 </span>
                 <div class="progress wc-progress">
                     <div class="progress-bar" role="progressbar" style="width: 90%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
@@ -234,7 +233,7 @@
                 </span>
             </div>
         </div>
-    </div> -->
+    </div>
 </div>
 <!-- Áera do Calendário -->
 <div class="row">

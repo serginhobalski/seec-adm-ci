@@ -7,13 +7,11 @@ use App\Controllers\BaseController;
 class Mensagens extends BaseController
 {
     private $mensagemModel;
-    private $mensagemUsuarioModel;
 
 
     public function __construct()
     {
         $this->mensagemModel = new \App\Models\MensagemModel();
-        $this->mensagemUsuarioModel = new \App\Models\MensagenUsuarioModel();
     }
 
     public function index()
@@ -22,11 +20,16 @@ class Mensagens extends BaseController
             return redirect()->back()->with("info", "Faça o login para acessar esta página.");
         }
 
-        $mensagens = $this->mensagemUsuarioModel->recuperaMensagensDoUsuario(usuario_logado()->id, 10);
+        $mensagensEnviadas = $this->mensagemModel
+            ->recuperaMensagensEnviadas(usuario_logado()->id, 10);
+
+        $mensagensRecebidas = $this->mensagemModel
+            ->recuperaMensagensRecebidas(usuario_logado()->id, 10);
 
         $data = [
             'titulo' => 'Mensagens de ' . usuario_logado()->nome,
-            'mensagens' => $mensagens,
+            'mensagensEnviadas' => $mensagensEnviadas,
+            'mensagensRecebidas' => $mensagensRecebidas,
         ];
 
         return view('Mensagens/index', $data);
@@ -39,7 +42,7 @@ class Mensagens extends BaseController
         //     return redirect()->back();
         // }
 
-        $mensagens = $this->mensagemUsuarioModel->recuperaMensagensDoUsuario(usuario_logado()->id, 10);
+        $mensagens = $this->mensagemModel->recuperaMensagensRecebidas(usuario_logado()->id, 10);
 
         dd($mensagens);
 

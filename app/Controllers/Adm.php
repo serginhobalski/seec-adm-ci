@@ -9,12 +9,15 @@ class Adm extends BaseController
     private $usuariosCadastrados;
     private $relatoriosCadastrados;
     private $gruposUsuarios;
+    private $cursosCadastrados;
+
 
     public function __construct()
     {
         $this->usuariosCadastrados = new \App\Models\UsuarioModel();
         $this->relatoriosCadastrados = new \App\Models\RelatorioModel();
         $this->gruposUsuarios = new \App\Models\GrupoUsuarioModel();
+        $this->cursosCadastrados = new \App\Models\CursoModel();
     }
 
     public function index()
@@ -32,6 +35,7 @@ class Adm extends BaseController
         $professores = $this->gruposUsuarios->where('grupo_id', 3)->countAllResults();
         $alunos = $this->gruposUsuarios->where('grupo_id', 4)->countAllResults();
         $secretarios = $this->gruposUsuarios->where('grupo_id', 5)->countAllResults();
+        $quantidadeCursos = $this->cursosCadastrados->select('*')->countAllResults();
         $relatoriosAno = $this->relatoriosCadastrados->where('ano', $anoAtual)->countAllResults();
 
         $data = [
@@ -44,6 +48,7 @@ class Adm extends BaseController
             'alunos' => $alunos,
             'secretarios' => $secretarios,
             'relatoriosAno' => $relatoriosAno,
+            'quantidadeCursos' => $quantidadeCursos,
         ];
         return view('Adm/index', $data);
     }
