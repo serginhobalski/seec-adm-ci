@@ -57,7 +57,6 @@ class Grupos extends BaseController
                 'nome' => anchor("grupos/exibir/$grupo->id", esc($grupo->nome), 'title="Exibir Grupo ' . esc($grupo->nome) . '"'),
                 'descricao' => esc($grupo->descricao),
                 'exibir' => $grupo->exibeSituacao(),
-                // 'exibir' => ($grupo->exibir == 1 ? '<i class="fa fa-eye text-success" title="Grupo disponível"></i> Disponível' : '<i class="fa fa-eye-slash text-danger" title="Grupo oculto"></i> Oculto'),
             ];
         }
 

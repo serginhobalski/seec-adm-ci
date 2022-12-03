@@ -16,6 +16,14 @@ class Relatorios extends BaseController
 
     public function index()
     {
+        if (usuario_logado()->is_admin === false) {
+            if (usuario_logado()->is_uetp) {
+                return redirect(site_url('relatorios/meusrelatorios'));
+            } else {
+                return redirect()->back();
+            }
+        }
+
         $data = [
             'titulo' => 'Relatórios',
         ];
@@ -24,8 +32,11 @@ class Relatorios extends BaseController
 
     public function meusRelatorios()
     {
+        $qtdRelatorios = $this->relatorioModel->where('nome', usuario_logado()->nome)->countAllResults();
+
         $data = [
             'titulo' => 'Relatórios',
+            'relatorios' => $qtdRelatorios,
         ];
         return view('Relatorios/meus_relatorios', $data);
     }
@@ -105,9 +116,9 @@ class Relatorios extends BaseController
 
             $data[] = [
                 'id' => $relatorio->id,
-                'nome' => anchor("relatorios/exibir/$relatorio->id", esc($relatorio->nome), 'title="Exibir ' . $nomeRelatorio . '"'),
+                'nome' => anchor("relatorios/exibir/$relatorio->id", esc($relatorio->nome), 'title="Exibir relatório de ' . $relatorio->mes . '/' . $relatorio->ano . '"'),
                 'local' => esc($relatorio->local),
-                'mes' => esc($relatorio->mes),
+                'mes' => anchor("relatorios/exibir/$relatorio->id", esc($relatorio->mes), 'title="Exibir relatório de ' . $relatorio->mes . '/' . $relatorio->ano . '"'),
                 'ano' => esc($relatorio->ano),
                 'valor' => ($relatorio->valor > 0 ? 'R$ ' . implode(',', explode('.', $relatorio->valor)) : '*Sem movimento'),
             ];

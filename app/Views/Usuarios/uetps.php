@@ -30,6 +30,7 @@
                 <th class="text-primary">Usuário</th>
                 <th class="text-primary">Local</th>
                 <th class="text-primary">Login</th>
+                <th class="text-primary">Grupo</th>
                 <th class="text-primary">Status</th>
             </tr>
         </thead>
@@ -82,7 +83,7 @@
 
             "oLanguage": DATATABLE_PTBR,
 
-            ajax: "<?php echo site_url('usuarios/recuperausuarios'); ?>",
+            ajax: "<?php echo site_url('usuarios/recuperauetps'); ?>",
             columns: [{
                     data: 'imagem'
                 },
@@ -94,6 +95,9 @@
                 },
                 {
                     data: 'login'
+                },
+                {
+                    data: 'grupo'
                 },
                 {
                     data: 'ativo'

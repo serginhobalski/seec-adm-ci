@@ -20,12 +20,6 @@ class Cursos extends BaseController
 
     public function index()
     {
-        $atributos = [
-            'id',
-            'nome',
-            'descricao',
-            'ativo',
-        ];
 
         $data = [
             'titulo' => 'Cursos',
@@ -233,7 +227,7 @@ class Cursos extends BaseController
     {
         $curso = $this->buscaCursoOu404($id);
 
-        $curso->alunos = $this->alunoCursoModel->recuperaAlunosDoCurso($curso->id, 10);
+        $curso->alunos = $this->alunoCursoModel->recuperaAlunosDoCurso($curso->id, 30);
         $curso->pager = $this->alunoCursoModel->pager;
 
 

@@ -21,7 +21,7 @@
                 <input class="form-control" type="text" name="local" placeholder="Digite o local da UETP">
 
             <?php else : ?>
-                <input class="form-control" type="text" name="nome" value="<?php echo usuario_logado()->local; ?>" readonly>
+                <input class="form-control" type="text" name="local" value="<?php echo usuario_logado()->local; ?>" readonly>
             <?php endif; ?>
         </div>
     </div>

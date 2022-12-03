@@ -94,6 +94,33 @@ class UsuarioModel extends Model
         return $this->where('login', $login)->where('deletado_em', null)->first();
     }
 
+    public function recuperaGruposDoUsuario(int $usuario_id)
+    {
+
+        $atributos = [
+            'usuarios.id AS principal_id',
+            'usuarios.nome',
+            'usuarios.local',
+            'usuarios.login',
+            'usuarios.email',
+            'usuarios.ativo',
+            'usuarios.imagem',
+            'usuarios.criado_em',
+            'usuarios.deletado_em',
+            'grupos_usuarios.usuario_id AS usuario_id',
+            'grupos_usuarios.grupo_id AS grupo_id',
+            'grupos.id',
+            'grupos.nome',
+        ];
+
+        return $this->select($atributos)
+            ->join('grupos', 'grupos.id = grupos_usuarios.grupo_id')
+            ->join('usuarios', 'usuarios.id = grupos_usuarios.usuario_id')
+            ->where('grupos_usuarios.usuario_id', $usuario_id)
+            ->groupBy('grupos.nome')
+            ->findAll();
+    }
+
     public function recuperaPermissoesDoUsuarioLogado(int $usuario_id)
     {
         $atributos = [

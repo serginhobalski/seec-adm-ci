@@ -35,7 +35,12 @@
         <div class="form-group mt-5 mb-4 d-flex">
 
             <input id="btn-enviar" type="submit" value="Enviar" class="btn btn-danger mr-2">
-            <a class="btn" href="<?php echo site_url("relatorios"); ?>"><i class="ti-arrow-left"></i> Voltar</a>
+            <?php if (usuario_logado()->is_admin) : ?>
+                <a class="btn" href="<?php echo site_url("relatorios"); ?>"><i class="ti-arrow-left"></i> Voltar</a>
+            <?php else : ?>
+                <a class="btn" href="<?php echo site_url("relatorios/meusrelatorios"); ?>"><i class="ti-arrow-left"></i> Voltar</a>
+            <?php endif; ?>
+
 
         </div>
 

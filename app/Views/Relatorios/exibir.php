@@ -107,17 +107,23 @@
                                 </div>
                                 <div class="col-sm-7 d-flex">
                                     <div class="dropdown">
-                                        <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
-                                            Ações
-                                        </button>
+                                        <?php if (usuario_logado()->is_admin) : ?>
+                                            <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+                                                Ações
+                                            </button>
+                                        <?php endif; ?>
                                         <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="<?php echo site_url("usuarios/editar/$relatorio->id"); ?>"><i class="ti-pencil-alt"></i> Editar</a>
+                                            <a class="dropdown-item" href="<?php echo site_url("relatorios/editar/$relatorio->id"); ?>"><i class="ti-pencil-alt"></i> Editar</a>
                                             <a class="dropdown-item" href="<?php echo site_url("usuarios/excluir/$relatorio->id"); ?>">
                                                 <i class="ti-trash"></i> Excluir
                                             </a>
                                         </div>
                                     </div>
-                                    <a href="/usuarios" class="btn btn-dark ml-3"><i class="ti-arrow-left"></i> Voltar</a>
+                                    <?php if (usuario_logado()->is_admin) : ?>
+                                        <a href="/relatorios" class="btn btn-dark ml-3"><i class="ti-arrow-left"></i> Voltar</a>
+                                    <?php else : ?>
+                                        <a href="/relatorios/meusrelatorios" class="btn btn-dark ml-3"><i class="ti-arrow-left"></i> Voltar</a>
+                                    <?php endif; ?>
                                 </div>
                             </div>
                         </div>
