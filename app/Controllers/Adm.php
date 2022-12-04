@@ -59,8 +59,11 @@ class Adm extends BaseController
             return redirect()->back()->with("info", "Você não possui permissão para visualizar esta página.");
         }
 
+        $relatorio = $this->relatoriosCadastrados->where('nome', usuario_logado()->nome)->countAllResults();
+
         $data = [
             'titulo' => 'UETP ' . usuario_logado()->nome . '!',
+            'relatorio' => $relatorio,
         ];
         return view('Adm/uetp', $data);
     }
