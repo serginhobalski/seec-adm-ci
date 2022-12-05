@@ -7,11 +7,13 @@ use App\Controllers\BaseController;
 class Mensagens extends BaseController
 {
     private $mensagemModel;
+    private $usuarioModel;
 
 
     public function __construct()
     {
         $this->mensagemModel = new \App\Models\MensagemModel();
+        $this->usuarioModel = new \App\Models\UsuarioModel();
     }
 
     public function index()
@@ -20,20 +22,116 @@ class Mensagens extends BaseController
             return redirect()->back()->with("info", "Faça o login para acessar esta página.");
         }
 
-        $mensagensEnviadas = $this->mensagemModel
-            ->recuperaMensagensEnviadas(usuario_logado()->id, 10);
+        $nRecebidas = $this->mensagemModel->select('*')->where('destinatario_id', usuario_logado()->id)->countAllResults();
+        $nEnviadas = $this->mensagemModel->select('*')->where('remetente_id', usuario_logado()->id)->countAllResults();
+        $nDeletadas = $this->mensagemModel->select('*')->where('deletado_em' != null)->countAllResults();
 
-        $mensagensRecebidas = $this->mensagemModel
-            ->recuperaMensagensRecebidas(usuario_logado()->id, 10);
+
+        $mensagens = $this->mensagemModel->select('*')
+            ->join('usuarios', 'usuarios.id = mensagens.remetente_id')
+            ->groupBy('usuarios.nome')
+            ->where('destinatario_id', usuario_logado()->id)
+            ->findAll();
 
         $data = [
             'titulo' => 'Mensagens de ' . usuario_logado()->nome,
-            'mensagensEnviadas' => $mensagensEnviadas,
-            'mensagensRecebidas' => $mensagensRecebidas,
+            'subtitulo' => 'entrada',
+            'mensagens' => $mensagens,
+            'recebidas' => $nRecebidas,
+            'enviadas' => $nEnviadas,
+            'deletadas' => $nDeletadas,
         ];
 
         return view('Mensagens/index', $data);
     }
+
+    public function enviadas()
+    {
+        if (!usuario_logado()) {
+            return redirect()->back()->with("info", "Faça o login para acessar esta página.");
+        }
+
+        $nRecebidas = $this->mensagemModel->select('*')->where('destinatario_id', usuario_logado()->id)->countAllResults();
+        $nEnviadas = $this->mensagemModel->select('*')->where('remetente_id', usuario_logado()->id)->countAllResults();
+        $nDeletadas = $this->mensagemModel->select('*')->where('deletado_em' != null)->countAllResults();
+
+
+        $mensagens = $this->mensagemModel->select('*')
+            ->join('usuarios', 'usuarios.id = mensagens.destinatario_id')
+            ->groupBy('usuarios.nome')
+            ->where('remetente_id', usuario_logado()->id)
+            ->findAll();
+
+        $data = [
+            'titulo' => 'Mensagens de ' . usuario_logado()->nome,
+            'subtitulo' => 'enviadas',
+            'mensagens' => $mensagens,
+            'recebidas' => $nRecebidas,
+            'enviadas' => $nEnviadas,
+            'deletadas' => $nDeletadas,
+        ];
+
+        return view('Mensagens/enviadas', $data);
+    }
+
+
+    public function lixeira()
+    {
+        if (!usuario_logado()) {
+            return redirect()->back()->with("info", "Faça o login para acessar esta página.");
+        }
+
+        $nRecebidas = $this->mensagemModel->select('*')->where('destinatario_id', usuario_logado()->id)->countAllResults();
+        $nEnviadas = $this->mensagemModel->select('*')->where('remetente_id', usuario_logado()->id)->countAllResults();
+        $nDeletadas = $this->mensagemModel->select('*')->where('deletado_em' != null)->countAllResults();
+
+
+        $mensagens = $this->mensagemModel->select('*')
+            ->join('usuarios', 'usuarios.id = mensagens.destinatario_id')
+            ->groupBy('usuarios.nome')
+            ->where('remetente_id', usuario_logado()->id)
+            ->where('mensagens.deletado_em' != null)
+            ->findAll();
+
+        $data = [
+            'titulo' => 'Mensagens de ' . usuario_logado()->nome,
+            'subtitulo' => 'lixeira',
+            'mensagens' => $mensagens,
+            'recebidas' => $nRecebidas,
+            'enviadas' => $nEnviadas,
+            'deletadas' => $nDeletadas,
+        ];
+
+        return view('Mensagens/lixeira', $data);
+    }
+
+
+
+    public function exibir(int $id = null)
+    {
+        if (!usuario_logado()) {
+            return redirect()->back()->with("info", "Faça o login para acessar esta página.");
+        }
+
+        $nRecebidas = $this->mensagemModel->select('*')->where('destinatario_id', usuario_logado()->id)->countAllResults();
+        $nEnviadas = $this->mensagemModel->select('*')->where('remetente_id', usuario_logado()->id)->countAllResults();
+        $nDeletadas = $this->mensagemModel->select('*')->where('deletado_em' != null)->countAllResults();
+
+        $mensagem = $this->buscaMensagemOu404($id);
+
+
+        $data = [
+            'titulo' => "Detalhe Mensagem",
+            'subtitulo' => "detalhe",
+            'mensagem' => $mensagem,
+            'recebidas' => $nRecebidas,
+            'enviadas' => $nEnviadas,
+            'deletadas' => $nDeletadas,
+        ];
+
+        return view('Mensagens/exibir', $data);
+    }
+
 
     public function recuperaMensagens(int $id = null)
     {
