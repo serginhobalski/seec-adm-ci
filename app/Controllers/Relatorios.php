@@ -8,10 +8,14 @@ use App\Entities\Relatorio;
 class Relatorios extends BaseController
 {
     private $relatorioModel;
+    private $usuarioModel;
+    private $grupoUsuarioModel;
 
     public function __construct()
     {
         $this->relatorioModel = new \App\Models\RelatorioModel();
+        $this->usuarioModel = new \App\Models\UsuarioModel();
+        $this->grupoUsuarioModel = new \App\Models\GrupoUsuarioModel();
     }
 
     public function index()
@@ -147,22 +151,17 @@ class Relatorios extends BaseController
     {
         $relatorio = new Relatorio();
 
-        $atributos = [
-            'id',
-            'nome',
-            'local',
-            'mes',
-            'ano',
-            'valor',
-        ];
-
-        $opcoes = $this->relatorioModel->select($atributos)
+        $uetps = $this->grupoUsuarioModel->select('*')
+            ->where('grupos_usuarios.grupo_id', 2)
+            ->join('usuarios', 'usuarios.id = grupos_usuarios.usuario_id')
+            ->groupBy('usuarios.nome')
+            ->orderBy('usuarios.nome')
             ->findAll();
 
         $data = [
             'titulo' => 'Cadastro de relatório',
             'relatorio' => $relatorio,
-            'opcoes' => $opcoes,
+            'uetps' => $uetps,
 
         ];
         return view('relatorios/criar', $data);
@@ -205,7 +204,7 @@ class Relatorios extends BaseController
         // Recuperar o post da requisição
         $post = $this->request->getPost();
 
-        // Validar a existência do usuário
+        // Validar a existência do relatorio
         $relatorio = $this->buscaRelatorioOu404($post['id']);
 
 
@@ -327,6 +326,9 @@ class Relatorios extends BaseController
 
         // Criar novo objeto da entidade Relatório
         $relatorio = new Relatorio($post);
+
+        // dd($relatorio);
+        // exit;
 
 
         if ($this->relatorioModel->protect(false)->save($relatorio)) {
