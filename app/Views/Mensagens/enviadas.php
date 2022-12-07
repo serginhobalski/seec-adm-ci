@@ -68,7 +68,7 @@
                                     <span><i class="fa fa-star-o"></i></span>
                                 </div>
                                 <div class="mail-list-title">
-                                    <h6><?php echo $mensagem->nome ?></h6>
+                                    <h6><?php echo anchor("mensagens/exibir/$mensagem->principal_id", esc($mensagem->destinatario), 'title="Exibir mensagem"') ?></h6>
                                 </div>
                                 <div class="mail-list-title-info">
                                     <p><?php echo $mensagem->assunto ?></p>

@@ -30,35 +30,38 @@
                 <?php echo $this->include('Mensagens/_barra_menu.php'); ?>
 
                 <div class="mail-list-container">
-                    <form class="mail-compose">
-                        <div class="container row">
-                            <div class="form-group col-3">
-                                <input class="form-control" type="text" name="remetente_id" value="<?php echo usuario_logado()->id ?>" readonly>
-                            </div>
-                            <div class="form-group col-9">
-                                <?php echo usuario_logado()->nome ?>
-                            </div>
+
+                    <?php echo form_open('/', ['id' => 'form', 'classs' => 'mail-compose'], ['id' => "$mensagem->id"]) ?>
+
+                    <div class="container row">
+                        <div class="form-group col-3">
+                            <input class="form-control" type="text" name="remetente_id" value="<?php echo usuario_logado()->id ?>" readonly>
                         </div>
-                        <div class="form-group col-12">
-                            <!-- <input class="form-control" type="text" placeholder="Para"> -->
-                            <select name="destinatario_id" id="destinatario_id" <?php echo (usuario_logado()->is_admin === true ? 'multiple' : '') ?>>
-                                <?php foreach ($destinatarios as $destinatario) : ?>
-                                    <option value="<?php echo $destinatario->id ?>"><?php echo $destinatario->nome ?></option>
-                                <?php endforeach; ?>
-                            </select>
+                        <div class="form-group col-9">
+                            <?php echo usuario_logado()->nome ?>
                         </div>
-                        <div class="form-group col-12">
-                            <input class="form-control" type="text" name="assunto" placeholder="Assunto">
+                    </div>
+                    <div class="form-group col-12">
+                        <!-- <input class="form-control" type="text" placeholder="Para"> -->
+                        <select name="destinatario_id" id="destinatario_id" <?php echo (usuario_logado()->is_admin === true ? 'multiple' : '') ?>>
+                            <?php foreach ($destinatarios as $destinatario) : ?>
+                                <option value="<?php echo $destinatario->id ?>"><?php echo $destinatario->nome ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                    <div class="form-group col-12">
+                        <input class="form-control" type="text" name="assunto" placeholder="Assunto">
+                    </div>
+                    <div class="form-group col-12">
+                        <div class="note-editor note-frame card">
+                            <textarea class="note-codable" rows="5" role="textbox" aria-multiline="true" name="mensagem" placeholder="Digite sua mensagem..."></textarea>
                         </div>
-                        <div class="form-group col-12">
-                            <div class="note-editor note-frame card">
-                                <textarea class="note-codable" rows="5" role="textbox" aria-multiline="true" name="mensagem" placeholder="Digite sua mensagem..."></textarea>
-                            </div>
-                        </div>
-                        <div class="form-group col-12">
-                            <input id="btn-enviar" type="submit" value="Enviar" class="btn btn-warning mr-2">
-                        </div>
-                    </form>
+                    </div>
+                    <div class="form-group col-12">
+                        <input id="btn-enviar" type="submit" value="Enviar" class="btn btn-warning mr-2">
+                    </div>
+
+                    <?php echo form_close(); ?>
 
                 </div>
             </div>

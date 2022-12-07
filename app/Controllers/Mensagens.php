@@ -56,8 +56,17 @@ class Mensagens extends BaseController
         $nEnviadas = $this->mensagemModel->select('*')->where('remetente_id', usuario_logado()->id)->countAllResults();
         $nDeletadas = $this->mensagemModel->select('*')->where('deletado_em' != null)->countAllResults();
 
+        $atributos = [
+            'mensagens.id AS principal_id',
+            'mensagens.remetente_id AS remetente',
+            'mensagens.destinatario_id AS destinatario',
+            'mensagens.assunto',
+            'mensagens.mensagem',
+            'mensagens.criado_em',
+            'usuarios.nome AS destinatario',
+        ];
 
-        $mensagens = $this->mensagemModel->select('*')
+        $mensagens = $this->mensagemModel->select($atributos)
             ->join('usuarios', 'usuarios.id = mensagens.destinatario_id')
             ->groupBy('usuarios.nome')
             ->where('remetente_id', usuario_logado()->id)
