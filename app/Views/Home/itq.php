@@ -82,20 +82,20 @@
                                         <li class="active"><i class="fa fa-star"></i></li>
                                         <li class="active"><i class="fa fa-star"></i></li>
                                         <li class="active"><i class="fa fa-star"></i></li>
-                                        <li><i class="fa fa-star"></i></li>
+                                        <li class="active"><i class="fa fa-star"></i></li>
                                     </ul>
                                 </div>
                                 <div class="price categories">
-                                    <span>Categories</span>
-                                    <h5 class="text-primary">Frontend</h5>
+                                    <span>Categoria</span>
+                                    <h5 class="text-primary">ITQ EAD</h5>
                                 </div>
                             </div>
                             <div class="course-info-list scroll-page">
                                 <ul class="navbar">
-                                    <li><a class="nav-link" href="#overview"><i class="ti-zip"></i>Overview</a></li>
-                                    <li><a class="nav-link" href="#curriculum"><i class="ti-bookmark-alt"></i>Curriculum</a></li>
-                                    <li><a class="nav-link" href="#instructor"><i class="ti-user"></i>Instructor</a></li>
-                                    <li><a class="nav-link" href="#reviews"><i class="ti-comments"></i>Reviews</a></li>
+                                    <li><a class="nav-link" href="#overview"><i class="ti-clipboard"></i>Vião Geral</a></li>
+                                    <li><a class="nav-link" href="#curriculum"><i class="ti-bookmark-alt"></i>Currículo</a></li>
+                                    <li><a class="nav-link" href="#instructor"><i class="ti-user"></i>Instrutores</a></li>
+
                                 </ul>
                             </div>
                         </div>
@@ -108,116 +108,386 @@
                             </div>
                             <div class="ttr-post-info">
                                 <div class="ttr-post-title ">
-                                    <h2 class="post-title">Nvidia and UE4 Technologies Practice</h2>
+                                    <h2 class="post-title">Instituto Teológico Quadrangular | EAD</h2>
                                 </div>
                                 <div class="ttr-post-text">
-                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                                    <p>O ITQ EAD é um <b>Curso Livre em Teologia</b>, oferecido através da nossa plataforma de cursos, que habilita o membro leigo a tornar-se apto ao ministério Quadrangular.</p>
                                 </div>
                             </div>
                         </div>
                         <div class="courese-overview" id="overview">
-                            <h4>Overview</h4>
+                            <h4>Visão Geral</h4>
                             <div class="row">
                                 <div class="col-md-12 col-lg-4">
                                     <ul class="course-features">
-                                        <li><i class="ti-book"></i> <span class="label">Lectures</span> <span class="value">8</span></li>
-                                        <li><i class="ti-help-alt"></i> <span class="label">Quizzes</span> <span class="value">1</span></li>
-                                        <li><i class="ti-time"></i> <span class="label">Duration</span> <span class="value">60 hours</span></li>
-                                        <li><i class="ti-stats-up"></i> <span class="label">Skill level</span> <span class="value">Beginner</span></li>
-                                        <li><i class="ti-smallcap"></i> <span class="label">Language</span> <span class="value">English</span></li>
-                                        <li><i class="ti-user"></i> <span class="label">Students</span> <span class="value">32</span></li>
-                                        <li><i class="ti-check-box"></i> <span class="label">Assessments</span> <span class="value">Yes</span></li>
+                                        <li><i class="ti-calendar"></i> <span class="label">Anos Letivos</span> <span class="value">3</span></li>
+                                        <li><i class="ti-book"></i> <span class="label">Módulos<br> por ano</span> <span class="value">6</span></li>
+                                        <li><i class="ti-check-box"></i> <span class="label">Avaliações</span> <span class="value">Sim</span></li>
+                                        <li><i class="ti-check-box"></i> <span class="label">Certificação</span> <span class="value">Sim</span></li>
                                     </ul>
                                 </div>
                                 <div class="col-md-12 col-lg-8">
-                                    <h5 class="m-b5">Course Description</h5>
-                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
-                                    <h5 class="m-b5">Certification</h5>
-                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
-                                    <h5 class="m-b5">Learning Outcomes</h5>
-                                    <ul class="list-checked primary">
-                                        <li>Over 37 lectures and 55.5 hours of content!</li>
-                                        <li>LIVE PROJECT End to End Software Testing Training Included.</li>
-                                        <li>Learn Software Testing and Automation basics from a professional trainer from your own desk.</li>
-                                        <li>Information packed practical training starting from basics to advanced testing techniques.</li>
-                                        <li>Best suitable for beginners to advanced level users and who learn faster when demonstrated.</li>
-                                        <li>Course content designed by considering current software testing technology and the job market.</li>
-                                        <li>Practical assignments at the end of every session.</li>
-                                        <li>Practical learning experience with live project work and examples.cv</li>
-                                    </ul>
+                                    <h5 class="m-b5">Descrição</h5>
+                                    <p><b>Instituto Teológico Quadrangular | EAD </b> - Uma escola vocacional evangélica que tem por objetivo promover a educação e a cultura na Igreja do Evangelho Quadrangular, a partir do estudo da teologia e das doutrinas bíblicas das Sagradas Escrituras, através da oferta do Curso Livre em Teologia na modalidade EAD.</p>
+                                    <h5 class="m-b5">Certificação</h5>
+                                    <p>A certificação do ITQ EAD é a mesma do ITQ presencial, e possui a mesma validade. Os alunos que concluem todos os 6 módulos do 1º ano (que equivale ao Curso Fundamental), recebem o <b>Certificado de Conclusão do Curso Fundamental de Teologia</b>, e os alunos que concluem todos os 3 anos letivos (1º, 2º e 3º anos) recebem o <b>Diploma de Conclusão do Curso Livre em Teologia</b>.</p>
                                 </div>
                             </div>
                         </div>
                         <div class="m-b30" id="curriculum">
-                            <h4>Curriculum</h4>
+                            <h4>Currículo</h4>
                             <ul class="curriculum-list">
                                 <li>
-                                    <h5>First Level</h5>
+                                    <h5>1º ANO</h5>
                                     <ul>
                                         <li>
                                             <div class="curriculum-list-box">
-                                                <span>Lesson 1.</span> Introduction to UI Design
+                                                <span>1. </span> Vivência Cristã
                                             </div>
-                                            <span>120 minutes</span>
+                                            <span>Módulo 1</span>
                                         </li>
                                         <li>
                                             <div class="curriculum-list-box">
-                                                <span>Lesson 2.</span> User Research and Design
+                                                <span>2. </span> Bibliologia
                                             </div>
-                                            <span>60 minutes</span>
+                                            <span>Módulo 1</span>
                                         </li>
                                         <li>
                                             <div class="curriculum-list-box">
-                                                <span>Lesson 3.</span> Evaluating User Interfaces Part 1
+                                                <span>3. </span> Introdução à Teologia
                                             </div>
-                                            <span>85 minutes</span>
+                                            <span>Módulo 1</span>
+                                        </li>
+                                        <li>
+                                            <div class="curriculum-list-box">
+                                                <span>4. </span> Metodologia do Trabalho Acadêmico
+                                            </div>
+                                            <span>Integração </span>
+                                        </li>
+                                        <li>
+                                            <div class="curriculum-list-box">
+                                                <span>5. </span> Vida de Cristo e Espiritualidade
+                                            </div>
+                                            <span>Módulo 2</span>
+                                        </li>
+                                        <li>
+                                            <div class="curriculum-list-box">
+                                                <span>6. </span> Dons e Ministérios
+                                            </div>
+                                            <span>Módulo 2</span>
+                                        </li>
+                                        <li>
+                                            <div class="curriculum-list-box">
+                                                <span>7. </span> Pastoral Urbana
+                                            </div>
+                                            <span>Módulo 2</span>
+                                        </li>
+                                        <li>
+                                            <div class="curriculum-list-box">
+                                                <span>8. </span> Evangelho Quadrangular
+                                            </div>
+                                            <span>Módulo 3</span>
+                                        </li>
+                                        <li>
+                                            <div class="curriculum-list-box">
+                                                <span>9. </span> Discipulado
+                                            </div>
+                                            <span>Módulo 3</span>
+                                        </li>
+                                        <li>
+                                            <div class="curriculum-list-box">
+                                                <span>10. </span> Evangelismo
+                                            </div>
+                                            <span>Módulo 3</span>
+                                        </li>
+                                        <li>
+                                            <div class="curriculum-list-box">
+                                                <span>11. </span> Cidadania
+                                            </div>
+                                            <span>Módulo 3</span>
+                                        </li>
+                                        <li>
+                                            <div class="curriculum-list-box">
+                                                <span>12. </span> Introdução à Educação Cristã
+                                            </div>
+                                            <span>Módulo 4</span>
+                                        </li>
+                                        <li>
+                                            <div class="curriculum-list-box">
+                                                <span>13. </span> Hermenêutica
+                                            </div>
+                                            <span>Módulo 4</span>
+                                        </li>
+                                        <li>
+                                            <div class="curriculum-list-box">
+                                                <span>14. </span> Administração Eclesiástica
+                                            </div>
+                                            <span>Módulo 4</span>
+                                        </li>
+                                        <li>
+                                            <div class="curriculum-list-box">
+                                                <span>15. </span> Aconselhamento e Orientação Familiar
+                                            </div>
+                                            <span>Módulo 5</span>
+                                        </li>
+                                        <li>
+                                            <div class="curriculum-list-box">
+                                                <span>16. </span> Homilética
+                                            </div>
+                                            <span>Módulo 5</span>
+                                        </li>
+                                        <li>
+                                            <div class="curriculum-list-box">
+                                                <span>17. </span> Métodos de Estudo Bíblico
+                                            </div>
+                                            <span>Módulo 5</span>
+                                        </li>
+                                        <li>
+                                            <div class="curriculum-list-box">
+                                                <span>18. </span> Teologia do Culto
+                                            </div>
+                                            <span>Módulo 6</span>
+                                        </li>
+                                        <li>
+                                            <div class="curriculum-list-box">
+                                                <span>19. </span> Liderança 1 - Gestão de Pessoal
+                                            </div>
+                                            <span>Módulo 6</span>
+                                        </li>
+                                        <li>
+                                            <div class="curriculum-list-box">
+                                                <span>20. </span> Teologia Pastoral
+                                            </div>
+                                            <span>Módulo 6</span>
                                         </li>
                                     </ul>
-                                </li>
-                                <li>
-                                    <h5>Second Level</h5>
+                                    <h5>2º ANO</h5>
                                     <ul>
                                         <li>
                                             <div class="curriculum-list-box">
-                                                <span>Lesson 1.</span> Prototyping and Design
+                                                <span>1. </span> Cultura Bíblica
                                             </div>
-                                            <span>110 minutes</span>
+                                            <span>Módulo 1</span>
                                         </li>
                                         <li>
                                             <div class="curriculum-list-box">
-                                                <span>Lesson 2.</span> UI Design Capstone
+                                                <span>2. </span> Pentateuco (parte 1)
                                             </div>
-                                            <span>120 minutes</span>
+                                            <span>Módulo 1</span>
                                         </li>
                                         <li>
                                             <div class="curriculum-list-box">
-                                                <span>Lesson 3.</span> Evaluating User Interfaces Part 2
+                                                <span>3. </span> Teologia do Antigo Testamento
                                             </div>
-                                            <span>120 minutes</span>
+                                            <span>Módulo 1</span>
+                                        </li>
+                                        <li>
+                                            <div class="curriculum-list-box">
+                                                <span>4. </span> Teologia do Novo Testamento
+                                            </div>
+                                            <span>Módulo 2</span>
+                                        </li>
+                                        <li>
+                                            <div class="curriculum-list-box">
+                                                <span>5. </span> Hebreus
+                                            </div>
+                                            <span>Módulo 2</span>
+                                        </li>
+                                        <li>
+                                            <div class="curriculum-list-box">
+                                                <span>6. </span> Pentateuco (parte 2)
+                                            </div>
+                                            <span>Módulo 2</span>
+                                        </li>
+                                        <li>
+                                            <div class="curriculum-list-box">
+                                                <span>7. </span> Evangelhos (parte 1)
+                                            </div>
+                                            <span>Módulo 3</span>
+                                        </li>
+                                        <li>
+                                            <div class="curriculum-list-box">
+                                                <span>8. </span> Atos dos Apóstolos
+                                            </div>
+                                            <span>Módulo 3</span>
+                                        </li>
+                                        <li>
+                                            <div class="curriculum-list-box">
+                                                <span>9. </span> História de Israel (parte 1)
+                                            </div>
+                                            <span>Módulo 3</span>
+                                        </li>
+                                        <li>
+                                            <div class="curriculum-list-box">
+                                                <span>10. </span> História de Israel (parte 2)
+                                            </div>
+                                            <span>Módulo 4</span>
+                                        </li>
+                                        <li>
+                                            <div class="curriculum-list-box">
+                                                <span>11. </span> Evangelhos (parte 2)
+                                            </div>
+                                            <span>Módulo 4</span>
+                                        </li>
+                                        <li>
+                                            <div class="curriculum-list-box">
+                                                <span>12. </span> Epístolas Paulinas (parte 1)
+                                            </div>
+                                            <span>Módulo 4</span>
+                                        </li>
+                                        <li>
+                                            <div class="curriculum-list-box">
+                                                <span>13. </span> História de Israel (parte 3)
+                                            </div>
+                                            <span>Módulo 5</span>
+                                        </li>
+                                        <li>
+                                            <div class="curriculum-list-box">
+                                                <span>14. </span> Epístolas Paulinas (parte 2)
+                                            </div>
+                                            <span>Módulo 5</span>
+                                        </li>
+                                        <li>
+                                            <div class="curriculum-list-box">
+                                                <span>15. </span> Epístolas Gerais
+                                            </div>
+                                            <span>Módulo 5</span>
+                                        </li>
+                                        <li>
+                                            <div class="curriculum-list-box">
+                                                <span>16. </span> Livros Poéticos
+                                            </div>
+                                            <span>Módulo 6</span>
+                                        </li>
+                                        <li>
+                                            <div class="curriculum-list-box">
+                                                <span>17. </span> Missão Integral da Igreja
+                                            </div>
+                                            <span>Módulo 6</span>
+                                        </li>
+                                        <li>
+                                            <div class="curriculum-list-box">
+                                                <span>18. </span> Teologia Sistemática I
+                                            </div>
+                                            <span>Módulo 6</span>
                                         </li>
                                     </ul>
-                                </li>
-                                <li>
-                                    <h5>Final</h5>
+                                    <h5>3º ANO</h5>
                                     <ul>
                                         <li>
                                             <div class="curriculum-list-box">
-                                                <span>Part 1.</span> Final Test
+                                                <span>1. </span> TCC - Trabalho de Conclusão de Curso
                                             </div>
-                                            <span>120 minutes</span>
+                                            <span>Módulo 1</span>
                                         </li>
                                         <li>
                                             <div class="curriculum-list-box">
-                                                <span>Part 2.</span> Online Test
+                                                <span>2. </span> Estágio Supervisionado
                                             </div>
-                                            <span>120 minutes</span>
+                                            <span>Módulo 1</span>
+                                        </li>
+                                        <li>
+                                            <div class="curriculum-list-box">
+                                                <span>3. </span> Teologia Sistemática II (parte 1)
+                                            </div>
+                                            <span>Módulo 1</span>
+                                        </li>
+                                        <li>
+                                            <div class="curriculum-list-box">
+                                                <span>4. </span> Teologia Sistemática II (parte 2)
+                                            </div>
+                                            <span>Módulo 2</span>
+                                        </li>
+                                        <li>
+                                            <div class="curriculum-list-box">
+                                                <span>5. </span> História da Igreja (parte 1)
+                                            </div>
+                                            <span>Módulo 2</span>
+                                        </li>
+                                        <li>
+                                            <div class="curriculum-list-box">
+                                                <span>6. </span> Aconselhamento Pastoral
+                                            </div>
+                                            <span>Módulo 2</span>
+                                        </li>
+                                        <li>
+                                            <div class="curriculum-list-box">
+                                                <span>7. </span> Escatologia Bíblica (parte 1)
+                                            </div>
+                                            <span>Módulo 3</span>
+                                        </li>
+                                        <li>
+                                            <div class="curriculum-list-box">
+                                                <span>8. </span> Teologia Sistemática III (parte 1)
+                                            </div>
+                                            <span>Módulo 3</span>
+                                        </li>
+                                        <li>
+                                            <div class="curriculum-list-box">
+                                                <span>9. </span> História da Igreja (parte 2)
+                                            </div>
+                                            <span>Módulo 3</span>
+                                        </li>
+                                        <li>
+                                            <div class="curriculum-list-box">
+                                                <span>10. </span> Teologia Sistemática III (parte 2)
+                                            </div>
+                                            <span>Módulo 4</span>
+                                        </li>
+                                        <li>
+                                            <div class="curriculum-list-box">
+                                                <span>11. </span> Escatologia Bíblica III (parte 2)
+                                            </div>
+                                            <span>Módulo 4</span>
+                                        </li>
+                                        <li>
+                                            <div class="curriculum-list-box">
+                                                <span>12. </span> Liderança 2 - Gestão Ministerial
+                                            </div>
+                                            <span>Módulo 4</span>
+                                        </li>
+                                        <li>
+                                            <div class="curriculum-list-box">
+                                                <span>13. </span> Introdução à Missiologia
+                                            </div>
+                                            <span>Módulo 5</span>
+                                        </li>
+                                        <li>
+                                            <div class="curriculum-list-box">
+                                                <span>14. </span> Movimentos Religiosos Contemporâneos
+                                            </div>
+                                            <span>Módulo 5</span>
+                                        </li>
+                                        <li>
+                                            <div class="curriculum-list-box">
+                                                <span>15. </span> Liderança 3 - Mentoria
+                                            </div>
+                                            <span>Módulo 5</span>
+                                        </li>
+                                        <li>
+                                            <div class="curriculum-list-box">
+                                                <span>16. </span> Comunicação Social
+                                            </div>
+                                            <span>Módulo 6</span>
+                                        </li>
+                                        <li>
+                                            <div class="curriculum-list-box">
+                                                <span>17. </span> Teologia Contemporânea
+                                            </div>
+                                            <span>Módulo 6</span>
+                                        </li>
+                                        <li>
+                                            <div class="curriculum-list-box">
+                                                <span>18. </span> Ética Cristã
+                                            </div>
+                                            <span>Módulo 6</span>
                                         </li>
                                     </ul>
                                 </li>
                             </ul>
                         </div>
                         <div class="" id="instructor">
-                            <h4>Instructor</h4>
+                            <h4>Instrutores</h4>
                             <div class="instructor-bx">
                                 <div class="instructor-author">
                                     <img src="<?php echo site_url('src/') ?>assets/images/testimonials/pic1.jpg" alt="">
@@ -231,7 +501,7 @@
                                         <li><a href="#" class="btn sharp-sm linkedin"><i class="fa fa-linkedin"></i></a></li>
                                         <li><a href="#" class="btn sharp-sm google-plus"><i class="fa fa-google-plus"></i></a></li>
                                     </ul>
-                                    <p class="m-b0">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries</p>
+                                    <p class="m-b0"></p>
                                 </div>
                             </div>
                             <div class="instructor-bx">
@@ -247,91 +517,7 @@
                                         <li><a href="#" class="btn sharp-sm linkedin"><i class="fa fa-linkedin"></i></a></li>
                                         <li><a href="#" class="btn sharp-sm google-plus"><i class="fa fa-google-plus"></i></a></li>
                                     </ul>
-                                    <p class="m-b0">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="" id="reviews">
-                            <h4>Reviews</h4>
-
-                            <div class="review-bx">
-                                <div class="all-review">
-                                    <h2 class="rating-type">3</h2>
-                                    <ul class="cours-star">
-                                        <li class="active"><i class="fa fa-star"></i></li>
-                                        <li class="active"><i class="fa fa-star"></i></li>
-                                        <li class="active"><i class="fa fa-star"></i></li>
-                                        <li><i class="fa fa-star"></i></li>
-                                        <li><i class="fa fa-star"></i></li>
-                                    </ul>
-                                    <span>3 Rating</span>
-                                </div>
-                                <div class="review-bar">
-                                    <div class="bar-bx">
-                                        <div class="side">
-                                            <div>5 star</div>
-                                        </div>
-                                        <div class="middle">
-                                            <div class="bar-container">
-                                                <div class="bar-5" style="width:90%;"></div>
-                                            </div>
-                                        </div>
-                                        <div class="side right">
-                                            <div>150</div>
-                                        </div>
-                                    </div>
-                                    <div class="bar-bx">
-                                        <div class="side">
-                                            <div>4 star</div>
-                                        </div>
-                                        <div class="middle">
-                                            <div class="bar-container">
-                                                <div class="bar-5" style="width:70%;"></div>
-                                            </div>
-                                        </div>
-                                        <div class="side right">
-                                            <div>140</div>
-                                        </div>
-                                    </div>
-                                    <div class="bar-bx">
-                                        <div class="side">
-                                            <div>3 star</div>
-                                        </div>
-                                        <div class="middle">
-                                            <div class="bar-container">
-                                                <div class="bar-5" style="width:50%;"></div>
-                                            </div>
-                                        </div>
-                                        <div class="side right">
-                                            <div>120</div>
-                                        </div>
-                                    </div>
-                                    <div class="bar-bx">
-                                        <div class="side">
-                                            <div>2 star</div>
-                                        </div>
-                                        <div class="middle">
-                                            <div class="bar-container">
-                                                <div class="bar-5" style="width:40%;"></div>
-                                            </div>
-                                        </div>
-                                        <div class="side right">
-                                            <div>110</div>
-                                        </div>
-                                    </div>
-                                    <div class="bar-bx">
-                                        <div class="side">
-                                            <div>1 star</div>
-                                        </div>
-                                        <div class="middle">
-                                            <div class="bar-container">
-                                                <div class="bar-5" style="width:20%;"></div>
-                                            </div>
-                                        </div>
-                                        <div class="side right">
-                                            <div>80</div>
-                                        </div>
-                                    </div>
+                                    <p class="m-b0"></p>
                                 </div>
                             </div>
                         </div>

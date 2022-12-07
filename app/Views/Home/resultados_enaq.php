@@ -43,6 +43,10 @@
     <!-- Breadcrumb row END -->
     <!-- inner page banner END -->
 
+    <div class="container">
+        <h1>Novidades em breve...</h1>
+    </div>
+
 
 </div>
 <!-- Content END-->

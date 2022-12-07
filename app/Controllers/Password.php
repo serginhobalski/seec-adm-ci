@@ -58,7 +58,7 @@ class Password extends BaseController
 
     public function resetEnviado()
     {
-        $usuario = $this->processaEsqueci();
+
         $data = [
             'titulo' => 'E-mail de recuperação enviado para a sua caixa de entrada.',
         ];
@@ -66,7 +66,7 @@ class Password extends BaseController
         return view('Password/reset_enviado', $data);
     }
 
-    public function reset($token = null)
+    public function reset(string $token = null)
     {
 
 
@@ -120,8 +120,6 @@ class Password extends BaseController
             return $this->response->setJSON($retorno);
         }
 
-
-        dd($post);
 
         $usuario->fill($post);
 

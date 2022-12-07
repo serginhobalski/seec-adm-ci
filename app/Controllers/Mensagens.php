@@ -27,12 +27,25 @@ class Mensagens extends BaseController
         $nEnviadas = $this->mensagemModel->select('*')->where('remetente_id', usuario_logado()->id)->countAllResults();
         $nDeletadas = $this->mensagemModel->select('*')->where('deletado_em' != null)->countAllResults();
 
+        $atributos = [
+            'mensagens.id AS mensagem_id',
+            'mensagens.remetente_id AS remetente_id',
+            'mensagens.destinatario_id AS destinatario_id',
+            'mensagens.assunto AS assunto',
+            'mensagens.mensagem AS mensagem',
+            'mensagens.criado_em AS criado_em',
+            'usuarios.nome AS usuario',
+            'usuarios.local AS local',
+            'usuarios.email AS email',
+        ];
 
-        $mensagens = $this->mensagemModel->select('*')
+        $mensagens = $this->mensagemModel->select($atributos)
             ->join('usuarios', 'usuarios.id = mensagens.remetente_id')
-            ->groupBy('usuarios.nome')
             ->where('destinatario_id', usuario_logado()->id)
             ->findAll();
+
+        // dd($mensagens);
+        // exit;
 
         $data = [
             'titulo' => 'Mensagens de ' . usuario_logado()->nome,
@@ -64,13 +77,16 @@ class Mensagens extends BaseController
             'mensagens.mensagem',
             'mensagens.criado_em',
             'usuarios.nome AS destinatario',
+            'usuarios.email AS email',
         ];
 
         $mensagens = $this->mensagemModel->select($atributos)
             ->join('usuarios', 'usuarios.id = mensagens.destinatario_id')
-            ->groupBy('usuarios.nome')
             ->where('remetente_id', usuario_logado()->id)
             ->findAll();
+
+        // dd($mensagens);
+        // exit;
 
         $data = [
             'titulo' => 'Mensagens de ' . usuario_logado()->nome,
@@ -93,15 +109,15 @@ class Mensagens extends BaseController
 
         $nRecebidas = $this->mensagemModel->select('*')->where('destinatario_id', usuario_logado()->id)->countAllResults();
         $nEnviadas = $this->mensagemModel->select('*')->where('remetente_id', usuario_logado()->id)->countAllResults();
-        $nDeletadas = $this->mensagemModel->select('*')->where('deletado_em' != null)->countAllResults();
+        $nDeletadas = $this->mensagemModel->select('*')
+            ->withDeleted(true)
+            ->where('mensagens.deletado_em', !null)
+            ->where('mensagens.remetente_id', usuario_logado()->id)
+            ->where('mensagens.destinatario_id', usuario_logado()->id)
+            ->countAllResults();
 
 
-        $mensagens = $this->mensagemModel->select('*')
-            ->join('usuarios', 'usuarios.id = mensagens.destinatario_id')
-            ->groupBy('usuarios.nome')
-            ->where('remetente_id', usuario_logado()->id)
-            ->where('mensagens.deletado_em' != null)
-            ->findAll();
+        $mensagens = $this->mensagemModel->recuperaMensagensDeletadas();
 
         $data = [
             'titulo' => 'Mensagens de ' . usuario_logado()->nome,
@@ -139,6 +155,69 @@ class Mensagens extends BaseController
         ];
 
         return view('Mensagens/exibir', $data);
+    }
+
+
+    public function exibirEnviada(int $id = null)
+    {
+        if (!usuario_logado()) {
+            return redirect()->back()->with("info", "Faça o login para acessar esta página.");
+        }
+
+        $nRecebidas = $this->mensagemModel->select('*')->where('destinatario_id', usuario_logado()->id)->countAllResults();
+        $nEnviadas = $this->mensagemModel->select('*')->where('remetente_id', usuario_logado()->id)->countAllResults();
+        $nDeletadas = $this->mensagemModel->select('*')->where('deletado_em' != null)->countAllResults();
+
+
+        $mensagem = $this->buscaMensagemOu404($id);
+        $mensagem = $this->mensagemModel->recuperaMensagensEnviadas($id);
+
+
+        // dd($mensagem);
+        // exit;
+
+
+        $data = [
+            'titulo' => "Detalhe Mensagem",
+            'subtitulo' => "detalhe",
+            'mensagem' => $mensagem,
+            'recebidas' => $nRecebidas,
+            'enviadas' => $nEnviadas,
+            'deletadas' => $nDeletadas,
+        ];
+
+        return view('Mensagens/exibir_enviada', $data);
+    }
+
+    public function exibirRecebida(int $id = null)
+    {
+        if (!usuario_logado()) {
+            return redirect()->back()->with("info", "Faça o login para acessar esta página.");
+        }
+
+        $nRecebidas = $this->mensagemModel->select('*')->where('destinatario_id', usuario_logado()->id)->countAllResults();
+        $nEnviadas = $this->mensagemModel->select('*')->where('remetente_id', usuario_logado()->id)->countAllResults();
+        $nDeletadas = $this->mensagemModel->select('*')->where('deletado_em' != null)->countAllResults();
+
+
+        $mensagem = $this->buscaMensagemOu404($id);
+        $mensagem = $this->mensagemModel->recuperaMensagensRecebidas($id);
+
+
+        // dd($mensagem);
+        // exit;
+
+
+        $data = [
+            'titulo' => "Detalhe Mensagem",
+            'subtitulo' => "detalhe",
+            'mensagem' => $mensagem,
+            'recebidas' => $nRecebidas,
+            'enviadas' => $nEnviadas,
+            'deletadas' => $nDeletadas,
+        ];
+
+        return view('Mensagens/exibir_recebida', $data);
     }
 
     public function criar()
@@ -200,6 +279,45 @@ class Mensagens extends BaseController
 
         // Retorno para o AJAX request
         return $this->response->setJSON($retorno);
+    }
+
+    public function excluir(int $id = null)
+    {
+        if (!usuario_logado()) {
+            return redirect()->back()->with("info", "Faça o login para acessar esta página.");
+        }
+
+        $nRecebidas = $this->mensagemModel->select('*')->where('destinatario_id', usuario_logado()->id)->countAllResults();
+        $nEnviadas = $this->mensagemModel->select('*')->where('remetente_id', usuario_logado()->id)->countAllResults();
+        $nDeletadas = $this->mensagemModel->select('*')->where('deletado_em' != null)->countAllResults();
+
+        $mensagem = $this->buscaMensagemOu404($id);
+
+        // Verificar se a mensagem já foi excluída anteriormente
+        if ($mensagem->deletado_em != null) {
+            return redirect()->back()->with('info', "Esta mensagem já encontra-se excluída.");
+        }
+
+        if ($this->request->getMethod() === 'post') {
+
+            // Deletar mensagem
+            $this->mensagemModel->delete($mensagem->id);
+
+            $this->mensagemModel->protect(false)->save($mensagem);
+
+            return redirect()->to(site_url("mensagens"))->with('sucesso', "Mensagem excluída com sucesso.");
+        }
+
+        $data = [
+            'titulo' => "Excluindo mensagem ",
+            'subtitulo' => "Excluiir",
+            'mensagem' => $mensagem,
+            'recebidas' => $nRecebidas,
+            'enviadas' => $nEnviadas,
+            'deletadas' => $nDeletadas,
+        ];
+
+        return view('Mensagens/excluir', $data);
     }
 
     public function recuperaMensagens(int $id = null)

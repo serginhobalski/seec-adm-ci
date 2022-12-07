@@ -41,6 +41,9 @@
         </div>
     </div>
     <!-- Breadcrumb row END -->
+    <div class="container">
+        <h1>Novidades em breve...</h1>
+    </div>
     <!-- inner page banner END -->
 
 

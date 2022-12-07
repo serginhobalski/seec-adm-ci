@@ -23,7 +23,11 @@
 
     <!-- FAVICONS ICON ============================================= -->
     <link rel="icon" href="../error-404.html" type="image/x-icon" />
-    <link rel="shortcut icon" type="image/x-icon" href="<?php echo site_url('src/admin/') ?>assets/images/favicon.png" />
+    <link rel="shortcut icon" type="image/x-icon" href="<?php
+
+                                                        use App\Database\Seeds\UsuarioAdminSeeder;
+
+                                                        echo site_url('src/admin/') ?>assets/images/favicon.png" />
 
     <!-- PAGE TITLE HERE ============================================= -->
     <title>SEEC-PA | <?php echo $this->renderSection('titulo'); ?></title>
@@ -141,7 +145,7 @@
                         <a href="#" class="ttr-material-button ttr-submenu-toggle">
                             <span class="ttr-user-avatar">
                                 <?php if (usuario_logado()->imagem != "") : ?>
-                                    <img alt="" src="<?php echo site_url("usuarios/imagem/$usuario->imagem"); ?>" width="32" height="32">
+                                    <img alt="" src="<?php echo site_url("usuarios/imagem/" . usuario_logado()->imagem); ?>" width="32" height="32">
                                 <?php else : ?>
                                     <img alt="" src="<?php echo site_url('src/assets/images/user-avatar.png') ?>" width="32" height="32">
                                 <?php endif; ?>
@@ -149,7 +153,7 @@
                         <div class="ttr-header-submenu">
                             <ul>
                                 <li>
-                                    <a href="#">
+                                    <a href="<?php echo site_url('/perfil') ?>">
                                         <i class="fa fa-user-circle"></i> <?php echo usuario_logado()->nome; ?>
                                     </a>
                                 </li>
@@ -157,16 +161,38 @@
                                     <a href="<?php echo site_url("mensagens") ?> ">
                                         <i class="fa fa-paper-plane"></i> Mensagens</a>
                                 </li>
-                                <hr>
-                                <li><a class="dropdown-item text-primary" href="<?php echo site_url("home/aluno") ?>"><i class="ti-settings"></i> Home | Aluno</a></li>
-                                <li><a class="dropdown-item text-primary" href="<?php echo site_url("adm/aluno") ?>"><i class="ti-settings"></i> Adm | Aluno</a></li>
-                                <li><a class="dropdown-item text-primary" class="dropdown-item text-primary" href="<?php echo site_url("home/professor") ?>"><i class="ti-settings"></i> Home | Professor</a></li>
-                                <li><a class="dropdown-item text-primary" href="<?php echo site_url("adm/professor") ?>"><i class="ti-settings"></i> Adm | Professor</a></li>
-                                <li><a class="dropdown-item text-primary" href="<?php echo site_url("adm/secretaria") ?>"><i class="ti-settings"></i> Adm | Secretaria</a></li>
-                                <li></li>
-                                <li><a class="dropdown-item text-primary" href="<?php echo site_url("adm/uetp") ?>"><i class="ti-settings"></i> Adm | UETP</a></li>
-                                <li><a class="dropdown-item text-primary" href="<?php echo site_url("relatorios/meusrelatorios") ?>"><i class="ti-settings"></i> Relatorios | UETP</a></li>
-                                <hr>
+                                <?php if (usuario_logado()->is_admin) : ?>
+                                    <hr>
+                                    <li><a class="dropdown-item text-primary" href="<?php echo site_url("home/aluno") ?>"><i class="ti-settings"></i> Home | Aluno</a></li>
+                                    <li><a class="dropdown-item text-primary" href="<?php echo site_url("adm/aluno") ?>"><i class="ti-settings"></i> Adm | Aluno</a></li>
+                                    <li><a class="dropdown-item text-primary" class="dropdown-item text-primary" href="<?php echo site_url("home/professor") ?>"><i class="ti-settings"></i> Home | Professor</a></li>
+                                    <li><a class="dropdown-item text-primary" href="<?php echo site_url("adm/professor") ?>"><i class="ti-settings"></i> Adm | Professor</a></li>
+                                    <li><a class="dropdown-item text-primary" href="<?php echo site_url("adm/secretaria") ?>"><i class="ti-settings"></i> Adm | Secretaria</a></li>
+                                    <li></li>
+                                    <li><a class="dropdown-item text-primary" href="<?php echo site_url("adm/uetp") ?>"><i class="ti-settings"></i> Adm | UETP</a></li>
+                                    <li><a class="dropdown-item text-primary" href="<?php echo site_url("relatorios/meusrelatorios") ?>"><i class="ti-settings"></i> Relatorios | UETP</a></li>
+                                    <hr>
+                                <?php endif; ?>
+                                <?php if (usuario_logado()->is_professor) : ?>
+                                    <li>
+                                        <a href="<?php echo site_url("home/professor") ?> ">
+                                            <i class="fa fa-book"></i> Minhas Turmas</a>
+                                    </li>
+                                    <li>
+                                        <a href="<?php echo site_url("adm/professor") ?> ">
+                                            <i class="fa fa-dashboard"></i> Meu Painel</a>
+                                    </li>
+                                <?php endif; ?>
+                                <?php if (usuario_logado()->is_aluno) : ?>
+                                    <li>
+                                        <a href="<?php echo site_url("home/aluno") ?> ">
+                                            <i class="fa fa-book"></i> Meus Cursos</a>
+                                    </li>
+                                    <li>
+                                        <a href="<?php echo site_url("adm/aluno") ?> ">
+                                            <i class="fa fa-dashboard"></i> Meu Painel</a>
+                                    </li>
+                                <?php endif; ?>
                                 <li>
                                     <a href="<?php echo site_url("usuarios/editarusuariologado") ?> ">
                                         <i class="fa fa-wrench"></i> Atualizar meus dados</a>
@@ -425,7 +451,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="<?php echo site_url('adm/cursos'); ?>" class="ttr-material-button">
+                            <a href="<?php echo site_url('home/aluno'); ?>" class="ttr-material-button">
                                 <span class="ttr-icon"><i class="fa fa-book"></i></span>
                                 <span class="ttr-label">Meus Cursos</span>
                             </a>

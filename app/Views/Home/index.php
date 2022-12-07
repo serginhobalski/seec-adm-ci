@@ -293,7 +293,7 @@
         </div>
         <!-- Popular Courses END -->
 
-        <!-- Form -->
+        <!-- Form 
         <div class="section-area section-sp1 ovpr-dark bg-fix online-cours" style="background-image: url(assets/images/background/bg1.jpg)">
             <div class="container">
                 <div class="row">
@@ -356,274 +356,77 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="upcoming-event-carousel owl-carousel owl-btn-center-lr owl-btn-1 col-12 p-lr0 m-b30 owl-loaded owl-drag">
-
-
-
-                        <div class="owl-stage-outer">
-                            <div class="owl-stage" style="transition: all 0s ease 0s; width: 4095px; transform: translate3d(-877px, 0px, 0px);">
-                                <div class="owl-item cloned" style="width: 585px;">
-                                    <div class="item">
-                                        <div class="event-bx">
-                                            <div class="action-box">
-                                                <img src="<?php echo site_url('src/') ?>assets/images/event/pic3.jpg" alt="">
-                                            </div>
-                                            <div class="info-bx d-flex">
-                                                <div>
-                                                    <div class="event-time">
-                                                        <div class="event-date">29</div>
-                                                        <div class="event-month">October</div>
-                                                    </div>
-                                                </div>
-                                                <div class="event-info">
-                                                    <h4 class="event-title">
-                                                        <a href="#">Education Autumn Tour 2019</a>
-                                                    </h4>
-                                                    <ul class="media-post">
-                                                        <li>
-                                                            <a href="#"><i class="fa fa-clock-o"></i> 7:00am 8:00am</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#"><i class="fa fa-map-marker"></i> Berlin,
-                                                                Germany</a>
-                                                        </li>
-                                                    </ul>
-                                                    <p>
-                                                        Lorem Ipsum is simply dummy text of the printing and
-                                                        typesetting industry. Lorem Ipsum has been the
-                                                        industry's standard dummy text ever since the..
-                                                    </p>
-                                                </div>
-                                            </div>
+                    <div class="upcoming-event-carousel owl-carousel owl-btn-center-lr owl-btn-1 col-12 p-lr0  m-b30">
+                        <div class="item">
+                            <div class="event-bx">
+                                <div class="action-box">
+                                    <img src="<?php echo site_url('src/') ?>assets/images/event/1.jpg" alt="">
+                                </div>
+                                <div class="info-bx d-flex">
+                                    <div>
+                                        <div class="event-time">
+                                            <div class="event-date">06 a 08</div>
+                                            <div class="event-month">Janeiro</div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="owl-item cloned" style="width: 585px;">
-                                    <div class="item">
-                                        <div class="event-bx">
-                                            <div class="action-box">
-                                                <img src="<?php echo site_url('src/') ?>assets/images/event/pic2.jpg" alt="">
-                                            </div>
-                                            <div class="info-bx d-flex">
-                                                <div>
-                                                    <div class="event-time">
-                                                        <div class="event-date">29</div>
-                                                        <div class="event-month">October</div>
-                                                    </div>
-                                                </div>
-                                                <div class="event-info">
-                                                    <h4 class="event-title">
-                                                        <a href="#">Education Autumn Tour 2019</a>
-                                                    </h4>
-                                                    <ul class="media-post">
-                                                        <li>
-                                                            <a href="#"><i class="fa fa-clock-o"></i> 7:00am 8:00am</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#"><i class="fa fa-map-marker"></i> Berlin,
-                                                                Germany</a>
-                                                        </li>
-                                                    </ul>
-                                                    <p>
-                                                        Lorem Ipsum is simply dummy text of the printing and
-                                                        typesetting industry. Lorem Ipsum has been the
-                                                        industry's standard dummy text ever since the..
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="owl-item active center" style="width: 585px;">
-                                    <div class="item">
-                                        <div class="event-bx">
-                                            <div class="action-box">
-                                                <img src="<?php echo site_url('src/') ?>assets/images/event/pic4.jpg" alt="">
-                                            </div>
-                                            <div class="info-bx d-flex">
-                                                <div>
-                                                    <div class="event-time">
-                                                        <div class="event-date">29</div>
-                                                        <div class="event-month">October</div>
-                                                    </div>
-                                                </div>
-                                                <div class="event-info">
-                                                    <h4 class="event-title">
-                                                        <a href="#">Education Autumn Tour 2019</a>
-                                                    </h4>
-                                                    <ul class="media-post">
-                                                        <li>
-                                                            <a href="#"><i class="fa fa-clock-o"></i> 7:00am 8:00am</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#"><i class="fa fa-map-marker"></i> Berlin,
-                                                                Germany</a>
-                                                        </li>
-                                                    </ul>
-                                                    <p>
-                                                        Lorem Ipsum is simply dummy text of the printing and
-                                                        typesetting industry. Lorem Ipsum has been the
-                                                        industry's standard dummy text ever since the..
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="owl-item active" style="width: 585px;">
-                                    <div class="item">
-                                        <div class="event-bx">
-                                            <div class="action-box">
-                                                <img src="<?php echo site_url('src/') ?>assets/images/event/pic3.jpg" alt="">
-                                            </div>
-                                            <div class="info-bx d-flex">
-                                                <div>
-                                                    <div class="event-time">
-                                                        <div class="event-date">29</div>
-                                                        <div class="event-month">October</div>
-                                                    </div>
-                                                </div>
-                                                <div class="event-info">
-                                                    <h4 class="event-title">
-                                                        <a href="#">Education Autumn Tour 2019</a>
-                                                    </h4>
-                                                    <ul class="media-post">
-                                                        <li>
-                                                            <a href="#"><i class="fa fa-clock-o"></i> 7:00am 8:00am</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#"><i class="fa fa-map-marker"></i> Berlin,
-                                                                Germany</a>
-                                                        </li>
-                                                    </ul>
-                                                    <p>
-                                                        Lorem Ipsum is simply dummy text of the printing and
-                                                        typesetting industry. Lorem Ipsum has been the
-                                                        industry's standard dummy text ever since the..
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="owl-item" style="width: 585px;">
-                                    <div class="item">
-                                        <div class="event-bx">
-                                            <div class="action-box">
-                                                <img src="<?php echo site_url('src/') ?>assets/images/event/pic2.jpg" alt="">
-                                            </div>
-                                            <div class="info-bx d-flex">
-                                                <div>
-                                                    <div class="event-time">
-                                                        <div class="event-date">29</div>
-                                                        <div class="event-month">October</div>
-                                                    </div>
-                                                </div>
-                                                <div class="event-info">
-                                                    <h4 class="event-title">
-                                                        <a href="#">Education Autumn Tour 2019</a>
-                                                    </h4>
-                                                    <ul class="media-post">
-                                                        <li>
-                                                            <a href="#"><i class="fa fa-clock-o"></i> 7:00am 8:00am</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#"><i class="fa fa-map-marker"></i> Berlin,
-                                                                Germany</a>
-                                                        </li>
-                                                    </ul>
-                                                    <p>
-                                                        Lorem Ipsum is simply dummy text of the printing and
-                                                        typesetting industry. Lorem Ipsum has been the
-                                                        industry's standard dummy text ever since the..
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="owl-item cloned" style="width: 585px;">
-                                    <div class="item">
-                                        <div class="event-bx">
-                                            <div class="action-box">
-                                                <img src="<?php echo site_url('src/') ?>assets/images/event/pic4.jpg" alt="">
-                                            </div>
-                                            <div class="info-bx d-flex">
-                                                <div>
-                                                    <div class="event-time">
-                                                        <div class="event-date">29</div>
-                                                        <div class="event-month">October</div>
-                                                    </div>
-                                                </div>
-                                                <div class="event-info">
-                                                    <h4 class="event-title">
-                                                        <a href="#">Education Autumn Tour 2019</a>
-                                                    </h4>
-                                                    <ul class="media-post">
-                                                        <li>
-                                                            <a href="#"><i class="fa fa-clock-o"></i> 7:00am 8:00am</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#"><i class="fa fa-map-marker"></i> Berlin,
-                                                                Germany</a>
-                                                        </li>
-                                                    </ul>
-                                                    <p>
-                                                        Lorem Ipsum is simply dummy text of the printing and
-                                                        typesetting industry. Lorem Ipsum has been the
-                                                        industry's standard dummy text ever since the..
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="owl-item cloned" style="width: 585px;">
-                                    <div class="item">
-                                        <div class="event-bx">
-                                            <div class="action-box">
-                                                <img src="<?php echo site_url('src/') ?>assets/images/event/pic3.jpg" alt="">
-                                            </div>
-                                            <div class="info-bx d-flex">
-                                                <div>
-                                                    <div class="event-time">
-                                                        <div class="event-date">29</div>
-                                                        <div class="event-month">October</div>
-                                                    </div>
-                                                </div>
-                                                <div class="event-info">
-                                                    <h4 class="event-title">
-                                                        <a href="#">Education Autumn Tour 2019</a>
-                                                    </h4>
-                                                    <ul class="media-post">
-                                                        <li>
-                                                            <a href="#"><i class="fa fa-clock-o"></i> 7:00am 8:00am</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#"><i class="fa fa-map-marker"></i> Berlin,
-                                                                Germany</a>
-                                                        </li>
-                                                    </ul>
-                                                    <p>
-                                                        Lorem Ipsum is simply dummy text of the printing and
-                                                        typesetting industry. Lorem Ipsum has been the
-                                                        industry's standard dummy text ever since the..
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
+                                    <div class="event-info">
+                                        <h4 class="event-title"><a href="#">TCD 2023</a></h4>
+                                        <ul class="media-post">
+                                            <li><a href="#"><i class="fa fa-clock-o"></i> 7:00 - 20:00</a></li>
+                                            <li><a href="#"><i class="fa fa-map-marker"></i> Hotel Riviera, Ananindeua</a></li>
+                                        </ul>
+                                        <p>Está chegando o nosso Treinamento de Capacitação de Diretores, um evento crucial para educação teológica da IEQ no Pará, que reunirá todos os diretores UETP's (Unidades de Ensino Teológico e Pastoral) da IEQ em todo o Pará!</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="owl-nav disabled">
-                            <div class="owl-prev"><i class="fa fa-angle-left"></i></div>
-                            <div class="owl-next"><i class="fa fa-angle-right"></i></div>
+                        <div class="item">
+                            <div class="event-bx">
+                                <div class="action-box">
+                                    <img src="<?php echo site_url('src/') ?>assets/images/event/2.jpg" alt="">
+                                </div>
+                                <div class="info-bx d-flex">
+                                    <div>
+                                        <div class="event-time">
+                                            <div class="event-date">2º</div>
+                                            <div class="event-month">Semestre</div>
+                                            <div class="event-year">2023</div>
+                                        </div>
+                                    </div>
+                                    <div class="event-info">
+                                        <h4 class="event-title"><a href="#">Prova ENAQ | 2023</a></h4>
+                                        <ul class="media-post">
+                                            <li><a href="#"><i class="fa fa-clock-o"></i> 14:00 18:00</a></li>
+                                            <li><a href="#"><i class="fa fa-map-marker"></i> Sedes Regionais</a></li>
+                                        </ul>
+                                        <p><b>Exame Nacional Quadrangular</b> Uma avaliação para todos os que desejam ingressar ou progredir no ministério pastoral da Igreja Quadrangular...</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="owl-dots">
-                            <div class="owl-dot active"><span></span></div>
-                            <div class="owl-dot"><span></span></div>
-                            <div class="owl-dot"><span></span></div>
+                        <div class="item">
+                            <div class="event-bx">
+                                <div class="action-box">
+                                    <img src="<?php echo site_url('src/') ?>assets/images/event/3.jpg" alt="">
+                                </div>
+                                <div class="info-bx d-flex">
+                                    <div>
+                                        <div class="event-time">
+                                            <div class="event-date">2º</div>
+                                            <div class="event-month">Semestre</div>
+                                            <div class="event-year">2023</div>
+                                        </div>
+                                    </div>
+                                    <div class="event-info">
+                                        <h4 class="event-title"><a href="#">Convenção Estadual de Pastores</a></h4>
+                                        <ul class="media-post">
+                                            <li><a href="#"><i class="fa fa-clock-o"></i> 7:00 21:00</a></li>
+                                            <li><a href="#"><i class="fa fa-map-marker"></i> IEQ Sede</a></li>
+                                        </ul>
+                                        <p>Convenção Estadual de Pastores da IEQ no Pará.</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -633,7 +436,7 @@
             </div>
         </div>
 
-        <!-- Testimonials -->
+        <!-- Testimonials 
         <div class="section-area section-sp2 bg-fix ovbl-dark" style="background-image: url(assets/images/background/bg1.jpg)">
             <div class="container">
                 <div class="row">
@@ -791,7 +594,7 @@
         </div>
         <!-- Testimonials END -->
 
-        <!-- Recent News -->
+        <!-- Recent News 
         <div class="section-area section-sp2">
             <div class="container">
                 <div class="row">

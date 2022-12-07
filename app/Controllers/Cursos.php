@@ -20,6 +20,9 @@ class Cursos extends BaseController
 
     public function index()
     {
+        if (!usuario_logado()->is_admin) {
+            return redirect()->back()->with("info", "Você não possui permissão para visualizar esta página.");
+        }
 
         $data = [
             'titulo' => 'Cursos',
@@ -71,6 +74,10 @@ class Cursos extends BaseController
 
     public function criar(int $id = null)
     {
+        if (!usuario_logado()->is_admin) {
+            return redirect()->back()->with("info", "Você não possui permissão para visualizar esta página.");
+        }
+
         $curso = new Curso();
 
         $data = [
@@ -83,6 +90,10 @@ class Cursos extends BaseController
 
     public function cadastrar(int $id = null)
     {
+        if (!usuario_logado()->is_admin) {
+            return redirect()->back()->with("info", "Você não possui permissão para visualizar esta página.");
+        }
+
         if (!$this->request->isAJAX()) {
 
             return redirect()->back();
@@ -117,6 +128,10 @@ class Cursos extends BaseController
 
     public function exibir(int $id = null)
     {
+        if (!usuario_logado()->is_admin) {
+            return redirect()->back()->with("info", "Você não possui permissão para visualizar esta página.");
+        }
+
         $curso = $this->buscaCursoOu404($id);
         $curso->alunos = $this->alunoCursoModel->recuperaAlunosDoCurso($curso->id, 10);
         $curso->pager = $this->alunoCursoModel->pager;
@@ -136,6 +151,9 @@ class Cursos extends BaseController
 
     public function editar(int $id = null)
     {
+        if (!usuario_logado()->is_admin) {
+            return redirect()->back()->with("info", "Você não possui permissão para visualizar esta página.");
+        }
 
         $curso = $this->buscaCursoOu404($id);
 
@@ -189,6 +207,10 @@ class Cursos extends BaseController
 
     public function excluir(int $id = null)
     {
+        if (!usuario_logado()->is_admin) {
+            return redirect()->back()->with("info", "Você não possui permissão para visualizar esta página.");
+        }
+
         $curso = $this->buscaCursoOu404($id);
 
         if ($this->request->getMethod() === 'post') {
@@ -225,6 +247,10 @@ class Cursos extends BaseController
 
     public function alunos(int $id = null)
     {
+        if (!usuario_logado()->is_admin && !usuario_logado()->is_secretaria) {
+            return redirect()->back()->with("info", "Você não possui permissão para visualizar esta página.");
+        }
+
         $curso = $this->buscaCursoOu404($id);
 
         $curso->alunos = $this->alunoCursoModel->recuperaAlunosDoCurso($curso->id, 30);

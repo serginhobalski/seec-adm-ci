@@ -22,41 +22,76 @@ class MensagemModel extends Model
     protected $updatedField  = 'alterado_em';
     protected $deletedField  = 'deletado_em';
 
-    public function recuperaMensagensEnviadas(int $usuario_id)
+    public function recuperaMensagensEnviadas(int $mensagem_id)
     {
 
         $atributos = [
-            'usuarios.id',
-            'usuarios.nome',
+            'mensagens.id AS mensagem_id',
             'mensagens.remetente_id AS remetente_id',
-            'mensagens.assunto',
-            'mensagens.mensagem',
-            'mensagens.criado_em AS criado_em',
-            'mensagens.deletado_em AS deletado_em',
-        ];
-
-        return $this->select($atributos)
-            ->join('usuarios', 'usuarios.id = mensagens.remetente_id')
-            ->where('mensagens.remetente_id', $usuario_id)
-            ->groupBy('usuarios.nome');
-    }
-
-    public function recuperaMensagensRecebidas(int $usuario_id)
-    {
-
-        $atributos = [
-            'usuarios.id',
-            'usuarios.nome',
             'mensagens.destinatario_id AS destinatario_id',
-            'mensagens.assunto',
-            'mensagens.mensagem',
+            'mensagens.assunto AS assunto',
+            'mensagens.mensagem AS mensagem',
             'mensagens.criado_em AS criado_em',
             'mensagens.deletado_em AS deletado_em',
+            'usuarios.nome AS usuario',
+            'usuarios.local AS local',
+            'usuarios.email AS email',
+            'usuarios.imagem AS imagem',
         ];
 
         return $this->select($atributos)
             ->join('usuarios', 'usuarios.id = mensagens.destinatario_id')
-            ->where('mensagens.destinatario_id', $usuario_id)
-            ->groupBy('usuarios.nome');
+            ->where('mensagens.id', $mensagem_id)
+            ->where('mensagens.remetente_id', usuario_logado()->id)
+            ->findAll();
+    }
+
+    public function recuperaMensagensRecebidas(int $mensagem_id)
+    {
+
+        $atributos = [
+            'mensagens.id AS mensagem_id',
+            'mensagens.remetente_id AS remetente_id',
+            'mensagens.destinatario_id AS destinatario_id',
+            'mensagens.assunto AS assunto',
+            'mensagens.mensagem AS mensagem',
+            'mensagens.criado_em AS criado_em',
+            'mensagens.deletado_em AS deletado_em',
+            'usuarios.nome AS usuario',
+            'usuarios.local AS local',
+            'usuarios.email AS email',
+            'usuarios.imagem AS imagem',
+        ];
+
+        return $this->select($atributos)
+            ->join('usuarios', 'usuarios.id = mensagens.remetente_id')
+            ->where('mensagens.id', $mensagem_id)
+            ->where('mensagens.destinatario_id', usuario_logado()->id)
+            ->findAll();
+    }
+
+    public function recuperaMensagensDeletadas()
+    {
+
+        $atributos = [
+            'mensagens.id AS mensagem_id',
+            'mensagens.remetente_id AS remetente_id',
+            'mensagens.destinatario_id AS destinatario_id',
+            'mensagens.assunto AS assunto',
+            'mensagens.mensagem AS mensagem',
+            'mensagens.criado_em AS criado_em',
+            'mensagens.deletado_em AS deletado_em',
+            'usuarios.nome AS usuario',
+            'usuarios.local AS local',
+            'usuarios.email AS email',
+            'usuarios.imagem AS imagem',
+        ];
+
+        return $this->select($atributos)
+            ->join('usuarios', 'usuarios.id = mensagens.remetente_id')
+            ->where('mensagens.remetente_id', usuario_logado()->id)
+            ->where('mensagens.destinatario_id', usuario_logado()->id)
+            ->where('mensagens.deletado_em', !null)
+            ->findAll();
     }
 }

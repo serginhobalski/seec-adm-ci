@@ -67,6 +67,12 @@
                             </div>
                         </div>
                         <div class="form-group row">
+                            <label class="col-sm-4 col-form-label">Local</label>
+                            <div class="col-sm-8">
+                                <input class="form-control" type="text" name="local" value="<?php echo $usuario->local; ?>" placeholder="Insira o nome de usuário">
+                            </div>
+                        </div>
+                        <div class="form-group row">
                             <label class="col-sm-4 col-form-label">E-mail</label>
                             <div class="col-sm-8">
                                 <input class="form-control" type="text" name="email" value="<?php echo $usuario->email; ?>" placeholder="Insira o e-mail do usuário">

@@ -18,13 +18,13 @@
                         <?php echo $enviadas; ?>
                     </span></a>
             </li>
-            <li class="<?php echo ($subtitulo === 'lixeira' ? 'active' : '') ?>">
+            <!-- <li class="<?php echo ($subtitulo === 'lixeira' ? 'active' : '') ?>">
                 <a href="<?php echo site_url('mensagens/lixeira') ?>">
                     <i class="fa fa-trash-o"></i>Lixeira
                     <span class="badge badge-danger">
                         <?php echo $deletadas; ?>
                     </span></a>
-            </li>
+            </li> -->
         </ul>
     </div>
 </div>

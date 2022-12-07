@@ -78,132 +78,17 @@
                                 <div class="info-bx d-flex">
                                     <div>
                                         <div class="event-time">
-                                            <div class="event-date">29</div>
-                                            <div class="event-month">October</div>
+                                            <div class="event-date">06 a 08</div>
+                                            <div class="event-month">Janeiro</div>
                                         </div>
                                     </div>
                                     <div class="event-info">
-                                        <h4 class="event-title"><a href="#">Education Autumn Tour 2019</a></h4>
+                                        <h4 class="event-title"><a href="#">TCD 2023</a></h4>
                                         <ul class="media-post">
-                                            <li><a href="#"><i class="fa fa-clock-o"></i> 7:00am 8:00am</a></li>
-                                            <li><a href="#"><i class="fa fa-map-marker"></i> Berlin, Germany</a></li>
+                                            <li><a href="#"><i class="fa fa-clock-o"></i> 7:00 20:00</a></li>
+                                            <li><a href="#"><i class="fa fa-map-marker"></i> Hotel Riviera, Ananindeua</a></li>
                                         </ul>
-                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the..</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="action-card col-lg-6 col-md-6 col-sm-12 upcoming">
-                            <div class="event-bx m-b30">
-                                <div class="action-box">
-                                    <img src="assets/images/event/pic2.jpg" alt="">
-                                </div>
-                                <div class="info-bx d-flex">
-                                    <div>
-                                        <div class="event-time">
-                                            <div class="event-date">29</div>
-                                            <div class="event-month">October</div>
-                                        </div>
-                                    </div>
-                                    <div class="event-info">
-                                        <h4 class="event-title"><a href="#">Education Autumn Tour 2019</a></h4>
-                                        <ul class="media-post">
-                                            <li><a href="#"><i class="fa fa-clock-o"></i> 7:00am 8:00am</a></li>
-                                            <li><a href="#"><i class="fa fa-map-marker"></i> Berlin, Germany</a></li>
-                                        </ul>
-                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the..</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="action-card col-lg-6 col-md-6 col-sm-12  upcoming">
-                            <div class="event-bx m-b30">
-                                <div class="action-box">
-                                    <img src="assets/images/event/pic3.jpg" alt="">
-                                </div>
-                                <div class="info-bx d-flex">
-                                    <div>
-                                        <div class="event-time">
-                                            <div class="event-date">29</div>
-                                            <div class="event-month">October</div>
-                                        </div>
-                                    </div>
-                                    <div class="event-info">
-                                        <h4 class="event-title"><a href="#">Education Autumn Tour 2019</a></h4>
-                                        <ul class="media-post">
-                                            <li><a href="#"><i class="fa fa-clock-o"></i> 7:00am 8:00am</a></li>
-                                            <li><a href="#"><i class="fa fa-map-marker"></i> Berlin, Germany</a></li>
-                                        </ul>
-                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the..</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="action-card col-lg-6 col-md-6 col-sm-12 happening">
-                            <div class="event-bx m-b30">
-                                <div class="action-box">
-                                    <img src="assets/images/event/pic4.jpg" alt="">
-                                </div>
-                                <div class="info-bx d-flex">
-                                    <div>
-                                        <div class="event-time">
-                                            <div class="event-date">29</div>
-                                            <div class="event-month">October</div>
-                                        </div>
-                                    </div>
-                                    <div class="event-info">
-                                        <h4 class="event-title"><a href="#">Education Autumn Tour 2019</a></h4>
-                                        <ul class="media-post">
-                                            <li><a href="#"><i class="fa fa-clock-o"></i> 7:00am 8:00am</a></li>
-                                            <li><a href="#"><i class="fa fa-map-marker"></i> Berlin, Germany</a></li>
-                                        </ul>
-                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the..</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="action-card col-lg-6 col-md-6 col-sm-12 expired">
-                            <div class="event-bx m-b30">
-                                <div class="action-box">
-                                    <img src="assets/images/event/pic2.jpg" alt="">
-                                </div>
-                                <div class="info-bx d-flex">
-                                    <div>
-                                        <div class="event-time">
-                                            <div class="event-date">29</div>
-                                            <div class="event-month">October</div>
-                                        </div>
-                                    </div>
-                                    <div class="event-info">
-                                        <h4 class="event-title"><a href="#">Education Autumn Tour 2019</a></h4>
-                                        <ul class="media-post">
-                                            <li><a href="#"><i class="fa fa-clock-o"></i> 7:00am 8:00am</a></li>
-                                            <li><a href="#"><i class="fa fa-map-marker"></i> Berlin, Germany</a></li>
-                                        </ul>
-                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the..</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="action-card col-lg-6 col-md-6 col-sm-12 happening">
-                            <div class="event-bx m-b30">
-                                <div class="action-box">
-                                    <img src="assets/images/event/pic1.jpg" alt="">
-                                </div>
-                                <div class="info-bx d-flex">
-                                    <div>
-                                        <div class="event-time">
-                                            <div class="event-date">29</div>
-                                            <div class="event-month">October</div>
-                                        </div>
-                                    </div>
-                                    <div class="event-info">
-                                        <h4 class="event-title"><a href="#">Education Autumn Tour 2019</a></h4>
-                                        <ul class="media-post">
-                                            <li><a href="#"><i class="fa fa-clock-o"></i> 7:00am 8:00am</a></li>
-                                            <li><a href="#"><i class="fa fa-map-marker"></i> Berlin, Germany</a></li>
-                                        </ul>
-                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the..</p>
+                                        <p>Treinamento para Capacitação de Diretores de todas as UETP's (Unidades de Ensino Teológico e Pastoral) do Pará.</p>
                                     </div>
                                 </div>
                             </div>

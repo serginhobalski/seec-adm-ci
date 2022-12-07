@@ -81,34 +81,36 @@
                                                 <?php if (usuario_logado()->imagem == "") : ?>
                                                     <?php echo strtoupper(usuario_logado()->nome); ?>
                                                 <?php else : ?>
-                                                    <img class="rounded-circle" src="<?php echo site_url("usuarios/imagem/$usuario->imagem"); ?>" alt="">
+                                                    <img class="rounded-circle" src="<?php echo site_url("usuarios/imagem/" . usuario_logado()->imagem); ?>" width="35" alt="">
                                                 <?php endif; ?>
                                             </button>
                                             <div class="dropdown-menu bg-primary">
                                                 <?php if (usuario_logado()->is_admin === true) : ?>
-                                                    <a class="dropdown-item text-primary" href="<?php echo site_url("adm"); ?>"><i class="fa fa-dashboard"></i><b class="bg-primary text-white p-1">Meu painel</b> </a>
+                                                    <a class="dropdown-item bg-primary" href="<?php echo site_url("adm"); ?>"><i class="fa fa-dashboard"></i><b class="text-white p-1">Meu painel</b> </a>
                                                     <hr>
-                                                    <a class="dropdown-item text-primary" href="<?php echo site_url("home/aluno") ?>">Home | Aluno</a>
-                                                    <a class="dropdown-item text-primary" href="<?php echo site_url("adm/aluno") ?>">Adm | Aluno</a>
-                                                    <a class="dropdown-item text-primary" class="dropdown-item text-primary" href="<?php echo site_url("home/professor") ?>">Home | Professor</a>
-                                                    <a class="dropdown-item text-primary" href="<?php echo site_url("adm/professor") ?>">Adm | Professor</a>
-                                                    <a class="dropdown-item text-primary" href="<?php echo site_url("adm/secretaria") ?>">Adm | Secretaria</a>
-                                                    <a class="dropdown-item text-primary" href="<?php echo site_url("adm/uetp") ?>">Adm | UETP</a>
-                                                    <a class="dropdown-item text-primary" href="<?php echo site_url("relatorios/meusrelatorios") ?>">Relatorios | UETP</a>
+                                                    <a class="dropdown-item bg-primary" href="<?php echo site_url("home/aluno") ?>">Home | Aluno</a>
+                                                    <a class="dropdown-item bg-primary" href="<?php echo site_url("adm/aluno") ?>">Adm | Aluno</a>
+                                                    <a class="dropdown-item bg-primary" class="dropdown-item text-primary" href="<?php echo site_url("home/professor") ?>">Home | Professor</a>
+                                                    <a class="dropdown-item bg-primary" href="<?php echo site_url("adm/professor") ?>">Adm | Professor</a>
+                                                    <a class="dropdown-item bg-primary" href="<?php echo site_url("adm/secretaria") ?>">Adm | Secretaria</a>
+                                                    <a class="dropdown-item bg-primary" href="<?php echo site_url("adm/uetp") ?>">Adm | UETP</a>
+                                                    <a class="dropdown-item bg-primary" href="<?php echo site_url("relatorios/meusrelatorios") ?>">Relatorios | UETP</a>
                                                     <hr>
 
                                                 <?php elseif (usuario_logado()->is_uetp === true) : ?>
-                                                    <a class="dropdown-item text-primary" href="<?php echo site_url("adm/uetp"); ?>"><i class="fa fa-dashboard"></i><b class="bg-primary text-white p-1">Meu painel</b> </a>
+                                                    <a class="dropdown-item bg-primary" href="<?php echo site_url("adm/uetp"); ?>"><i class="fa fa-dashboard"></i><b class="text-white p-1">Meu painel</b> </a>
                                                 <?php elseif (usuario_logado()->is_professor === true) : ?>
-                                                    <a class="dropdown-item text-primary" href="<?php echo site_url("home/professor"); ?>"><i class="fa fa-dashboard"></i><b class="bg-primary text-white p-1">Meu painel</b> </a>
+                                                    <a class="dropdown-item bg-primary" href="<?php echo site_url("adm/professor"); ?>"><i class="fa fa-dashboard"></i><b class="text-white p-1">Meu painel</b> </a>
+                                                    <a class="dropdown-item bg-primary" href="<?php echo site_url("home/professor"); ?>"><i class="fa fa-book"></i><b class="text-white p-1">Minhas turmas</b> </a>
                                                 <?php elseif (usuario_logado()->is_aluno === true) : ?>
-                                                    <a class="dropdown-item text-primary" href="<?php echo site_url("home/aluno"); ?>"><i class="fa fa-dashboard"></i><b class="bg-primary text-white p-1">Meu painel</b> </a>
+                                                    <a class="dropdown-item bg-primary" href="<?php echo site_url("adm/aluno"); ?>"><i class="fa fa-dashboard"></i><b class="text-white p-1">Meu painel</b> </a>
+                                                    <a class="dropdown-item bg-primary" href="<?php echo site_url("home/aluno"); ?>"><i class="fa fa-dashboard"></i><b class="text-white p-1">Meus Cursos</b> </a>
                                                 <?php elseif (usuario_logado()->is_secretaria === true) : ?>
-                                                    <a class="dropdown-item text-primary" href="<?php echo site_url("adm/secretaria"); ?>"><i class="fa fa-dashboard"></i><b class="bg-primary text-white p-1">Meu painel</b> </a>
+                                                    <a class="dropdown-item bg-primary" href="<?php echo site_url("adm/secretaria"); ?>"><i class="fa fa-dashboard"></i><b class="text-white p-1">Meu painel</b> </a>
                                                 <?php endif; ?>
-                                                <a class="dropdown-item text-primary" href="<?php echo site_url("home/editarusuariologado"); ?>"><i class="fa fa-wrench"></i><b class="bg-primary text-white p-1">Atualizar meus dados</b> </a>
-                                                <a class="dropdown-item text-primary" href="<?php echo site_url("logout"); ?>">
-                                                    <b class="bg-primary text-white p-1">
+                                                <a class="dropdown-item bg-primary" href="<?php echo site_url("home/editarusuariologado"); ?>"><i class="fa fa-wrench"></i><b class="text-white p-1">Atualizar meus dados</b> </a>
+                                                <a class="dropdown-item bg-primary" href="<?php echo site_url("logout"); ?>">
+                                                    <b class="text-white p-1">
                                                         <i class="fa fa-arrow-circle-left"></i> Sair</b> </a>
                                             </div>
                                         </div>
@@ -155,7 +157,7 @@
                         <!-- Navigation Menu ==== -->
                         <div class="menu-links navbar-collapse collapse justify-content-start" id="menuDropdown">
                             <div class="menu-logo">
-                                <a href="/"><img src="<?php echo site_url('src/') ?>assets/images/logo-dark.png" alt=""></a>
+                                <a href="<?php echo site_url('/') ?>"><img src="<?php echo site_url('src/') ?>assets/images/logo-dark.png" alt=""></a>
                             </div>
                             <ul class="nav navbar-nav">
                                 <li><a href="javascript:;"><i class="ti-book"></i> SEEC-PA <i class="fa fa-chevron-down"></i></a>
@@ -163,21 +165,21 @@
                                         <li><a href="javascript:;"><img src="<?php echo site_url('src/') ?>assets/images/mini-logo.png" alt="" width="25px"> Sobre<i class="fa fa-angle-right"></i></a>
                                             <ul class="sub-menu">
                                                 <li>
-                                                    <a href="/seec">A SEEC-PA</a>
+                                                    <a href="<?php echo site_url('/seec') ?>">A SEEC-PA</a>
                                                 </li>
                                                 <li>
-                                                    <a href="/departamentos">Nossos Departamentos</a>
+                                                    <a href="<?php echo site_url('/departamentos') ?>">Nossos Departamentos</a>
                                                 </li>
                                             </ul>
                                         </li>
                                         <li><a href="javascript:;">ENAQ<i class="fa fa-angle-right"></i></a>
                                             <ul class="sub-menu">
-                                                <li><a href="/enaq">Orientações sobre o ENAQ</a></li>
-                                                <li><a href="/resultados_enaq">Resultados do ENAQ</a></li>
+                                                <li><a href="<?php echo site_url('/enaq') ?>">Orientações sobre o ENAQ</a></li>
+                                                <li><a href="<?php echo site_url('/resultados_enaq') ?>">Resultados do ENAQ</a></li>
                                             </ul>
                                         </li>
-                                        <li><a href="/calendario_geral"><i class="fa fa-calendar"></i> Calendário</a></li>
-                                        <li><a href="/contato"><i class="fa fa-address-card"></i> Contato</a>
+                                        <li><a href="<?php echo site_url('/calendario_geral') ?>"><i class="fa fa-calendar"></i> Calendário</a></li>
+                                        <li><a href="<?php echo site_url('/contato') ?>"><i class="fa fa-address-card"></i> Contato</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -186,10 +188,10 @@
                                         <li class="add-menu-left">
                                             <h5 class="menu-adv-title">Cursos SEEC</h5>
                                             <ul>
-                                                <li><a href="/itq">ITQ EAD </a></li>
-                                                <li><a href="/postulantes">Curso de Postulantes</a></li>
-                                                <li><a href="/treinamentos">Treinamentos e Capacitações</a></li>
-                                                <li><a href="/nossos_cursos">Todos os Cursos</a></li>
+                                                <li><a href="<?php echo site_url('/itq') ?>">ITQ EAD </a></li>
+                                                <li><a href="<?php echo site_url('/postulantes') ?>">Curso de Postulantes</a></li>
+                                                <li><a href="<?php echo site_url('/treinamentos') ?>">Treinamentos e Capacitações</a></li>
+                                                <li><a href="<?php echo site_url('home/cursos') ?>">Todos os Cursos</a></li>
                                             </ul>
                                         </li>
                                         <li class="add-menu-right">
@@ -212,7 +214,7 @@
                                     <li class="nav-dashboard"><a href="javascript:;"><i class="fa fa-dashboard"></i> Área do Diretor <i class="fa fa-chevron-down"></i></a>
                                         <ul class="sub-menu">
                                             <li><a href="<?php echo site_url("adm/uetp"); ?>"><i class="fa fa-dashboard"></i> Meu Painel</a></li>
-                                            <li><a href="<?php echo site_url("relatorios"); ?>" target="_blank"><i class="fa fa-paste"></i> Meus Relatórios</a></li>
+                                            <li><a href="<?php echo site_url("relatorios/meusrelatorios"); ?>" target="_blank"><i class="fa fa-paste"></i> Meus Relatórios</a></li>
                                             <li><a href="<?php echo site_url("usuarios/editarusuariologado"); ?>" target="_blank"><i class="fa fa-wrench"></i> Atualizar meus dados</a></li>
                                         </ul>
                                     </li>
@@ -227,7 +229,7 @@
                                 <?php elseif (usuario_logado()->is_aluno === true) : ?>
                                     <li class="nav-dashboard"><a href="javascript:;"><i class="fa fa-dashboard"></i> Área do Aluno <i class="fa fa-chevron-down"></i></a>
                                         <ul class="sub-menu">
-                                            <li><a href="<?php echo site_url("home/aluno") ?>"><i class="fa fa-dashboard"></i> Meu Painel</a></li>
+                                            <li><a href="<?php echo site_url("adm/aluno") ?>"><i class="fa fa-dashboard"></i> Meu Painel</a></li>
                                             <li><a href="<?php echo site_url("home/aluno") ?>" target="_blank"><i class="fa fa-paste"></i> Minhas Turmas</a></li>
                                             <li><a href="<?php echo site_url("home/editarusuariologado") ?>" target="_blank"><i class="fa fa-wrench"></i> Atualizar meus dados</a></li>
                                         </ul>
@@ -357,28 +359,28 @@
                                 <h5 class="footer-title">Nossa Galeria</h5>
                                 <ul class="magnific-image">
                                     <li>
-                                        <a href="<?php echo site_url('src/') ?>assets/images/gallery/pic1.jpg" class="magnific-anchor"><img src="<?php echo site_url('src/') ?>assets/images/gallery/pic1.jpg" alt=""></a>
+                                        <a href="<?php echo site_url('src/') ?>assets/images/gallery/1.jpg" class="magnific-anchor"><img src="<?php echo site_url('src/') ?>assets/images/gallery/1.jpg" alt=""></a>
                                     </li>
                                     <li>
-                                        <a href="<?php echo site_url('src/') ?>assets/images/gallery/pic2.jpg" class="magnific-anchor"><img src="<?php echo site_url('src/') ?>assets/images/gallery/pic2.jpg" alt=""></a>
+                                        <a href="<?php echo site_url('src/') ?>assets/images/gallery/2.jpg" class="magnific-anchor"><img src="<?php echo site_url('src/') ?>assets/images/gallery/2.jpg" alt=""></a>
                                     </li>
                                     <li>
-                                        <a href="<?php echo site_url('src/') ?>assets/images/gallery/pic3.jpg" class="magnific-anchor"><img src="<?php echo site_url('src/') ?>assets/images/gallery/pic3.jpg" alt=""></a>
+                                        <a href="<?php echo site_url('src/') ?>assets/images/gallery/3.jpg" class="magnific-anchor"><img src="<?php echo site_url('src/') ?>assets/images/gallery/3.jpg" alt=""></a>
                                     </li>
                                     <li>
-                                        <a href="<?php echo site_url('src/') ?>assets/images/gallery/pic4.jpg" class="magnific-anchor"><img src="<?php echo site_url('src/') ?>assets/images/gallery/pic4.jpg" alt=""></a>
+                                        <a href="<?php echo site_url('src/') ?>assets/images/gallery/4.jpg" class="magnific-anchor"><img src="<?php echo site_url('src/') ?>assets/images/gallery/4.jpg" alt=""></a>
                                     </li>
                                     <li>
-                                        <a href="<?php echo site_url('src/') ?>assets/images/gallery/pic5.jpg" class="magnific-anchor"><img src="<?php echo site_url('src/') ?>assets/images/gallery/pic5.jpg" alt=""></a>
+                                        <a href="<?php echo site_url('src/') ?>assets/images/gallery/5.jpg" class="magnific-anchor"><img src="<?php echo site_url('src/') ?>assets/images/gallery/5.jpg" alt=""></a>
                                     </li>
                                     <li>
-                                        <a href="<?php echo site_url('src/') ?>assets/images/gallery/pic6.jpg" class="magnific-anchor"><img src="<?php echo site_url('src/') ?>assets/images/gallery/pic6.jpg" alt=""></a>
+                                        <a href="<?php echo site_url('src/') ?>assets/images/gallery/6.jpg" class="magnific-anchor"><img src="<?php echo site_url('src/') ?>assets/images/gallery/6.jpg" alt=""></a>
                                     </li>
                                     <li>
-                                        <a href="<?php echo site_url('src/') ?>assets/images/gallery/pic7.jpg" class="magnific-anchor"><img src="<?php echo site_url('src/') ?>assets/images/gallery/pic7.jpg" alt=""></a>
+                                        <a href="<?php echo site_url('src/') ?>assets/images/gallery/7.jpg" class="magnific-anchor"><img src="<?php echo site_url('src/') ?>assets/images/gallery/7.jpg" alt=""></a>
                                     </li>
                                     <li>
-                                        <a href="<?php echo site_url('src/') ?>assets/images/gallery/pic8.jpg" class="magnific-anchor"><img src="<?php echo site_url('src/') ?>assets/images/gallery/pic8.jpg" alt=""></a>
+                                        <a href="<?php echo site_url('src/') ?>assets/images/gallery/8.jpg" class="magnific-anchor"><img src="<?php echo site_url('src/') ?>assets/images/gallery/8.jpg" alt=""></a>
                                     </li>
                                 </ul>
                             </div>
