@@ -83,7 +83,7 @@
 
             "oLanguage": DATATABLE_PTBR,
 
-            ajax: "<?php echo site_url('usuarios/recuperauetps'); ?>",
+            ajax: "<?php echo site_url('usuarios/recuperaalunos'); ?>",
             columns: [{
                     data: 'imagem'
                 },

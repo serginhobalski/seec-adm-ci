@@ -311,42 +311,93 @@ class Relatorios extends BaseController
         return view('Relatorios/excluir', $data);
     }
 
-    public function cadastrar(int $id = null)
+    public function cadastrar()
     {
         if (!$this->request->isAJAX()) {
-
             return redirect()->back();
         }
 
-        // Enviar hash do token do form
+        // Envio o hash do token do form
         $retorno['token'] = csrf_hash();
 
-        // Recuperar o post da requisição
-        $post = $this->request->getPost();
+        $validacao = service('validation');
 
-        // Criar novo objeto da entidade Relatório
-        $relatorio = new Relatorio($post);
+        $regras = [
+            'comprovante' => 'uploaded[comprovante]|max_size[comprovante,1024]|ext_in[comprovante,png,jpg,jpeg,gif,pdf]',
+            'relatorio' => 'uploaded[relatorio]|max_size[relatorio,1024]|ext_in[relatorio,png,jpg,jpeg,gif,pdf]',
+        ];
 
-        // dd($relatorio);
-        // exit;
+        $mensagens = [   // Errors
+            'comprovante' => [
+                'uploaded' => 'Por favor escolha um arquivo',
+                'max_size' => 'Por favor escolha um arquivo de no máximo 3MB',
+                'ext_in'   => 'Por favor escolha um arquivo png, jpg, jpeg, gif ou pdf',
+            ],
+            'relatorio' => [
+                'uploaded' => 'Por favor escolha um arquivo',
+                'max_size' => 'Por favor escolha um arquivo de no máximo 3MB',
+                'ext_in'   => 'Por favor escolha um arquivo png, jpg, jpeg, gif ou pdf',
+            ],
+        ];
 
+        $validacao->setRules($regras, $mensagens);
 
-        if ($this->relatorioModel->protect(false)->save($relatorio)) {
-            $btnCriar = anchor("relatorios/criar", 'Cadastrar outro relatório', ['class' => 'btn mt-2']);
+        if ($validacao->withRequest($this->request)->run() === false) {
+            $retorno['erro'] = 'Por favor verifique os erros abaixo e tente novamente';
+            $retorno['erros_model'] = $validacao->getErrors();
 
-            session()->setFlashdata('sucesso', "Dados salvos com sucesso! $btnCriar");
-
-            $retorno['id'] = $this->relatorioModel->getInsertID();
-
+            // Retorno para o ajax request
             return $this->response->setJSON($retorno);
         }
 
-        $retorno['erro'] = 'Por favor verifique os erros abaixo.';
-        $retorno['erros_model'] = $this->relatorioModel->errors();
+        // Recupera o post da requisição
+        $post = $this->request->getPost();
+
+        // Criar nova instância da entidade relatório
+        $relatorio = new Relatorio($post);
 
 
-        // Retorno para o AJAX request
+        // Recuperar os arquivos enviados no post
+        $comprovante = $this->request->getFile('comprovante');
+        $relatorioAnexo = $this->request->getFile('relatorio');
+
+        $caminhoComprovante = $comprovante->store('comprovantes');
+        $caminhoRelatorio = $relatorioAnexo->store('relatorios');
+
+
+        $caminhoComprovante = WRITEPATH . "uploads/$caminhoComprovante";
+        $caminhoRelatorio = WRITEPATH . "uploads/$caminhoRelatorio";
+
+
+        // Atualizar a tabela de relatórios
+        $relatorio->comprovante = $comprovante->getName();
+        $relatorio->relatorio = $relatorioAnexo->getName();
+
+
+        $this->relatorioModel->save($relatorio);
+
+
+        session()->setFlashdata('sucesso', 'Relatório cadastrado com sucesso!');
+
+
+        // Retorno para o ajax request
         return $this->response->setJSON($retorno);
+    }
+
+    public function comprovante(string $comprovante = null)
+    {
+
+        if ($comprovante != null) {
+            $this->exibeArquivo('comprovantes', $comprovante);
+        }
+    }
+
+    public function relatorioAnexo(string $relatorioAnexo = null)
+    {
+
+        if ($relatorioAnexo != null) {
+            $this->exibeArquivo('relatorios', $relatorioAnexo);
+        }
     }
 
     private function removeComprovanteAntigo(string $comprovante)

@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Entities\Mensagem;
 
 class Mensagens extends BaseController
 {
@@ -106,7 +107,6 @@ class Mensagens extends BaseController
     }
 
 
-
     public function exibir(int $id = null)
     {
         if (!usuario_logado()) {
@@ -132,6 +132,66 @@ class Mensagens extends BaseController
         return view('Mensagens/exibir', $data);
     }
 
+    public function criar()
+    {
+        if (!usuario_logado()) {
+            return redirect()->back()->with("info", "Faça o login para acessar esta página.");
+        }
+
+        $nRecebidas = $this->mensagemModel->select('*')->where('destinatario_id', usuario_logado()->id)->countAllResults();
+        $nEnviadas = $this->mensagemModel->select('*')->where('remetente_id', usuario_logado()->id)->countAllResults();
+        $nDeletadas = $this->mensagemModel->select('*')->where('deletado_em' != null)->countAllResults();
+
+        $mensagem = new Mensagem();
+
+        $destinatarios = $this->usuarioModel->select('id, nome')->findAll();
+
+        $data = [
+            'titulo' => 'Escrever Mensagem',
+            'subtitulo' => 'escrever',
+            'mensagem' => $mensagem,
+            'destinatarios' => $destinatarios,
+            'recebidas' => $nRecebidas,
+            'enviadas' => $nEnviadas,
+            'deletadas' => $nDeletadas,
+
+        ];
+        return view('mensagens/criar', $data);
+    }
+
+    public function cadastrar()
+    {
+        if (!$this->request->isAJAX()) {
+
+            return redirect()->back();
+        }
+
+        // Enviar hash do token do form
+        $retorno['token'] = csrf_hash();
+
+        // Recuperar o post da requisição
+        $post = $this->request->getPost();
+
+        // Criar novo objeto da entidade Usuário
+        $mensagem = new Mensagem($post);
+
+
+        if ($this->mensagemModel->save($mensagem)) {
+
+            session()->setFlashdata('sucesso', 'Mensagem enviada com sucesso!<br> <a href=' . site_url('mensagens/criar') . ' class="btn mt-2"><i class="fa fa-save"></i> Enviar outra mensagem</a>');
+
+            $retorno['id'] = $this->mensagemModel->getInsertID();
+
+            return $this->response->setJSON($retorno);
+        }
+
+        $retorno['erro'] = 'Por favor verifique os erros abaixo.';
+        $retorno['erros_model'] = $this->mensagemModel->errors();
+
+
+        // Retorno para o AJAX request
+        return $this->response->setJSON($retorno);
+    }
 
     public function recuperaMensagens(int $id = null)
     {
@@ -153,7 +213,6 @@ class Mensagens extends BaseController
 
         // return $this->response->setJSON($data);
     }
-
 
 
     private function buscaMensagemOu404(int $id = null)

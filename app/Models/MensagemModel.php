@@ -22,7 +22,7 @@ class MensagemModel extends Model
     protected $updatedField  = 'alterado_em';
     protected $deletedField  = 'deletado_em';
 
-    public function recuperaMensagensEnviadas(int $usuario_id, $quantidade_paginacao)
+    public function recuperaMensagensEnviadas(int $usuario_id)
     {
 
         $atributos = [
@@ -38,11 +38,10 @@ class MensagemModel extends Model
         return $this->select($atributos)
             ->join('usuarios', 'usuarios.id = mensagens.remetente_id')
             ->where('mensagens.remetente_id', $usuario_id)
-            ->groupBy('usuarios.nome')
-            ->paginate($quantidade_paginacao);
+            ->groupBy('usuarios.nome');
     }
 
-    public function recuperaMensagensRecebidas(int $usuario_id, $quantidade_paginacao)
+    public function recuperaMensagensRecebidas(int $usuario_id)
     {
 
         $atributos = [
@@ -58,7 +57,6 @@ class MensagemModel extends Model
         return $this->select($atributos)
             ->join('usuarios', 'usuarios.id = mensagens.destinatario_id')
             ->where('mensagens.destinatario_id', $usuario_id)
-            ->groupBy('usuarios.nome')
-            ->paginate($quantidade_paginacao);
+            ->groupBy('usuarios.nome');
     }
 }

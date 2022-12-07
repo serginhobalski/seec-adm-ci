@@ -26,7 +26,7 @@
     <div class="col-lg-12 m-b30">
         <div class="widget-box">
             <div class="wc-title">
-                <h4>Relatório de <?php echo $relatorio->nome; ?> | <?php echo $relatorio->mes; ?> - <?php echo $relatorio->ano; ?></h4>
+                <h4>Relatório de <?php echo $relatorio->nome; ?></h4>
             </div>
             <div class="widget-inner">
                 <form class="edit-profile m-b30">
@@ -72,32 +72,24 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <div class="col-sm-6">
-                                <label class="form-label">Comprovante</label>
+                            <label class="col-sm-2 col-form-label">Comprovante</label>
+                            <div class="col-sm-7">
                                 <?php if ($relatorio->comprovante == null || $relatorio->comprovante == '') : ?>
                                     <h4>Comprovante não anexado.</h4>
                                 <?php else : ?>
-                                    <!-- <h4><?php echo $relatorio->comprovante; ?></h4> -->
-                                    <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;">
-                                        <iframe style="width:100%;height:100%;position:absolute;left:0px;top:0px;overflow:hidden;" frameborder="0" type="text/html" src="<?php echo site_url("relatorios/comprovante/$relatorio->comprovante"); ?>" width="100%" height="100%" allowfullscreen="" allow="autoplay">
-                                        </iframe>
-                                    </div>
-                                <?php endif; ?>
-                            </div>
-                            <div class="col-sm-6">
-                                <label class="form-label">Relatório</label>
-                                <?php if ($relatorio->relatorio == null || $relatorio->relatorio == '') : ?>
-                                    <h4>Relatório não anexado.</h4>
-                                <?php else : ?>
-                                    <!-- <h4><?php echo $relatorio->relatorio; ?></h4> -->
-                                    <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;">
-                                        <iframe style="width:100%;height:100%;position:absolute;left:0px;top:0px;overflow:hidden;" frameborder="0" type="text/html" src="<?php echo site_url("relatorios/relatorioanexo/$relatorio->relatorio"); ?>" width="100%" height="100%" allowfullscreen="" allow="autoplay">
-                                        </iframe>
-                                    </div>
+                                    <h4><?php echo $relatorio->comprovante; ?></h4>
                                 <?php endif; ?>
                             </div>
                         </div>
                         <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Relatório</label>
+                            <div class="col-sm-7">
+                                <?php if ($relatorio->relatorio == null || $relatorio->relatorio == '') : ?>
+                                    <h4>Relatório não anexado.</h4>
+                                <?php else : ?>
+                                    <h4><?php echo $relatorio->relatorio; ?></h4>
+                                <?php endif; ?>
+                            </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Data de cadastro</label>

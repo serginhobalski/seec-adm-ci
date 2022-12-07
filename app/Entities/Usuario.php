@@ -6,8 +6,6 @@ use CodeIgniter\Entity\Entity;
 
 use App\Libraries\Token;
 
-use App\Libraries\Autenticacao;
-
 class Usuario extends Entity
 {
     protected $dates   = ['criado_em', 'alterado_em', 'deletado_em'];

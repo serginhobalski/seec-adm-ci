@@ -1,6 +1,6 @@
 <div class="email-menu-bar">
     <div class="compose-mail">
-        <a href="mensagens/criar" class="btn btn-block">Escrever</a>
+        <a href="<?php echo site_url('mensagens/criar') ?>" class="btn btn-block">Escrever</a>
     </div>
     <div class="email-menu-bar-inner">
         <ul>

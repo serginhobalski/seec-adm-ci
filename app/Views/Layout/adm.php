@@ -94,7 +94,7 @@
                         </li>
                     <?php elseif (usuario_logado()->is_uetp === true) : ?>
                         <li>
-                            <a href="<?php echo site_url('relatorios') ?>" class="ttr-material-button ttr-submenu-toggle">
+                            <a href="<?php echo site_url('relatorios/meusrelatorios') ?>" class="ttr-material-button ttr-submenu-toggle">
                                 <i class="fa fa-paste"></i> Meus relatórios</a>
                         </li>
                     <?php elseif (usuario_logado()->is_secretaria === true) : ?>
@@ -246,6 +246,18 @@
                             <a href="<?php echo site_url('usuarios'); ?>" class="ttr-material-button">
                                 <span class="ttr-icon"><i class="fa fa-users"></i></span>
                                 <span class="ttr-label">Usuários</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?php echo site_url('usuarios/uetps'); ?>" class="ttr-material-button">
+                                <span class="ttr-icon"><i class="fa fa-address-book"></i></span>
+                                <span class="ttr-label">UETP's</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?php echo site_url('usuarios/alunos'); ?>" class="ttr-material-button">
+                                <span class="ttr-icon"><i class="fa fa-graduation-cap"></i></span>
+                                <span class="ttr-label">Alunos</span>
                             </a>
                         </li>
                         <li>
