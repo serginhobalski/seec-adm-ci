@@ -122,6 +122,15 @@
         </div>
     </div>
 </div>
+<hr>
+<div class="container text-center">
+    <h5 class="text-dark"><i class="fa fa-info-circle" title="Dados do usuário logado"></i> Informações do Usuário:</h5>
+    <p>Nome: <?php echo usuario_logado()->nome; ?> |
+        Local: <?php echo usuario_logado()->local; ?> |
+        E-mail: <?php echo usuario_logado()->email; ?> |
+        Telefone: <?php echo usuario_logado()->telefone; ?> |
+        Login: <?php echo usuario_logado()->login; ?></p>
+</div>
 
 <?php $this->endSection(); ?>
 

@@ -7,10 +7,12 @@ use App\Libraries\Autenticacao;
 class Home extends BaseController
 {
     private $cursoModel;
+    private $usuarioModel;
 
     public function __construct()
     {
         $this->cursoModel = new \App\Models\CursoModel();
+        $this->usuarioModel = new \App\Models\UsuarioModel();
     }
 
     public function index()
@@ -80,6 +82,19 @@ class Home extends BaseController
         } else {
             $email->printDebugger();
         }
+    }
+
+    public function editarImagem(int $id = null)
+    {
+        $usuario = $this->buscaUsuarioOu404($id);
+
+        $data = [
+            'titulo' => "Alterando imagem de " . esc($usuario->nome),
+            'subtitulo' => "Atualização de Dados",
+            'usuario' => $usuario,
+        ];
+
+        return view('Home/editar_imagem', $data);
     }
 
     public function editarUsuarioLogado()
@@ -240,5 +255,15 @@ class Home extends BaseController
             'subtitulo' => 'Temos grande prazer em ajudar.',
         ];
         return view('Home/contato', $data);
+    }
+
+    private function buscaUsuarioOu404(int $id = null)
+    {
+        if (!$id || !$usuario = $this->usuarioModel->withDeleted(true)->find($id)) {
+
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound("Não encontramos o usuário $id");
+        }
+
+        return $usuario;
     }
 }

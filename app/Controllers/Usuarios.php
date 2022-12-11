@@ -23,6 +23,10 @@ class Usuarios extends BaseController
 
     public function index()
     {
+        if (!usuario_logado()->is_admin) {
+            return redirect(site_url('/perfil'));
+        }
+
         $data = [
             'titulo' => 'Usuários',
         ];

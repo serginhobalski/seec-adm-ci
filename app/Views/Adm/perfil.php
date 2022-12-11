@@ -31,6 +31,15 @@
             <div class="widget-inner">
                 <form id="form" class="edit-profile m-b30">
                     <div class="">
+                        <div class="form-group row text-center">
+                            <div class="col-6 card-img-top">
+                                <?php if (usuario_logado()->imagem == null) : ?>
+                                    <img src="<?php echo site_url('src/') ?>assets/images/user-avatar.png" width="200px" alt=""><br>
+                                <?php else : ?>
+                                    <img src="<?php echo site_url("usuarios/imagem/" . usuario_logado()->imagem); ?>" width="200px" alt=""><br>
+                                <?php endif; ?>
+                            </div>
+                        </div>
                         <div class="form-group row">
                         </div>
                         <div class="form-group row">
