@@ -244,7 +244,7 @@ class Mensagens extends BaseController
             'deletadas' => $nDeletadas,
 
         ];
-        return view('mensagens/criar', $data);
+        return view('Mensagens/criar', $data);
     }
 
     public function cadastrar()

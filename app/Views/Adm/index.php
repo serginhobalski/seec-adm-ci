@@ -131,7 +131,7 @@
 </div>
 <div class="row">
     <div class="col-md-6 col-lg-3 col-xl-3 col-sm-6 col-12">
-        <div class="widget-card widget-bg1">
+        <div class="widget-card widget-bg4">
             <div class="wc-item">
                 <h4 class="wc-title">
                     Administradores
@@ -157,7 +157,7 @@
         </div>
     </div>
     <div class="col-md-6 col-lg-3 col-xl-3 col-sm-6 col-12">
-        <div class="widget-card widget-bg2">
+        <div class="widget-card widget-bg1">
             <div class="wc-item">
                 <h4 class="wc-title">
                     Professores
@@ -183,7 +183,7 @@
         </div>
     </div>
     <div class="col-md-6 col-lg-3 col-xl-3 col-sm-6 col-12">
-        <div class="widget-card widget-bg7">
+        <div class="widget-card widget-bg2">
             <div class="wc-item">
                 <h4 class="wc-title">
                     Secretarios
@@ -209,7 +209,7 @@
         </div>
     </div>
     <div class="col-md-6 col-lg-3 col-xl-3 col-sm-6 col-12">
-        <div class="widget-card widget-bg4">
+        <div class="widget-card widget-bg7">
             <div class="wc-item">
                 <h4 class="wc-title">
                     Cursos <br>

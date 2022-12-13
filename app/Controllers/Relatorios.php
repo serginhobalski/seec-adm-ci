@@ -164,7 +164,7 @@ class Relatorios extends BaseController
             'uetps' => $uetps,
 
         ];
-        return view('relatorios/criar', $data);
+        return view('Relatorios/criar', $data);
     }
 
     public function uploadComprovante(int $id = null)

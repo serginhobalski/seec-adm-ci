@@ -105,7 +105,7 @@
                     <div class="col-lg-7 col-md-12 heading-bx p-lr">
                         <div class="video-bx">
                             <img src="<?php echo site_url('src/') ?>assets/images/about/pic1.jpg" alt="" />
-                            <a href="https://www.youtube.com/watch?v=80h-yENxAoI" class="popup-youtube video"><i class="fa fa-play"></i></a>
+                            <a href="https://drive.google.com/file/d/1Bb-rxky9fiICyfv22TzkB_LNXZiLJwtJ/preview" class="popup-youtube video"><i class="fa fa-play"></i></a>
                         </div>
                     </div>
                 </div>
