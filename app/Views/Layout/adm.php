@@ -163,6 +163,7 @@
                                 </li>
                                 <?php if (usuario_logado()->is_admin) : ?>
                                     <hr>
+                                    <li><a class="dropdown-item text-primary" href="<?php echo site_url("aulas") ?>"><i class="ti-settings"></i> Aulas</a></li>
                                     <li><a class="dropdown-item text-primary" href="<?php echo site_url("home/aluno") ?>"><i class="ti-settings"></i> Home | Aluno</a></li>
                                     <li><a class="dropdown-item text-primary" href="<?php echo site_url("adm/aluno") ?>"><i class="ti-settings"></i> Adm | Aluno</a></li>
                                     <li><a class="dropdown-item text-primary" class="dropdown-item text-primary" href="<?php echo site_url("home/professor") ?>"><i class="ti-settings"></i> Home | Professor</a></li>

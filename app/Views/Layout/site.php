@@ -88,13 +88,37 @@
                                                 <?php if (usuario_logado()->is_admin === true) : ?>
                                                     <a class="dropdown-item bg-primary" href="<?php echo site_url("adm"); ?>"><i class="fa fa-dashboard"></i><b class="text-white p-1">Meu painel</b> </a>
                                                     <hr>
-                                                    <a class="dropdown-item bg-primary" href="<?php echo site_url("home/aluno") ?>">Home | Aluno</a>
-                                                    <a class="dropdown-item bg-primary" href="<?php echo site_url("adm/aluno") ?>">Adm | Aluno</a>
-                                                    <a class="dropdown-item bg-primary" class="dropdown-item text-primary" href="<?php echo site_url("home/professor") ?>">Home | Professor</a>
-                                                    <a class="dropdown-item bg-primary" href="<?php echo site_url("adm/professor") ?>">Adm | Professor</a>
-                                                    <a class="dropdown-item bg-primary" href="<?php echo site_url("adm/secretaria") ?>">Adm | Secretaria</a>
-                                                    <a class="dropdown-item bg-primary" href="<?php echo site_url("adm/uetp") ?>">Adm | UETP</a>
-                                                    <a class="dropdown-item bg-primary" href="<?php echo site_url("relatorios/meusrelatorios") ?>">Relatorios | UETP</a>
+                                                    <a class="dropdown-item bg-primary" href="<?php echo site_url("home/aluno") ?>"> <i class="fa fa-dashboard"></i>
+                                                        Home | Aluno
+                                                    </a>
+                                                    <a class="dropdown-item bg-primary" href="<?php echo site_url("adm/aluno") ?>">
+                                                        <i class="fa fa-dashboard"></i>
+                                                        Adm | Aluno
+                                                    </a>
+                                                    <a class="dropdown-item bg-primary" href="<?php echo site_url("aulas") ?>">
+                                                        <i class="fa fa-book"></i>
+                                                        Aulas
+                                                    </a>
+                                                    <a class="dropdown-item bg-primary" class="dropdown-item text-primary" href="<?php echo site_url("home/professor") ?>">
+                                                        <i class="fa fa-dashboard"></i>
+                                                        Home | Professor
+                                                    </a>
+                                                    <a class="dropdown-item bg-primary" href="<?php echo site_url("adm/professor") ?>">
+                                                        <i class="fa fa-dashboard"></i>
+                                                        Adm | Professor
+                                                    </a>
+                                                    <a class="dropdown-item bg-primary" href="<?php echo site_url("adm/secretaria") ?>">
+                                                        <i class="fa fa-dashboard"></i>
+                                                        Adm | Secretaria
+                                                    </a>
+                                                    <a class="dropdown-item bg-primary" href="<?php echo site_url("adm/uetp") ?>">
+                                                        <i class="fa fa-dashboard"></i>
+                                                        Adm | UETP
+                                                    </a>
+                                                    <a class="dropdown-item bg-primary" href="<?php echo site_url("relatorios/meusrelatorios") ?>">
+                                                        <i class="fa fa-dashboard"></i>
+                                                        Relatorios | UETP
+                                                    </a>
                                                     <hr>
 
                                                 <?php elseif (usuario_logado()->is_uetp === true) : ?>
