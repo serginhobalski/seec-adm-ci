@@ -253,7 +253,7 @@
                                 <div class="cours-bx">
                                     <div class="action-box">
                                         <?php if ($curso->categoria === "itq") : ?>
-                                            <img src="<?php echo site_url("src/assets/images/courses/curso_itq.jpg") ?>" alt="">
+                                            <img src="<?php echo site_url("src/") ?>assets/images/courses/curso_itq.jpg" alt="">
                                         <?php elseif ($curso->categoria === "postulantes") : ?>
                                             <img src="<?php echo site_url("src/assets/images/courses/curso_postulantes.jpg") ?>" alt="">
                                         <?php elseif ($curso->categoria === "lideranca") : ?>

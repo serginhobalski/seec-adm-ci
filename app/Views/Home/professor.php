@@ -168,7 +168,7 @@
                         <li class="action-card col-lg-6 col-md-6 col-sm-12 expired">
                             <div class="event-bx m-b30">
                                 <div class="action-box">
-                                    <img src="assets/images/event/pic2.jpg" alt="">
+                                    <img src="<?php echo site_url('src/') ?>assets/images/event/pic2.jpg" alt="">
                                 </div>
                                 <div class="info-bx d-flex">
                                     <div>
