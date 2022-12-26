@@ -25,44 +25,49 @@
                     <ul class="row">
 
 
-                        <li class="col-md-12">
-                            <div class="wm-courses-popular-wrap">
-                                <figure>
-                                    <a href="#"><img src="<?php echo site_url('lms/') ?>extra-images/papular-courses-1.jpg" alt="" />
-                                        <span class="wm-popular-hover">
-                                            <small>Ver curso</small>
-                                        </span>
-                                    </a>
-                                    <figcaption>
-                                        <img style="width: 70px;" src="<?php echo site_url('lms/') ?>extra-images/sof.jpg" alt="" />
-                                        <h6><a href="#">Sergio Filho</a></h6>
-                                    </figcaption>
-                                </figure>
-                                <div class="wm-popular-courses-text">
-                                    <h6>
-                                        <a href="#">Módulo ITQ EAD</a>
-                                    </h6>
-                                    <p>
-                                        Módulo do Instituto Teológico Quadrangular EAD.
-                                    </p>
-                                    <div class="wm-courses-price"><span>-</span></div>
-                                    <ul>
-                                        <li>
-                                            <a href="#" class="wm-color"><i class="wmicon-social7"></i> -</a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="wm-color"><i class="wmicon-social6"></i> -</a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="wm-color"><i class="wmicon-time2"></i> -</a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="wm-color"><i class="wmicon-location"></i> -</a>
-                                        </li>
-                                    </ul>
+                        <?php foreach ($modulos as $modulo) : ?>
+
+                            <li class="col-md-12">
+                                <div class="wm-courses-popular-wrap">
+
+                                    <figure>
+                                        <a href="<?php echo site_url("aulas/cursoaluno/$modulo->id") ?>"><img src="<?php echo site_url('lms/') ?>extra-images/papular-courses-1.jpg" alt="" />
+                                            <span class="wm-popular-hover">
+                                                <small>Ver curso</small>
+                                            </span>
+                                        </a>
+                                        <figcaption>
+                                            <img style="width: 60px;" src="<?php echo site_url('lms/') ?>extra-images/sof.jpg" alt="" />
+                                            <h6><a href="#">Sergio Filho</a></h6>
+                                        </figcaption>
+                                    </figure>
+                                    <div class="wm-popular-courses-text">
+                                        <h6>
+                                            <a href="#"><?php echo $modulo->nome ?></a>
+                                        </h6>
+                                        <p>
+                                            <?php echo $modulo->descricao ?>
+                                        </p>
+                                        <div class="wm-courses-price"><span>R$ <?php echo implode(',', explode('.', $modulo->valor)); ?></span></div>
+                                        <ul>
+                                            <li>
+                                                <a href="#" class="wm-color"><i class="wmicon-social7"></i> -</a>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="wm-color"><i class="wmicon-social6"></i> -</a>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="wm-color"><i class="wmicon-time2"></i> -</a>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="wm-color"><i class="wmicon-location"></i> -</a>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
-                            </div>
-                        </li>
+                            </li>
+
+                        <?php endforeach; ?>
 
                     </ul>
                 </div>

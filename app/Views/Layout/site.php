@@ -19,8 +19,8 @@
     <meta name="format-detection" content="telephone=no">
 
     <!-- FAVICONS ICON ============================================= -->
-    <link rel="icon" href="<?php echo site_url('src/admin/') ?>assets/images/favicon.png" type="image/x-icon">
-    <link rel="shortcut icon" type="image/x-icon" href="<?php echo site_url('src/admin/') ?>assets/images/favicon.png">
+    <link rel="icon" href="<?php echo site_url('favicon.png') ?>" type="image/x-icon">
+    <link rel="shortcut icon" type="image/x-icon" href="<?php echo site_url('favicon.png') ?>">
 
     <!-- PAGE TITLE HERE ============================================= -->
     <title>SEEC-PA | <?php echo $this->renderSection('titulo'); ?></title>
@@ -313,7 +313,8 @@
                                 </ul>
                             </div>
                             <div class="pt-btn-join">
-                                <a href="https://seecpa.com.br/cursos" target="_blank" class="btn">Plataforma de Cursos</a>
+                                <a href="<?php echo site_url('aulas') ?>" class="btn">Plataforma de Cursos</a>
+                                <!-- <a href="https://seecpa.com.br/cursos" target="_blank" class="btn">Plataforma de Cursos</a> -->
                             </div>
                         </div>
                     </div>

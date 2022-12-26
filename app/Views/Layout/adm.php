@@ -22,12 +22,8 @@
     <meta name="format-detection" content="telephone=no">
 
     <!-- FAVICONS ICON ============================================= -->
-    <link rel="icon" href="../error-404.html" type="image/x-icon" />
-    <link rel="shortcut icon" type="image/x-icon" href="<?php
-
-                                                        use App\Database\Seeds\UsuarioAdminSeeder;
-
-                                                        echo site_url('src/admin/') ?>assets/images/favicon.png" />
+    <link rel="icon" href="<?php echo site_url('favicon.png') ?>" type="image/x-icon">
+    <link rel="shortcut icon" type="image/x-icon" href="<?php echo site_url('favicon.png') ?>">
 
     <!-- PAGE TITLE HERE ============================================= -->
     <title>SEEC-PA | <?php echo $this->renderSection('titulo'); ?></title>

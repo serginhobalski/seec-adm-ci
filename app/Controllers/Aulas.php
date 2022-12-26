@@ -9,12 +9,16 @@ class Aulas extends BaseController
     private $usuarioModel;
     private $cursoModel;
     private $alunoCursoModel;
+    private $disciplinaModel;
+    private $cursoDisciplinaModel;
 
     public function __construct()
     {
         $this->usuarioModel = new \App\Models\UsuarioModel();
         $this->cursoModel = new \App\Models\CursoModel();
         $this->alunoCursoModel = new \App\Models\AlunoCursoModel();
+        $this->disciplinaModel = new \App\Models\DisciplinaModel();
+        $this->cursoDisciplinaModel = new \App\Models\CursoDisciplinaModel();
     }
 
     public function index()
@@ -52,13 +56,71 @@ class Aulas extends BaseController
             return redirect()->back()->with("info", "Você fazer login para visualizar esta página.");
         }
 
+        $modulos = $this->cursoModel->select('*')->findAll();
+
         $data = [
             'titulo' => 'Cursos de ' . usuario_logado()->nome,
             'slug' => 'cursos',
+            'modulos' => $modulos,
         ];
         return view('Aulas/cursos', $data);
     }
 
+
+    public function cursosGeral()
+    {
+
+        $modulos = $this->cursoModel->select('*')->findAll();
+
+        $data = [
+            'titulo' => 'Cursos Disponíveis',
+            'slug' => 'cursos_geral',
+            'modulos' => $modulos,
+        ];
+        return view('Aulas/cursos_geral', $data);
+    }
+
+    public function cursoDetalhes(int $id = null)
+    {
+        $curso = $this->buscaCursoOu404($id);
+
+        $disciplinas = $this->cursoDisciplinaModel->recuperaDisciplinasDoCurso($id, 10);
+        $qtd_disciplinas = $this->cursoDisciplinaModel->where('curso_disciplinas.curso_id', $id)->countAllResults();
+        $modulos = $this->cursoModel->select('*')->findAll(limit: 3);
+
+        $data = [
+            'titulo' => "Detalhes do curso " . esc($curso->nome),
+            'curso' => $curso,
+            'disciplinas' => $disciplinas,
+            'qtd_disciplinas' => $qtd_disciplinas,
+            'modulos' => $modulos,
+        ];
+
+        return view('Aulas/curso_detalhes', $data);
+    }
+
+    public function cursoAluno(int $id = null)
+    {
+        if (!usuario_logado()) {
+            return redirect()->back()->with("info", "Você não possui permissão para visualizar esta página.");
+        }
+
+        $curso = $this->buscaCursoOu404($id);
+
+        $disciplinas = $this->cursoDisciplinaModel->recuperaDisciplinasDoCurso($id, 10);
+        $qtd_disciplinas = $this->cursoDisciplinaModel->where('curso_disciplinas.curso_id', $id)->countAllResults();
+        $modulos = $this->cursoModel->select('*')->findAll(limit: 3);
+
+        $data = [
+            'titulo' => "Aulas do curso: " . esc($curso->nome),
+            'curso' => $curso,
+            'disciplinas' => $disciplinas,
+            'qtd_disciplinas' => $qtd_disciplinas,
+            'modulos' => $modulos,
+        ];
+
+        return view('Aulas/curso_aluno', $data);
+    }
 
     public function mensagens()
     {
@@ -201,5 +263,15 @@ class Aulas extends BaseController
         if (is_file($imagemCaminho)) {
             unlink($imagemCaminho);
         }
+    }
+
+    private function buscaCursoOu404(int $id = null)
+    {
+        if (!$id || !$curso = $this->cursoModel->withDeleted(true)->find($id)) {
+
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound("Não encontramos o curso $id");
+        }
+
+        return $curso;
     }
 }

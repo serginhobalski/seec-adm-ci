@@ -9,6 +9,10 @@
 
     <title>SEEC-PA | <?php echo $this->renderSection('titulo'); ?></title>
 
+    <!-- FAVICONS ICON ============================================= -->
+    <link rel="icon" href="<?php echo site_url('favicon.png') ?>" type="image/x-icon">
+    <link rel="shortcut icon" type="image/x-icon" href="<?php echo site_url('favicon.ico') ?>">
+
     <!-- Css Files -->
     <link href="<?php echo site_url('lms/') ?>css/bootstrap.css" rel="stylesheet" />
     <link href="<?php echo site_url('lms/') ?>css/font-awesome.css" rel="stylesheet" />
@@ -48,12 +52,18 @@
                                 </li>
                             </ul>
                             <ul class="wm-adminuser-section">
-                                <li>
-                                    <a href="#" data-toggle="modal" data-target="#ModalLogin">login</a>
-                                </li>
-                                <li>
+                                <?php if (!usuario_logado()) : ?>
+                                    <li>
+                                        <a href="<?php echo site_url('login') ?>">login</a>
+                                    </li>
+                                <?php else : ?>
+                                    <li>
+                                        <a href="#" data-toggle="modal" data-target="#ModalOpcoes"><?php echo usuario_logado()->nome; ?></a>
+                                    </li>
+                                <?php endif; ?>
+                                <!-- <li>
                                     <a href="#">Contato</a>
-                                </li>
+                                </li> -->
                                 <li>
                                     <a href="#" class="wm-search-btn" data-toggle="modal" data-target="#ModalSearch"><i class="wmicon-search"></i></a>
                                 </li>
@@ -250,7 +260,7 @@
     </div>
     <!--// Main Wrapper \\-->
 
-    <!-- ModalLogin Box -->
+    <!-- ModalLogin Login -->
     <div class="modal fade" id="ModalLogin" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -323,7 +333,57 @@
             <div class="clearfix"></div>
         </div>
     </div>
-    <!-- ModalLogin Box -->
+    <!-- ModalLogin Login -->
+
+    <!-- ModalLogin Opções -->
+    <div class="modal fade" id="ModalOpcoes" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="wm-modallogin-form wm-login-popup">
+                        <span class="wm-color">Opções de <?php echo usuario_logado()->nome ?></span>
+                        <ul>
+                            <?php if (usuario_logado()->is_admin === true) : ?>
+                                <li>
+                                    <a href="<?php echo site_url('adm') ?>">
+                                        <i class="fa fa-dashboard"></i> ADM
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="<?php echo site_url('aulas') ?>">
+                                        <i class="fa fa-book"></i> Aulas
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="<?php echo site_url('aulas/cursosgeral') ?>">
+                                        <i class="fa fa-book"></i> Todos os Cursos
+                                    </a>
+                                </li>
+                            <?php endif; ?>
+                            <hr>
+                            <li>
+                                <a href="<?php echo site_url('perfil') ?>">
+                                    <i class="fa fa-user"></i> Perfil
+                                </a>
+                            </li>
+                            <li>
+                                <a href="<?php echo site_url('home/editarusuariologado') ?>">
+                                    <i class="fa fa-upload"></i> Atualizar dados
+                                </a>
+                            </li>
+                            <li>
+                                <a href="<?php echo site_url('logout') ?>">
+                                    <i class="fa fa-arrow-circle-left"></i> Sair
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <!-- ModalLogin Opções -->
 
     <!-- ModalSearch Box -->
     <div class="modal fade" id="ModalSearch" tabindex="-1" role="dialog">
