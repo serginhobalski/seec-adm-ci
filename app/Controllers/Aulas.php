@@ -112,7 +112,7 @@ class Aulas extends BaseController
         $modulos = $this->cursoModel->select('*')->findAll(limit: 3);
 
         $data = [
-            'titulo' => "Aulas do curso: " . esc($curso->nome),
+            'titulo' => "Disciplinas de: " . esc($curso->nome),
             'curso' => $curso,
             'disciplinas' => $disciplinas,
             'qtd_disciplinas' => $qtd_disciplinas,

@@ -41,8 +41,14 @@ class TabelaAulas extends Migration
                 'null' => true,
                 'default' => null,
             ],
+            'disciplina_id' => [
+                'type'           => 'INT',
+                'constraint'     => 5,
+                'unsigned'       => true,
+            ],
         ]);
         $this->forge->addKey('id', true);
+        $this->forge->addForeignKey('disciplina_id', 'disciplinas', 'id', 'CASCADE', 'CASCADE');
         $this->forge->createTable('aulas');
     }
 
