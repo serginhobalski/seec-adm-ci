@@ -34,6 +34,6 @@ class TabelaAulasDisciplinas extends Migration
 
     public function down()
     {
-        //
+        $this->forge->dropTable('aulas_disciplinas');
     }
 }

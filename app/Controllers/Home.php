@@ -10,6 +10,7 @@ class Home extends BaseController
     private $usuarioModel;
     private $disciplinaModel;
     private $cursoDisciplinaModel;
+    private $notaEnaqModel;
 
     public function __construct()
     {
@@ -17,6 +18,7 @@ class Home extends BaseController
         $this->usuarioModel = new \App\Models\UsuarioModel();
         $this->disciplinaModel = new \App\Models\DisciplinaModel();
         $this->cursoDisciplinaModel = new \App\Models\CursoDisciplinaModel();
+        $this->notaEnaqModel = new \App\Models\NotaEnaqModel();
     }
 
     public function index()
@@ -84,6 +86,10 @@ class Home extends BaseController
 
     public function login()
     {
+        if (!usuario_logado()->is_admin) {
+            return redirect()->back()->with("info", "Você não possui permissão para visualizar esta página.");
+        }
+
         dd(usuario_logado());
     }
 
@@ -209,6 +215,8 @@ class Home extends BaseController
         return view('Home/enaq', $data);
     }
 
+
+
     public function treinamentos()
     {
         $data = [
@@ -234,6 +242,64 @@ class Home extends BaseController
             'subtitulo' => 'Fique por dentro dos resultados do ENAQ!',
         ];
         return view('Home/resultados_enaq', $data);
+    }
+
+    public function recuperaResultadosEnaq()
+    {
+        if (!$this->request->isAJAX()) {
+
+            return redirect()->back();
+        }
+
+        $atributos = [
+            'id',
+            'ano',
+            'local',
+            'nome',
+            'prova',
+            'redacao',
+            'media',
+        ];
+
+        $resultados = $this->notaEnaqModel->select($atributos)
+            ->findAll();
+
+        $data = [];
+
+
+        foreach ($resultados as $resultado) {
+
+            $nomeRelatorio = esc($resultado->nome);
+
+            $data[] = [
+                'id' => $resultado->id,
+                'ano' => esc($resultado->ano),
+                'local' => esc($resultado->local),
+                'nome' => anchor("home/exibirnotaenaq/$resultado->id", esc($resultado->nome), 'title="Exibir ' . $nomeRelatorio . '"'),
+                'prova' => implode(',', explode('.', $resultado->prova)),
+                'redacao' => implode(',', explode('.', $resultado->redacao)),
+                'media' => implode(',', explode('.', $resultado->media)),
+            ];
+        }
+
+        $retorno = [
+            'data' => $data,
+        ];
+
+        return $this->response->setJSON($retorno);
+    }
+
+    public function exibirNotaEnaq(int $id = null)
+    {
+        $resultado = $this->buscaResultadoOu404($id);
+
+        $data = [
+            'titulo' => "Detalhes da nota ENAQ",
+            'subtitulo' => "Exibindo detalhes da nota",
+            'resultado' => $resultado,
+        ];
+
+        return view('Home/exibir_nota_enaq', $data);
     }
 
     public function seec()
@@ -299,5 +365,15 @@ class Home extends BaseController
         }
 
         return $curso;
+    }
+
+    private function buscaResultadoOu404(int $id = null)
+    {
+        if (!$id || !$resultado = $this->notaEnaqModel->withDeleted(true)->find($id)) {
+
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound("Não encontramos o registro $id");
+        }
+
+        return $resultado;
     }
 }

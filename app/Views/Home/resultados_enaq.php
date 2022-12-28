@@ -44,7 +44,22 @@
     <!-- inner page banner END -->
 
     <div class="container">
-        <h1>Novidades em breve...</h1>
+        <div class="table-responsive radius-md">
+            <table id="ajaxTableRelatorios" class="table" style="width: 100%;">
+                <thead>
+                    <tr>
+                        <th class="text-primary">Id</th>
+                        <th class="text-primary">Ano</th>
+                        <th class="text-primary">Local</th>
+                        <th class="text-primary">Postulante</th>
+                        <th class="text-primary">Prova</th>
+                        <th class="text-primary">Redação</th>
+                        <th class="text-primary">Média</th>
+                    </tr>
+                </thead>
+
+            </table>
+        </div>
     </div>
 
 
@@ -55,5 +70,69 @@
 
 <!-- Custom scripts -->
 <?php echo $this->section('scripts'); ?>
-<!-- Scripts content here -->
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.12.1/r-2.3.0/datatables.min.js"></script>
+
+<script>
+    const DATATABLE_PTBR = {
+        "sEmptyTable": "Nenhum registro encontrado",
+        "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+        "sInfoEmpty": "Mostrando 0 até 0 de 0 registros",
+        "sInfoFiltered": "(Filtrados de _MAX_ registros)",
+        "sInfoPostFix": "",
+        "sInfoThousands": ".",
+        "sLengthMenu": "_MENU_ resultados por página",
+        "sLoadingRecords": "Carregando...",
+        "sProcessing": "Processando...",
+        "sZeroRecords": "Nenhum registro encontrado",
+        "sSearch": "Pesquisar",
+        "oPaginate": {
+            "sNext": "Próximo",
+            "sPrevious": "Anterior",
+            "sFirst": "Primeiro",
+            "sLast": "Último"
+        },
+        "oAria": {
+            "sSortAscending": ": Ordenar colunas de forma ascendente",
+            "sSortDescending": ": Ordenar colunas de forma descendente"
+        },
+        "select": {
+            "rows": {
+                "_": "Selecionado %d linhas",
+                "0": "Nenhuma linha selecionada",
+                "1": "Selecionado 1 linha"
+            }
+        }
+    }
+
+    $(document).ready(function() {
+        $('#ajaxTableRelatorios').DataTable({
+
+            "oLanguage": DATATABLE_PTBR,
+
+            ajax: "<?php echo site_url('home/recuperaresultadosenaq'); ?>",
+            columns: [{
+                    data: 'id'
+                },
+                {
+                    data: 'ano'
+                },
+                {
+                    data: 'local'
+                },
+                {
+                    data: 'nome'
+                },
+                {
+                    data: 'prova'
+                },
+                {
+                    data: 'redacao'
+                },
+                {
+                    data: 'media'
+                },
+            ],
+        });
+    });
+</script>
 <?php $this->endSection(); ?>
