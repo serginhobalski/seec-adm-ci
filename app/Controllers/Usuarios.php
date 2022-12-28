@@ -71,7 +71,7 @@ class Usuarios extends BaseController
                 ];
             } else {
                 $imagem = [
-                    'src' => site_url("src/assets/images/itq.jpg"),
+                    'src' => site_url("src/assets/images/user-avatar.png"),
                     'class' => 'rounded-circle img-fluid',
                     'alt' => 'Sem imagem',
                     'width' => '50',
@@ -577,7 +577,7 @@ class Usuarios extends BaseController
                 ];
             } else {
                 $imagem = [
-                    'src' => site_url("src/assets/images/itq.jpg"),
+                    'src' => site_url("src/assets/images/user-avatar.png"),
                     'class' => 'rounded-circle img-fluid',
                     'alt' => 'Sem imagem',
                     'width' => '50',
@@ -657,7 +657,7 @@ class Usuarios extends BaseController
                 ];
             } else {
                 $imagem = [
-                    'src' => site_url("src/assets/images/itq.jpg"),
+                    'src' => site_url("src/assets/images/user-avatar.png"),
                     'class' => 'rounded-circle img-fluid',
                     'alt' => 'Sem imagem',
                     'width' => '50',
@@ -666,7 +666,87 @@ class Usuarios extends BaseController
 
             $data[] = [
                 'imagem' => $usuario->imagem = img($imagem),
-                'nome' => anchor("usuarios/exibir/$usuario->id", esc($usuario->nome), 'title="Exibir ' . esc($usuario->nome) . '"'),
+                'nome' => anchor("usuarios/exibir/$usuario->principal_id", esc($usuario->nome), 'title="Exibir ' . esc($usuario->nome) . '"'),
+                'local' => esc($usuario->local),
+                'login' => esc($usuario->login),
+                'grupo' => esc($usuario->grupo),
+                'ativo' => $usuario->exibeSituacao(),
+            ];
+        }
+
+        $retorno = [
+            'data' => $data,
+        ];
+
+        // Retorno para o AJAX request
+        return $this->response->setJSON($retorno);
+    }
+
+    public function professores()
+    {
+        $data = [
+            'titulo' => 'UETP\'s',
+        ];
+        return view('Usuarios/professores', $data);
+    }
+
+
+    public function recuperaProfessores()
+    {
+        // if (!$this->request->isAJAX()) {
+
+        //     return redirect()->back();
+        // }
+
+        $atributos = [
+            'usuarios.id AS principal_id',
+            'usuarios.nome',
+            'usuarios.local',
+            'usuarios.login',
+            'usuarios.ativo',
+            'usuarios.imagem',
+            'usuarios.deletado_em',
+            'grupos_usuarios.grupo_id',
+            'grupos_usuarios.usuario_id',
+            'grupos.nome AS grupo',
+        ];
+
+
+        $usuarios = $this->usuarioModel->select($atributos)
+            ->withDeleted(true)
+            ->join('grupos_usuarios', 'grupos_usuarios.usuario_id = usuarios.id')
+            ->join('grupos', 'grupos.id = grupos_usuarios.grupo_id')
+            ->where('grupos_usuarios.grupo_id', 3)
+            ->groupBy('usuarios.nome')
+            ->findAll();
+
+
+        // dd($usuarios);
+        // exit;
+
+        $data = [];
+
+        foreach ($usuarios as $usuario) {
+
+            if ($usuario->imagem != null) {
+                $imagem = [
+                    'src' => site_url("usuarios/imagem/$usuario->imagem"),
+                    'class' => 'rounded-circle img-fluid',
+                    'alt' => esc($usuario->nome),
+                    'width' => '50',
+                ];
+            } else {
+                $imagem = [
+                    'src' => site_url("src/assets/images/user-avatar.png"),
+                    'class' => 'rounded-circle img-fluid',
+                    'alt' => 'Sem imagem',
+                    'width' => '50',
+                ];
+            }
+
+            $data[] = [
+                'imagem' => $usuario->imagem = img($imagem),
+                'nome' => anchor("usuarios/exibir/$usuario->principal_id", esc($usuario->nome), 'title="Exibir ' . esc($usuario->nome) . '"'),
                 'local' => esc($usuario->local),
                 'login' => esc($usuario->login),
                 'grupo' => esc($usuario->grupo),

@@ -266,22 +266,37 @@
                             </a>
                         </li>
                         <li>
-                            <a href="<?php echo site_url('usuarios'); ?>" class="ttr-material-button">
+                            <a href="#" class="ttr-material-button">
                                 <span class="ttr-icon"><i class="fa fa-users"></i></span>
                                 <span class="ttr-label">Usuários</span>
+                                <span class="ttr-arrow-icon"><i class="fa fa-angle-down"></i></span>
                             </a>
-                        </li>
-                        <li>
-                            <a href="<?php echo site_url('usuarios/uetps'); ?>" class="ttr-material-button">
-                                <span class="ttr-icon"><i class="fa fa-address-book"></i></span>
-                                <span class="ttr-label">UETP's</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="<?php echo site_url('usuarios/alunos'); ?>" class="ttr-material-button">
-                                <span class="ttr-icon"><i class="fa fa-graduation-cap"></i></span>
-                                <span class="ttr-label">Alunos</span>
-                            </a>
+                            <ul>
+                                <li>
+                                    <a href="<?php echo site_url('usuarios'); ?>" class="ttr-material-button">
+                                        <span class="ttr-icon"><i class="fa fa-users"></i></span>
+                                        <span class="ttr-label">Todos os Usuários</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="<?php echo site_url('usuarios/uetps'); ?>" class="ttr-material-button">
+                                        <span class="ttr-icon"><i class="fa fa-address-book"></i></span>
+                                        <span class="ttr-label">UETP's</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="<?php echo site_url('usuarios/alunos'); ?>" class="ttr-material-button">
+                                        <span class="ttr-icon"><i class="fa fa-graduation-cap"></i></span>
+                                        <span class="ttr-label">Alunos</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="<?php echo site_url('usuarios/professores'); ?>" class="ttr-material-button">
+                                        <span class="ttr-icon"><i class="fa fa-graduation-cap"></i></span>
+                                        <span class="ttr-label">Professores</span>
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
                         <li>
                             <a href="<?php echo site_url('relatorios'); ?>" class="ttr-material-button">

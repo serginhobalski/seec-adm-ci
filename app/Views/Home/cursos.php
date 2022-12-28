@@ -63,9 +63,9 @@
                             <input type="radio">
                             <a href="#"><span>Postulantes</span></a>
                         </li>
-                        <li data-filter="lideranca" class="btn">
+                        <li data-filter="ministerial" class="btn">
                             <input type="radio">
-                            <a href="#"><span>Liderança</span></a>
+                            <a href="#"><span>Ministerial</span></a>
                         </li>
                     </ul>
                 </div>
@@ -75,7 +75,13 @@
                             <li class="action-card col-lg-6 col-md-6 col-sm-12 <?php echo $curso->categoria; ?>">
                                 <div class="event-bx m-b30">
                                     <div class="action-box">
-                                        <img src="<?php echo site_url('src/') ?>assets/images/event/pic1.jpg" alt="">
+                                        <?php if ($curso->categoria === 'itq') : ?>
+                                            <img src="<?php echo site_url('src/') ?>assets/images/event/capa-itq.jpg" alt="">
+                                        <?php elseif ($curso->categoria === 'postulantes') : ?>
+                                            <img src="<?php echo site_url('src/') ?>assets/images/event/capa-postulantes.jpg" alt="">
+                                        <?php elseif ($curso->categoria === 'ministerial') : ?>
+                                            <img src="<?php echo site_url('src/') ?>assets/images/event/capa-ministerial.jpg" alt="">
+                                        <?php endif; ?>
                                     </div>
                                     <div class="info-bx d-flex">
                                         <div>
@@ -85,7 +91,7 @@
                                             </div>
                                         </div>
                                         <div class="event-info">
-                                            <h4 class="event-title"><a href="#"><?php echo esc($curso->nome) ?></a></h4>
+                                            <h4 class="event-title"><a href="<?php echo site_url("home/cursodetalhes/$curso->id") ?>"><?php echo esc($curso->nome) ?></a></h4>
                                             <ul class="media-post">
                                                 <li><a href="#"><i class="fa fa-bookmark"></i>R$ <?php echo implode(",", explode(".", $curso->valor)) ?></a></li>
                                                 <li>

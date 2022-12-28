@@ -131,7 +131,11 @@
                                 </div>
                             </nav>
                             <!--// Navigation \\-->
-                            <a href="#" class="wm-header-btn"><?php echo usuario_logado()->nome ?></a>
+                            <?php if (!usuario_logado()) : ?>
+                                <a href="<?php echo site_url("login") ?>" class="wm-header-btn">Entrar</a>
+                            <?php else : ?>
+                                <a href="#" class="wm-header-btn"><?php echo usuario_logado()->nome ?></a>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
@@ -341,42 +345,52 @@
             <div class="modal-content">
                 <div class="modal-body">
                     <div class="wm-modallogin-form wm-login-popup">
-                        <span class="wm-color">Opções de <?php echo usuario_logado()->nome ?></span>
-                        <ul>
-                            <?php if (usuario_logado()->is_admin === true) : ?>
+                        <?php if (!usuario_logado()) : ?>
+                            <ul>
                                 <li>
-                                    <a href="<?php echo site_url('adm') ?>">
-                                        <i class="fa fa-dashboard"></i> ADM
+                                    <a href="<?php echo site_url('login') ?>">
+                                        <i class="fa fa-user"></i> Entrar
+                                    </a>
+                                </li>
+                            </ul>
+                        <?php else : ?>
+                            <span class="wm-color">Opções de <?php echo usuario_logado()->nome ?></span>
+                            <ul>
+                                <?php if (usuario_logado()->is_admin === true) : ?>
+                                    <li>
+                                        <a href="<?php echo site_url('adm') ?>">
+                                            <i class="fa fa-dashboard"></i> ADM
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="<?php echo site_url('aulas') ?>">
+                                            <i class="fa fa-book"></i> Aulas
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="<?php echo site_url('aulas/cursosgeral') ?>">
+                                            <i class="fa fa-book"></i> Todos os Cursos
+                                        </a>
+                                    </li>
+                                <?php endif; ?>
+                                <hr>
+                                <li>
+                                    <a href="<?php echo site_url('perfil') ?>">
+                                        <i class="fa fa-user"></i> Perfil
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="<?php echo site_url('aulas') ?>">
-                                        <i class="fa fa-book"></i> Aulas
+                                    <a href="<?php echo site_url('home/editarusuariologado') ?>">
+                                        <i class="fa fa-upload"></i> Atualizar dados
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="<?php echo site_url('aulas/cursosgeral') ?>">
-                                        <i class="fa fa-book"></i> Todos os Cursos
+                                    <a href="<?php echo site_url('logout') ?>">
+                                        <i class="fa fa-arrow-circle-left"></i> Sair
                                     </a>
                                 </li>
-                            <?php endif; ?>
-                            <hr>
-                            <li>
-                                <a href="<?php echo site_url('perfil') ?>">
-                                    <i class="fa fa-user"></i> Perfil
-                                </a>
-                            </li>
-                            <li>
-                                <a href="<?php echo site_url('home/editarusuariologado') ?>">
-                                    <i class="fa fa-upload"></i> Atualizar dados
-                                </a>
-                            </li>
-                            <li>
-                                <a href="<?php echo site_url('logout') ?>">
-                                    <i class="fa fa-arrow-circle-left"></i> Sair
-                                </a>
-                            </li>
-                        </ul>
+                            </ul>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>

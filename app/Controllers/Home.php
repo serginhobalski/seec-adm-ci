@@ -8,11 +8,15 @@ class Home extends BaseController
 {
     private $cursoModel;
     private $usuarioModel;
+    private $disciplinaModel;
+    private $cursoDisciplinaModel;
 
     public function __construct()
     {
         $this->cursoModel = new \App\Models\CursoModel();
         $this->usuarioModel = new \App\Models\UsuarioModel();
+        $this->disciplinaModel = new \App\Models\DisciplinaModel();
+        $this->cursoDisciplinaModel = new \App\Models\CursoDisciplinaModel();
     }
 
     public function index()
@@ -56,6 +60,26 @@ class Home extends BaseController
             'cursos' => $cursos,
         ];
         return view('Home/cursos', $data);
+    }
+
+    public function cursoDetalhes(int $id = null)
+    {
+        $curso = $this->buscaCursoOu404($id);
+
+        $disciplinas = $this->cursoDisciplinaModel->recuperaDisciplinasDoCurso($id, 10);
+        $qtd_disciplinas = $this->cursoDisciplinaModel->where('curso_disciplinas.curso_id', $id)->countAllResults();
+        $modulos = $this->cursoModel->select('*')->findAll(limit: 3);
+
+        $data = [
+            'titulo' => "Detalhes de " . esc($curso->nome),
+            'subtitulo' => esc($curso->descricao),
+            'curso' => $curso,
+            'disciplinas' => $disciplinas,
+            'qtd_disciplinas' => $qtd_disciplinas,
+            'modulos' => $modulos,
+        ];
+
+        return view('Home/curso_detalhes', $data);
     }
 
     public function login()
@@ -265,5 +289,15 @@ class Home extends BaseController
         }
 
         return $usuario;
+    }
+
+    private function buscaCursoOu404(int $id = null)
+    {
+        if (!$id || !$curso = $this->cursoModel->withDeleted(true)->find($id)) {
+
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound("Não encontramos o curso $id");
+        }
+
+        return $curso;
     }
 }
