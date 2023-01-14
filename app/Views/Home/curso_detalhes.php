@@ -145,7 +145,7 @@
                                                 <div class="curriculum-list-box">
                                                     <span>#</span> <?php echo $disciplina->disciplina_nome; ?>
                                                 </div>
-                                                <span><?php echo $disciplina->disciplina_descricao; ?></span>
+                                                <!-- <span><?php echo $disciplina->disciplina_descricao; ?></span> -->
                                             </li>
                                         <?php endforeach; ?>
                                     </ul>

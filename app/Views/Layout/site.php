@@ -213,7 +213,7 @@
                                             <h5 class="menu-adv-title">Cursos SEEC</h5>
                                             <ul>
                                                 <li><a href="<?php echo site_url('/itq') ?>">ITQ EAD </a></li>
-                                                <li><a href="<?php echo site_url('/postulantes') ?>">Curso de Postulantes</a></li>
+                                                <li><a href="<?php echo site_url('/home/cursodetalhes/19') ?>">Curso de Postulantes</a></li>
                                                 <li><a href="<?php echo site_url('/treinamentos') ?>">Treinamentos e Capacitações</a></li>
                                                 <li><a href="<?php echo site_url('home/cursos') ?>">Todos os Cursos</a></li>
                                             </ul>
