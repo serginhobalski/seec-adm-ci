@@ -42,6 +42,27 @@ class Home extends BaseController
         return view('Home/index', $data);
     }
 
+    public function home()
+    {
+        $atributos = [
+            'id',
+            'nome',
+            'descricao',
+            'valor',
+            'categoria',
+            'ativo',
+        ];
+
+        $cursos = $this->cursoModel->select($atributos)
+            ->findAll();
+
+        $data = [
+            'titulo' => 'Home',
+            'cursos' => $cursos,
+        ];
+        return view('Aulas/home', $data);
+    }
+
     public function cursos()
     {
         $atributos = [
