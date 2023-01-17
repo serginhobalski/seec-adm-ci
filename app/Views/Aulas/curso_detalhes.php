@@ -129,15 +129,14 @@
                         <ul class="wm-courses-started-listing">
                             <?php foreach ($disciplinas as $disciplina) : ?>
                                 <li>
-                                    <a href="#" class="wmicon-pen"></a>
+                                    <a href="<?php echo site_url("aulas/disciplinadetalhes/$disciplina->disciplina_id") ?>" class="wmicon-pen"></a>
                                     <div class="wm-courses-started-text">
-                                        <h6><a href="#">
+                                        <h6><a href="<?php echo site_url("aulas/disciplinadetalhes/$disciplina->disciplina_id") ?>">
                                                 <?php echo $disciplina->disciplina_nome; ?></a></h6>
                                         <span><a href="#" class="wmicon-time2"></a><time><?php echo date('Y'); ?></time></span>
-                                        <span><a href="#" class=" wmicon-clock2"></a><time datetime="2017-02-14"></time></span>
                                     </div>
                                     <div class="wm-courses-preview">
-                                        <a href="#">Abrir</a>
+                                        <a href="<?php echo site_url("aulas/disciplinadetalhes/$disciplina->disciplina_id") ?>">Abrir</a>
                                     </div>
                                 </li>
                             <?php endforeach; ?>

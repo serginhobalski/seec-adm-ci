@@ -11,6 +11,7 @@ class Aulas extends BaseController
     private $alunoCursoModel;
     private $disciplinaModel;
     private $cursoDisciplinaModel;
+    private $aulaModel;
 
     public function __construct()
     {
@@ -19,6 +20,7 @@ class Aulas extends BaseController
         $this->alunoCursoModel = new \App\Models\AlunoCursoModel();
         $this->disciplinaModel = new \App\Models\DisciplinaModel();
         $this->cursoDisciplinaModel = new \App\Models\CursoDisciplinaModel();
+        $this->aulaModel = new \App\Models\AulaModel();
     }
 
     public function index()
@@ -99,6 +101,26 @@ class Aulas extends BaseController
         return view('Aulas/curso_detalhes', $data);
     }
 
+    public function disciplinaDetalhes(int $id = null)
+    {
+        $disciplina = $this->buscaDisciplinaOu404($id);
+
+        $aulas = $this->aulaModel->recuperaAulasDaDisciplina($id, 20);
+        $qtd_aulas = $this->aulaModel->where('aulas.disciplina_id', $id)->countAllResults();
+
+        // dd($aulas);
+        // exit;
+
+        $data = [
+            'titulo' => "Detalhes da disciplina " . esc($disciplina->nome),
+            'disciplina' => $disciplina,
+            'aulas' => $aulas,
+            'qtd_aulas' => $qtd_aulas,
+        ];
+
+        return view('Aulas/disciplina_detalhes', $data);
+    }
+
     public function cursoAluno(int $id = null)
     {
         if (!usuario_logado()) {
@@ -120,6 +142,40 @@ class Aulas extends BaseController
         ];
 
         return view('Aulas/curso_aluno', $data);
+    }
+
+    public function aulaDetalhe(int $id = null)
+    {
+        if (!usuario_logado()) {
+            return redirect()->back()->with("info", "Você não possui permissão para visualizar esta página.");
+        }
+
+        $atributos = [
+            'aulas.id AS principal_id',
+            'disciplinas.id AS id_disciplina',
+            'aulas.disciplina_id AS disciplina_id',
+            'disciplinas.nome AS disciplina_nome',
+            'disciplinas.descricao AS disciplina_descricao',
+            'aulas.titulo AS titulo',
+            'aulas.descricao AS descricao',
+            'aulas.recurso AS recurso',
+        ];
+
+        $aula = $this->aulaModel->select($atributos)
+            ->join('disciplinas', 'aulas.disciplina_id = disciplinas.id')->find($id);
+
+        // $aula = $this->buscaAulaOu404($id);
+
+
+        // dd($aula);
+        // exit;
+
+        $data = [
+            'titulo' => "Aula",
+            'aula' => $aula,
+        ];
+
+        return view('Aulas/aula_detalhe', $data);
     }
 
     public function mensagens()
@@ -153,7 +209,6 @@ class Aulas extends BaseController
 
         return view('Aulas/editar_imagem', $data);
     }
-
 
 
     public function upload()
@@ -273,5 +328,25 @@ class Aulas extends BaseController
         }
 
         return $curso;
+    }
+
+    private function buscaDisciplinaOu404(int $id = null)
+    {
+        if (!$id || !$disciplina = $this->disciplinaModel->withDeleted(true)->find($id)) {
+
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound("Não encontramos o curso $id");
+        }
+
+        return $disciplina;
+    }
+
+    private function buscaAulaOu404(int $id = null)
+    {
+        if (!$id || !$aula = $this->aulaModel->withDeleted(true)->find($id)) {
+
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound("Não encontramos a aula $id");
+        }
+
+        return $aula;
     }
 }
