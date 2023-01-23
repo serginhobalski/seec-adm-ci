@@ -48,11 +48,9 @@
                     <div class="col-lg-3 col-md-4 col-sm-12 m-b30">
                         <div class="course-detail-bx">
                             <div class="course-price">
-                                <!-- <del>R$ 300,00</del> -->
-                                <h4 class="price">R$ 280,00</h4>
                             </div>
                             <div class="course-buy-now text-center">
-                                <a href="#" class="btn radius-xl text-uppercase">Matricule-se já</a>
+                                <a href="#matricula" class="btn radius-xl text-uppercase">Matrícula</a>
                             </div>
                             <div class="teacher-bx">
                                 <div class="teacher-info">
@@ -94,6 +92,7 @@
                                 <ul class="navbar">
                                     <li><a class="nav-link" href="#overview"><i class="ti-clipboard"></i>Vião Geral</a></li>
                                     <li><a class="nav-link" href="#curriculum"><i class="ti-bookmark-alt"></i>Currículo</a></li>
+                                    <li><a class="nav-link" href="#matricula"><i class="ti-user"></i>Matrícula</a></li>
                                     <li><a class="nav-link" href="#instructor"><i class="ti-user"></i>Instrutores</a></li>
 
                                 </ul>
@@ -104,7 +103,7 @@
                     <div class="col-lg-9 col-md-8 col-sm-12">
                         <div class="courses-post">
                             <div class="ttr-post-media media-effect">
-                                <a href="#"><img src="<?php echo site_url('src/') ?>assets/images/blog/default/thum1.jpg" alt=""></a>
+                                <a href="#"><img src="<?php echo site_url('src/') ?>assets/images/blog/default/detalhe-itq.jpg" alt=""></a>
                             </div>
                             <div class="ttr-post-info">
                                 <div class="ttr-post-title ">
@@ -481,6 +480,68 @@
                                                 <span>18. </span> Ética Cristã
                                             </div>
                                             <span>Módulo 6</span>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="m-b30" id="matricula">
+                            <h4>Matrícula</h4>
+                            <ul class="curriculum-list">
+                                <li>
+                                    <h5>Passos para matrícula no Módulo 01 do 1º, 2º ou 3º ANO</h5>
+                                    <ul>
+                                        <li>
+                                            <div class="curriculum-list-box">
+                                                <span>-</span> Realizar o pagamento no valor de <strong>R$ 280,00</strong>
+                                                através de:
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <br>
+                                            <ul>
+                                                <li>*PIX ( Chave telefone ): <strong>91999812198</strong> OU</li>
+                                                <li>*Conta: Eurides de Assis Obalski <br>
+                                                    <strong>Banco do Brasil | Ag: 1232-7 | Conta: 803582174-15</strong>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <div class="curriculum-list-box">
+                                                <span>-</span>
+                                                Enviar o comprovante do pagamento <a class='btn' href='https://forms.gle/VfxFggyMLNXwQMcq5' target="_blank"><i class="fas fa-clipboard-list"></i> Neste Formulário</a>, anexando também os seguintes documentos (imagem ou pdf) necessários para a matrícula: <br>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <ul>
+                                                <li>*RG</li>
+                                                <li>*CPF</li>
+                                                <li>*Título de Eleitor</li>
+                                                <li>*Comprovante de endereço</li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <h5>Passos para os demais módulos (02 ao 06) do 1º, 2º ou 3º ANO</h5>
+                                    <ul>
+                                        <li>
+                                            <div class="curriculum-list-box">
+                                                <span>-</span>
+                                                Realizar o pagamento no valor de <strong>R$ 220,00</strong>
+                                                através de: <br>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <ul>
+                                                <li>*PIX ( Chave telefone ): <strong>91999812198</strong> <span class='text-danger'>OU</span></li>
+                                                <li>*Conta: Eurides de Assis Obalski
+                                                </li>
+                                                <li><strong> Banco do Brasil | Ag: 1232-7 | Conta: 803582174-15</strong></li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            - Enviar o comprovante do pagamento <a class='btn' href='https://forms.gle/6wtFbc5nbjfqtCM96' target="_blank"><i class="fas fa-clipboard-list"></i> Neste Formulário</a>
                                         </li>
                                     </ul>
                                 </li>

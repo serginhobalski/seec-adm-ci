@@ -59,13 +59,13 @@
 
 <!-- Custom header -->
 <?php echo $this->section('header'); ?>
-<!-- Header content here -->
 <h1><?php echo $titulo; ?></h1>
 <?php $this->endSection(); ?>
 
 <!-- Custom page content -->
 <?php echo $this->section('conteudo'); ?>
 
+<!-- Áera do Calendário -->
 <div class="row">
     <div class="col-lg-12 m-b30">
         <div class="widget-box">
@@ -85,45 +85,5 @@
 
 <!-- Custom scripts -->
 <?php echo $this->section('scripts'); ?>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var initialLocaleCode = 'pt-br';
-        var localeSelectorEl = document.getElementById('locale-selector');
-        var calendarEl = document.getElementById('calendar');
 
-        var calendar = new FullCalendar.Calendar(calendarEl, {
-            headerToolbar: {
-                left: 'prev,next today',
-                center: 'title',
-                right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
-            },
-            locale: initialLocaleCode,
-            buttonIcons: false, // show the prev/next text
-            weekNumbers: true,
-            navLinks: true, // can click day/week names to navigate views
-            editable: true,
-            dayMaxEvents: true, // allow "more" link when too many events
-            events: 'https://fullcalendar.io/api/demo-feeds/events.json?overload-day'
-        });
-
-        calendar.render();
-
-        // build the locale selector's options
-        calendar.getAvailableLocaleCodes().forEach(function(localeCode) {
-            var optionEl = document.createElement('option');
-            optionEl.value = localeCode;
-            optionEl.selected = localeCode == initialLocaleCode;
-            optionEl.innerText = localeCode;
-            localeSelectorEl.appendChild(optionEl);
-        });
-
-        // when the selected option changes, dynamically change the calendar option
-        localeSelectorEl.addEventListener('change', function() {
-            if (this.value) {
-                calendar.setOption('locale', this.value);
-            }
-        });
-
-    });
-</script>
 <?php $this->endSection(); ?>

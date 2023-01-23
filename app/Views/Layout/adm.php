@@ -15,6 +15,8 @@
     <!-- DESCRIPTION -->
     <meta name="description" content="ADM | SEEC-PA" />
 
+
+
     <!-- OG -->
     <meta property="og:title" content="ADM | SEEC-PA" />
     <meta property="og:description" content="ADM | SEEC-PA" />
@@ -27,18 +29,16 @@
 
     <!-- PAGE TITLE HERE ============================================= -->
     <title>SEEC-PA | <?php echo $this->renderSection('titulo'); ?></title>
+    <!-- FullCalendar -->
+    <?php echo $this->renderSection('calendar'); ?>
+
 
     <!-- MOBILE SPECIFIC ============================================= -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!--[if lt IE 9]>
-	<script src="<?php echo site_url('src/admin/') ?>assets/js/html5shiv.min.js"></script>
-	<script src="<?php echo site_url('src/admin/') ?>assets/js/respond.min.js"></script>
-	<![endif]-->
-
     <!-- All PLUGINS CSS ============================================= -->
     <link rel="stylesheet" type="text/css" href="<?php echo site_url('src/admin/') ?>assets/css/assets.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo site_url('src/admin/') ?>assets/vendors/calendar/fullcalendar.css">
+    <!-- <link rel="stylesheet" type="text/css" href="<?php echo site_url('src/admin/') ?>assets/vendors/calendar/fullcalendar.css"> -->
 
     <!-- TYPOGRAPHY ============================================= -->
     <link rel="stylesheet" type="text/css" href="<?php echo site_url('src/admin/') ?>assets/css/typography.css">
@@ -51,11 +51,15 @@
     <link rel="stylesheet" type="text/css" href="<?php echo site_url('src/admin/') ?>assets/css/dashboard.css">
     <link class="skin" rel="stylesheet" type="text/css" href="<?php echo site_url('src/admin/') ?>assets/css/color/color-1.css">
 
+
+
     <!-- Render styles -->
     <?php echo $this->renderSection('estilos'); ?>
 </head>
 
 <body class="ttr-opened-sidebar ttr-pinned-sidebar">
+    <!-- Render Load Calendario -->
+    <?php echo $this->renderSection('load-calendario'); ?>
 
     <!-- header start -->
     <header class="ttr-header">
@@ -525,9 +529,9 @@
     <script src="<?php echo site_url('src/admin/') ?>assets/js/functions.js"></script>
     <script src="<?php echo site_url('src/admin/') ?>assets/vendors/chart/chart.min.js"></script>
     <script src="<?php echo site_url('src/admin/') ?>assets/js/admin.js"></script>
-    <script src='<?php echo site_url('src/admin/') ?>assets/vendors/calendar/moment.min.js'></script>
-    <script src='<?php echo site_url('src/admin/') ?>assets/vendors/calendar/fullcalendar.js'></script>
 
+    <!-- <script src='<?php echo site_url('src/admin/') ?>assets/vendors/calendar/moment.min.js'></script>
+    <script src='<?php echo site_url('src/admin/') ?>assets/vendors/calendar/fullcalendar.js'></script>
     <script>
         const hoje = new Date();
 
@@ -623,10 +627,11 @@
             });
 
         });
-    </script>
+    </script> -->
 
     <!-- Render custom scripts -->
     <?php echo $this->renderSection('scripts'); ?>
+
 
     <script>
         $(function() {
@@ -639,7 +644,5 @@
     </script>
 
 </body>
-
-<!-- Mirrored from educhamp.themetrades.com/demo/admin// by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 22 Feb 2019 13:09:05 GMT -->
 
 </html>

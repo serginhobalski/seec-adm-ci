@@ -16,18 +16,26 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="wm-filter-box">
-                    <div class="wm-apply-select">
-                        <select>
-                            <option>Por Categoria</option>
-                        </select>
-                    </div>
-                    <div class="wm-normal-btn">
-                        <a href="#" class="active">Ativos</a>
-                        <a href="#">Inativos</a>
-                    </div>
-                    <div class="wm-view-btn">
-                        <a href="#" class="wmicon-squares active"></a>
-                        <a href="#" class="wmicon-signs"></a>
+
+                    <div class="feature-filters clearfix center m-b40">
+                        <ul class="filters" data-toggle="buttons">
+                            <li data-filter="" class="btn active">
+                                <input type="radio">
+                                <a href="#"><span>Todos</span></a>
+                            </li>
+                            <li data-filter="itq" class="btn">
+                                <input type="radio">
+                                <a href="#"><span>ITQ EAD</span></a>
+                            </li>
+                            <li data-filter="postulantes" class="btn">
+                                <input type="radio">
+                                <a href="#"><span>Postulantes</span></a>
+                            </li>
+                            <li data-filter="ministerial" class="btn">
+                                <input type="radio">
+                                <a href="#"><span>Ministerial</span></a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
                 <div class="wm-courses wm-courses-popular">
@@ -35,7 +43,7 @@
 
                         <?php foreach ($modulos as $modulo) : ?>
 
-                            <li class="col-md-4">
+                            <li class="action-card col-md-4 <?php echo $modulo->categoria; ?>">
                                 <div class="wm-courses-popular-wrap">
                                     <figure> <a href="<?php echo site_url("aulas/cursodetalhes/$modulo->id") ?>"><img src="<?php echo site_url("lms/") ?>extra-images/capa-curso-grid.jpg" alt=""> <span class="wm-popular-hover"> <small>Ver detalhes</small> </span> </a>
                                         <figcaption>

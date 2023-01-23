@@ -59,6 +59,7 @@ $routes->get('grupos', 'Grupos::index');
 $routes->get('relatorios', 'Relatorios::index');
 $routes->get('aulas', 'Aulas::index');
 $routes->get('perfil', 'Adm::perfil');
+$routes->get('eventos', 'Eventos::index');
 
 /*
  * --------------------------------------------------------------------

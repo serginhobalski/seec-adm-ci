@@ -26,6 +26,13 @@
     <link href="<?php echo site_url('lms/') ?>css/color-three.css" rel="stylesheet" />
     <link href="<?php echo site_url('lms/') ?>css/color-four.css" rel="stylesheet" />
     <link href="<?php echo site_url('lms/') ?>css/responsive.css" rel="stylesheet" />
+
+    <!-- REVOLUTION SLIDER CSS ============================================= -->
+    <link rel="stylesheet" type="text/css" href="<?php echo site_url('src/') ?>assets/vendors/revolution/css/layers.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo site_url('src/') ?>assets/vendors/revolution/css/settings.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo site_url('src/') ?>assets/vendors/revolution/css/navigation.css">
+    <!-- REVOLUTION SLIDER END -->
+
     <!-- Custom CSS -->
     <?php echo $this->renderSection('estilos'); ?>
 
@@ -156,7 +163,7 @@
                         <div class="wm-breadcrumb">
                             <ul>
                                 <li><a href="#">Home</a></li>
-                                <li><a href="#">Cursos</a></li>
+                                <li><a href="<?php echo site_url('aulas/cursosgeral') ?>">Cursos</a></li>
                                 <li><?php echo $titulo ?></li>
                             </ul>
                         </div>
@@ -437,6 +444,8 @@
     <script type="text/javascript" src="<?php echo site_url('lms/') ?>script/jquery.nicescroll.min.js"></script>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
     <script type="text/javascript" src="<?php echo site_url('lms/') ?>script/functions.js"></script>
+
+    <script src="<?php echo site_url('src/') ?>assets/vendors/revolution/js/extensions/revolution.extension.navigation.min.js"></script>
     <!-- Custom Scripts -->
     <?php echo $this->renderSection('scripts'); ?>
 </body>

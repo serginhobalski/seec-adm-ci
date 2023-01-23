@@ -18,14 +18,6 @@
 
 
 <!-- Custom page content -->
-<?php
-/*
-<?php foreach ($disciplinas as $disciplina) : ?>
-<?php echo $disciplina->disciplina_nome; ?>
-<?php echo $disciplina->disciplina_descricao; ?>
-<?php endforeach; ?>
-*/
-?>
 <?php echo $this->section('conteudo'); ?>
 
 <div class="wm-main-section">

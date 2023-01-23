@@ -48,6 +48,16 @@
     <link rel="stylesheet" type="text/css" href="<?php echo site_url('src/') ?>assets/vendors/revolution/css/navigation.css">
     <!-- REVOLUTION SLIDER END -->
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+    <!-- Icons Font Awesome -->
+    <script src="https://kit.fontawesome.com/33b01659b8.js" crossorigin="anonymous"></script>
+
     <!-- Render styles -->
     <?php echo $this->renderSection('estilos'); ?>
 </head>
