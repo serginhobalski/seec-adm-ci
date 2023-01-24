@@ -94,7 +94,7 @@
             <tbody>
                 <?php foreach ($eventos as $evento) : ?>
                     <tr>
-                        <td class="text-primary"><?php echo $evento->titulo ?></th>
+                        <td class="text-primary"><?php echo anchor("eventos/exibir/$evento->id", esc($evento->titulo), 'title="Exibir ' . esc($evento->titulo) . '"') ?></th>
                         <td class="text-primary"><?php echo $evento->tipo ?></th>
                         <td class="text-primary"><?php echo date("d/m/Y | H:i", strtotime($evento->inicio)) ?></th>
                         <td class="text-primary"><?php echo date("d/m/Y | H:i", strtotime($evento->termino)) ?></th>

@@ -29,4 +29,27 @@ class Eventos extends BaseController
         ];
         return view('Eventos/index', $data);
     }
+
+    public function exibir(int $id = null)
+    {
+        $evento = $this->buscaEventoOu404($id);
+
+        $data = [
+            'titulo' => "Detalhes de " . esc($evento->nome),
+            'evento' => $evento,
+        ];
+
+        return view('Eventos/exibir', $data);
+    }
+
+
+    private function buscaEventoOu404(int $id = null)
+    {
+        if (!$id || !$evento = $this->eventoModel->withDeleted(true)->find($id)) {
+
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound("Não encontramos o evento $id");
+        }
+
+        return $evento;
+    }
 }
