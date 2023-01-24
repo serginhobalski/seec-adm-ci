@@ -23,6 +23,10 @@ class TabelaEventos extends Migration
                 'type'       => 'VARCHAR',
                 'constraint' => '240',
             ],
+            'local' => [
+                'type'       => 'VARCHAR',
+                'constraint' => '240',
+            ],
             'detalhes' => [
                 'type'       => 'TEXT',
             ],
@@ -39,10 +43,14 @@ class TabelaEventos extends Migration
                 'null' => true,
                 'default' => null,
             ],
-            'inicio' => [
+            'termino' => [
                 'type'       => 'DATETIME',
                 'null' => true,
                 'default' => null,
+            ],
+            'imagem' => [
+                'type'       => 'VARCHAR',
+                'constraint' => '250',
             ],
             'criado_em' => [
                 'type'       => 'TIMESTAMP',

@@ -80,6 +80,32 @@
     </div>
 </div>
 
+<div class="row">
+    <div class="col-lg-12 m-b30">
+        <table id="ajaxTableEventos" class="table" style="width: 100%;">
+            <thead>
+                <tr>
+                    <th class="text-primary">Evento</th>
+                    <th class="text-primary">Tipo</th>
+                    <th class="text-primary">Início</th>
+                    <th class="text-primary">Término</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($eventos as $evento) : ?>
+                    <tr>
+                        <td class="text-primary"><?php echo $evento->titulo ?></th>
+                        <td class="text-primary"><?php echo $evento->tipo ?></th>
+                        <td class="text-primary"><?php echo date("d/m/Y | H:i", strtotime($evento->inicio)) ?></th>
+                        <td class="text-primary"><?php echo date("d/m/Y | H:i", strtotime($evento->termino)) ?></th>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+
+        </table>
+    </div>
+</div>
+
 <?php $this->endSection(); ?>
 
 

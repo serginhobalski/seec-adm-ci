@@ -6,37 +6,25 @@ use CodeIgniter\Model;
 
 class EventoModel extends Model
 {
-    protected $DBGroup          = 'default';
     protected $table            = 'eventos';
-    protected $primaryKey       = 'id';
-    protected $useAutoIncrement = true;
-    protected $insertID         = 0;
-    protected $returnType       = 'array';
-    protected $useSoftDeletes   = false;
+    protected $returnType       = 'App\Entities\Evento';
+    protected $useSoftDeletes   = true;
     protected $protectFields    = true;
-    protected $allowedFields    = [];
+    protected $allowedFields    = [
+        'titulo',
+        'descricao',
+        'local',
+        'detalhes',
+        'tipo',
+        'status',
+        'inicio',
+        'termino',
+        'imagem',
+    ];
 
     // Dates
-    protected $useTimestamps = false;
-    protected $dateFormat    = 'datetime';
-    protected $createdField  = 'created_at';
-    protected $updatedField  = 'updated_at';
-    protected $deletedField  = 'deleted_at';
-
-    // Validation
-    protected $validationRules      = [];
-    protected $validationMessages   = [];
-    protected $skipValidation       = false;
-    protected $cleanValidationRules = true;
-
-    // Callbacks
-    protected $allowCallbacks = true;
-    protected $beforeInsert   = [];
-    protected $afterInsert    = [];
-    protected $beforeUpdate   = [];
-    protected $afterUpdate    = [];
-    protected $beforeFind     = [];
-    protected $afterFind      = [];
-    protected $beforeDelete   = [];
-    protected $afterDelete    = [];
+    protected $useTimestamps = true;
+    protected $createdField  = 'criado_em';
+    protected $updatedField  = 'alterado_em';
+    protected $deletedField  = 'deletado_em';
 }
