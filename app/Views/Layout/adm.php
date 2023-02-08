@@ -264,9 +264,9 @@
                             </a>
                         </li>
                         <li>
-                            <a href="<?php echo site_url('calendario'); ?>" class="ttr-material-button">
+                            <a href="<?php echo site_url('eventos'); ?>" class="ttr-material-button">
                                 <span class="ttr-icon"><i class="fa fa-calendar"></i></span>
-                                <span class="ttr-label">Calendário</span>
+                                <span class="ttr-label">Eventos</span>
                             </a>
                         </li>
                         <li>

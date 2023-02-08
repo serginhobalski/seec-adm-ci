@@ -12,7 +12,47 @@ echo $this->extend('Layout/adm'); ?>
 
 <!-- Custom styles -->
 <?php echo $this->section('estilos'); ?>
-<!-- Styles content here -->
+<!-- FULLCALENDAR CSS ============================================= -->
+<link href='<?php echo site_url('src') ?>/fullcalendar/css/core/main.min.css' rel='stylesheet' />
+<link href='<?php echo site_url('src') ?>/fullcalendar/css/daygrid/main.min.css' rel='stylesheet' />
+<script src='<?php echo site_url('src') ?>/fullcalendar/js/core/main.min.js'></script>
+<script src='<?php echo site_url('src') ?>/fullcalendar/js/interaction/main.min.js'></script>
+<script src='<?php echo site_url('src') ?>/fullcalendar/js/daygrid/main.min.js'></script>
+<script src='<?php echo site_url('src') ?>/fullcalendar/js/core/locales/pt-br.js'></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            locale: 'pt-br',
+            plugins: ['interaction', 'dayGrid'],
+            //defaultDate: '2019-04-12',
+            editable: true,
+            eventLimit: true,
+            events: 'list_eventos.php',
+            extraParams: function() {
+                return {
+                    cachebuster: new Date().valueOf()
+                };
+            }
+        });
+
+        calendar.render();
+    });
+</script>
+<?php $this->endSection(); ?>
+
+
+<?php echo $this->section('load-calendario'); ?>
+<!-- start loader calendario -->
+<div id="pageloader-overlay" class="visible incoming">
+    <div class="loader-wrapper-outer">
+        <div class="loader-wrapper-inner">
+            <div class="loader"></div>
+        </div>
+    </div>
+</div>
+<!-- end loader calendario -->
 <?php $this->endSection(); ?>
 
 
@@ -81,11 +121,11 @@ echo $this->extend('Layout/adm'); ?>
 </div>
 <!-- Áera do Calendário -->
 <div class="row">
-    <!-- Your Profile Views Chart -->
     <div class="col-lg-12 m-b30">
         <div class="widget-box">
+
             <div class="wc-title">
-                <h4>Calendário</h4>
+                <h4>CALENDÁRIO</h4>
             </div>
             <div class="widget-inner">
                 <div id="calendar"></div>
