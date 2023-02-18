@@ -65,24 +65,9 @@
 <!-- Custom page content -->
 <?php echo $this->section('conteudo'); ?>
 
-<!-- Áera do Calendário -->
 <div class="row">
     <div class="col-lg-12 m-b30">
-        <div class="widget-box">
-
-            <div class="wc-title">
-                <h4>CALENDÁRIO</h4>
-            </div>
-            <div class="widget-inner">
-                <div id="calendar"></div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-lg-12 m-b30">
-        <a class="btn" href="/eventos/criar"><i class="fa fa-save"></i> Cadastrar Evento</a>
+        <a class="btn" href="/avisos/criar"><i class="fa fa-save"></i> Cadastrar Aviso</a>
         <table id="ajaxTableEventos" class="table" style="width: 100%;">
             <thead>
                 <tr>
@@ -94,7 +79,7 @@
                 </tr>
             </thead>
             <tbody>
-                <?php if (!$eventos) : ?>
+                <?php if (!$avisos) : ?>
                     <tr>
                         <td colspan="4" class="text-center">
                             <strong>
@@ -103,17 +88,17 @@
                         </td>
                     </tr>
                 <?php else : ?>
-                    <?php foreach ($eventos as $evento) : ?>
+                    <?php foreach ($avisos as $aviso) : ?>
                         <tr>
                             <td class="text-primary">
-                                <img src="<?php echo site_url("eventos/imagem/$evento->imagem")  ?>" alt="" width="50px">
+                                <img src="<?php echo site_url("eventos/imagem/$aviso->imagem")  ?>" alt="" width="50px">
                             </td>
                             <td class="text-primary">
-                                <?php echo anchor("eventos/exibir/$evento->id", esc($evento->titulo), 'title="Exibir ' . esc($evento->titulo) . '"') ?>
+                                <?php echo anchor("eventos/exibir/$aviso->id", esc($aviso->titulo), 'title="Exibir ' . esc($aviso->titulo) . '"') ?>
                             </td>
-                            <td class="text-primary"><?php echo $evento->tipo ?></td>
-                            <td class="text-primary"><?php echo date("d/m/Y", strtotime($evento->data_inicio)) ?></td>
-                            <td class="text-primary"><?php echo date("d/m/Y", strtotime($evento->data_termino)) ?></td>
+                            <td class="text-primary"><?php echo $aviso->tipo ?></td>
+                            <td class="text-primary"><?php echo date("d/m/Y", strtotime($aviso->data_inicio)) ?></td>
+                            <td class="text-primary"><?php echo date("d/m/Y", strtotime($aviso->data_termino)) ?></td>
                         </tr>
                     <?php endforeach; ?>
                 <?php endif; ?>

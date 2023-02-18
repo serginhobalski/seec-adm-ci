@@ -20,7 +20,7 @@ class Relatorios extends BaseController
 
     public function index()
     {
-        if (usuario_logado()->is_admin === false) {
+        if (!usuario_logado()->is_admin) {
             if (usuario_logado()->is_uetp) {
                 return redirect(site_url('relatorios/meusrelatorios'));
             } else {

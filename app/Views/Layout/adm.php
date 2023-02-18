@@ -88,8 +88,8 @@
                             <i class="fa fa-paper-plane"></i> Mensagens</a>
                     </li>
                     <li>
-                        <a href="<?php echo site_url('calendario'); ?>" class="ttr-material-button ttr-submenu-toggle">
-                            <i class="fa fa-calendar"></i> Calendário</a>
+                        <a href="<?php echo site_url('eventos'); ?>" class="ttr-material-button ttr-submenu-toggle">
+                            <i class="fa fa-calendar"></i> Eventos</a>
                     </li>
                     <?php if (usuario_logado()->is_admin === true) : ?>
                         <li>
@@ -116,31 +116,8 @@
                     <li>
                         <a href="#" class="ttr-material-button ttr-search-toggle"><i class="fa fa-search"></i></a>
                     </li>
-                    <li>
-                        <a href="#" class="ttr-material-button ttr-submenu-toggle"><i class="fa fa-bell"></i></a>
-                        <div class="ttr-header-submenu noti-menu">
-                            <div class="ttr-notify-header">
-                                <span class="ttr-notify-text-top">Novas</span>
-                                <span class="ttr-notify-text">Mensagens</span>
-                            </div>
-                            <div class="noti-box-list">
-                                <ul>
-                                    <li>
-                                        <span class="notification-icon dashbg-red">
-                                            <i class="fa fa-bullhorn"></i>
-                                        </span>
-                                        <span class="notification-text">
-                                            <span>Em breve </span> novas notificações aqui.
-                                        </span>
-                                        <span class="notification-time">
-                                            <a href="#" class="fa fa-close"></a>
-                                            <span> Data | Hora</span>
-                                        </span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </li>
+                    
+                    
                     <li>
                         <a href="#" class="ttr-material-button ttr-submenu-toggle">
                             <span class="ttr-user-avatar">

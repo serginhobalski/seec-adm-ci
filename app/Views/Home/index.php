@@ -353,7 +353,7 @@
                             <div class="col-lg-4 col-md-4 col-sm-6">
                                 <div class="service-bx">
                                     <div class="action-box">
-                                        <img src="<?php echo site_url('src/') ?>assets/images/our-services/pic1.jpg" alt="">
+                                        <img src="<?php echo site_url('src/') ?>assets/images/courses/curso_itq.jpg" alt="">
                                     </div>
                                     <div class="info-bx text-center">
                                         <div class="feature-box-sm radius bg-white">
@@ -367,7 +367,7 @@
                             <div class="col-lg-4 col-md-4 col-sm-6">
                                 <div class="service-bx">
                                     <div class="action-box">
-                                        <img src="<?php echo site_url('src/') ?>assets/images/our-services/pic2.jpg" alt="">
+                                        <img src="<?php echo site_url('src/') ?>assets/images/courses/curso_postulantes.jpg" alt="">
                                     </div>
                                     <div class="info-bx text-center">
                                         <div class="feature-box-sm radius bg-white">
@@ -381,7 +381,7 @@
                             <div class="col-lg-4 col-md-4 col-sm-12">
                                 <div class="service-bx m-b0">
                                     <div class="action-box">
-                                        <img src="<?php echo site_url('src/') ?>assets/images/our-services/pic3.jpg" alt="">
+                                        <img src="<?php echo site_url('src/') ?>assets/images/courses/curso_lideranca.jpg" alt="">
                                     </div>
                                     <div class="info-bx text-center">
                                         <div class="feature-box-sm radius bg-white">

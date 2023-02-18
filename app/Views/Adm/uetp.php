@@ -66,11 +66,13 @@ echo $this->extend('Layout/adm'); ?>
 <?php echo $this->section('conteudo'); ?>
 <div class="row">
     <div class="col-md-6 col-lg-3 col-xl-3 col-sm-6 col-12">
-        <div class="widget-card widget-bg1">
+        <div class="widget-card widget-bg4">
             <div class="wc-item">
                 <h4 class="wc-title">
-                    Relatórios <br>
-                    Enviados
+                    <a href="/relatorios/meusrelatorios">
+                        Relatórios <br>
+                        Enviados
+                    </a>
                 </h4>
                 <span class="wc-des">
                     Nº total
@@ -131,6 +133,53 @@ echo $this->extend('Layout/adm'); ?>
                 <div id="calendar"></div>
             </div>
         </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12 m-b30">
+        <table id="ajaxTableEventos" class="table" style="width: 100%;">
+            <thead>
+                <tr>
+                    <th class="text-primary">#</th>
+                    <th class="text-primary">Evento</th>
+                    <th class="text-primary">Tipo</th>
+                    <th class="text-primary">Início</th>
+                    <th class="text-primary">Término</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php if (!$eventos) : ?>
+                    <tr>
+                        <td colspan="4" class="text-center">
+                            <strong>
+                                Nenhum evento cadastrado até o momento...
+                            </strong>
+                        </td>
+                    </tr>
+                <?php else : ?>
+                    <?php foreach ($eventos as $evento) : ?>
+                        <tr>
+                            <td class="text-primary">
+                                <img src="<?php echo site_url("eventos/imagem/$evento->imagem")  ?>" alt="" width="50px">
+                            </td>
+                            <td class="text-primary">
+                                <?php echo anchor("eventos/detalhes/$evento->id", esc($evento->titulo), 'title="Exibir ' . esc($evento->titulo) . '"') ?>
+                            </td>
+                            <td class="text-primary"><?php echo $evento->tipo ?></td>
+                            <td class="text-primary">
+                                <?php echo date("d/m/Y | ", strtotime($evento->data_inicio)) ?>
+                                <?php echo date("H:i", strtotime($evento->hora_inicio)) ?>
+                            </td>
+                            <td class="text-primary">
+                                <?php echo date("d/m/Y | ", strtotime($evento->data_termino)) ?>
+                                <?php echo date("H:i", strtotime($evento->hora_termino)) ?>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+            </tbody>
+
+        </table>
     </div>
 </div>
 <hr>

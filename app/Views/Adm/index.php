@@ -67,12 +67,15 @@
 
 <!-- Área de Cards -->
 <div class="row">
+
     <div class="col-md-6 col-lg-3 col-xl-3 col-sm-6 col-12">
-        <div class="widget-card widget-bg1">
+        <div class="widget-card widget-bg4">
             <div class="wc-item">
                 <h4 class="wc-title">
-                    Relatórios <br>
-                    Enviados
+                    <a href="/relatorio" class="text-white">
+                        Relatórios <br>
+                        Enviados
+                    </a>
                 </h4>
                 <span class="wc-des">
                     Nº total
@@ -94,11 +97,14 @@
             </div>
         </div>
     </div>
+
     <div class="col-md-6 col-lg-3 col-xl-3 col-sm-6 col-12">
         <div class="widget-card widget-bg2">
             <div class="wc-item">
                 <h4 class="wc-title">
-                    Usuários
+                    <a href="/usuarios" class="text-white">
+                        Usuários
+                    </a>
                 </h4>
                 <span class="wc-des">
                     cadastrados
@@ -120,11 +126,14 @@
             </div>
         </div>
     </div>
+
     <div class="col-md-6 col-lg-3 col-xl-3 col-sm-6 col-12">
         <div class="widget-card widget-bg5">
             <div class="wc-item">
                 <h4 class="wc-title">
-                    UETPs
+                    <a href="/usuarios/uetps" class="text-white">
+                        UETPs
+                    </a>
                 </h4>
                 <span class="wc-des">
                     cadastradas
@@ -146,11 +155,14 @@
             </div>
         </div>
     </div>
+
     <div class="col-md-6 col-lg-3 col-xl-3 col-sm-6 col-12">
         <div class="widget-card widget-bg4">
             <div class="wc-item">
                 <h4 class="wc-title">
-                    Alunos
+                    <a href="/usuarios/alunos" class="text-white">
+                        Alunos
+                    </a>
                 </h4>
                 <span class="wc-des">
                     cadastrados
@@ -200,11 +212,14 @@
             </div>
         </div>
     </div>
+
     <div class="col-md-6 col-lg-3 col-xl-3 col-sm-6 col-12">
-        <div class="widget-card widget-bg1">
+        <div class="widget-card widget-bg3">
             <div class="wc-item">
                 <h4 class="wc-title">
-                    Professores
+                    <a href="/usuarios/professores" class="text-white">
+                        Professores
+                    </a>
                 </h4>
                 <span class="wc-des">
                     cadastrados
@@ -226,6 +241,7 @@
             </div>
         </div>
     </div>
+
     <div class="col-md-6 col-lg-3 col-xl-3 col-sm-6 col-12">
         <div class="widget-card widget-bg2">
             <div class="wc-item">
@@ -252,11 +268,14 @@
             </div>
         </div>
     </div>
+
     <div class="col-md-6 col-lg-3 col-xl-3 col-sm-6 col-12">
         <div class="widget-card widget-bg7">
             <div class="wc-item">
                 <h4 class="wc-title">
-                    Cursos <br>
+                    <a href="/cursos" class="text-white">
+                        Cursos <br>
+                    </a>
                 </h4>
                 <span class="wc-des">
                     total
@@ -278,6 +297,7 @@
             </div>
         </div>
     </div>
+
 </div>
 
 <!-- Áera do Calendário -->

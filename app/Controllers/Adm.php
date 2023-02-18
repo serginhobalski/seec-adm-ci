@@ -10,6 +10,7 @@ class Adm extends BaseController
     private $relatoriosCadastrados;
     private $gruposUsuarios;
     private $cursosCadastrados;
+    private $eventoModel;
 
 
     public function __construct()
@@ -18,6 +19,7 @@ class Adm extends BaseController
         $this->relatoriosCadastrados = new \App\Models\RelatorioModel();
         $this->gruposUsuarios = new \App\Models\GrupoUsuarioModel();
         $this->cursosCadastrados = new \App\Models\CursoModel();
+        $this->eventoModel = new \App\Models\EventoModel();
     }
 
     public function index()
@@ -25,6 +27,8 @@ class Adm extends BaseController
         if (!usuario_logado()->is_admin) {
             return redirect()->back()->with("info", "Você não possui permissão para visualizar esta página.");
         }
+
+        $eventos = $this->eventoModel->select('*')->findAll();
 
         $anoAtual = date('Y');
 
@@ -40,6 +44,7 @@ class Adm extends BaseController
 
         $data = [
             'titulo' => 'Painel',
+            'eventos' => $eventos,
             'usuarios' => $quantidadeUsuarios,
             'relatorios' => $quantidadeRelatorios,
             'admins' => $admins,
@@ -59,11 +64,14 @@ class Adm extends BaseController
             return redirect()->back()->with("info", "Você não possui permissão para visualizar esta página.");
         }
 
+        $eventos = $this->eventoModel->select('*')->findAll();
+
         $relatorio = $this->relatoriosCadastrados->where('nome', usuario_logado()->nome)->countAllResults();
 
         $data = [
             'titulo' => 'UETP ' . usuario_logado()->nome . '!',
             'relatorio' => $relatorio,
+            'eventos' => $eventos,
         ];
         return view('Adm/uetp', $data);
     }
@@ -73,8 +81,11 @@ class Adm extends BaseController
         if (!usuario_logado()->is_admin && !usuario_logado()->is_secretaria) {
             return redirect()->back()->with("info", "Você não possui permissão para visualizar esta página.");
         }
+
+        $eventos = $this->eventoModel->select('*')->findAll();
         $data = [
             'titulo' => 'Painel | Secretaria',
+            'eventos' => $eventos,
         ];
         return view('Adm/secretaria', $data);
     }
@@ -114,8 +125,12 @@ class Adm extends BaseController
         if (!usuario_logado()->is_admin && !usuario_logado()->is_aluno) {
             return redirect()->back()->with("info", "Você não possui permissão para visualizar esta página.");
         }
+
+        $eventos = $this->eventoModel->select('*')->findAll();
+
         $data = [
             'titulo' => 'Painel | Aluno',
+            'eventos' => $eventos,
         ];
         return view('Adm/aluno', $data);
     }
@@ -138,8 +153,11 @@ class Adm extends BaseController
 
     public function perfil()
     {
+        $eventos = $this->eventoModel->select('*')->findAll();
+
         $data = [
             'titulo' => 'Perfil',
+            'eventos' => $eventos,
         ];
         return view('Adm/perfil', $data);
     }

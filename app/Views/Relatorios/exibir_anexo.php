@@ -78,6 +78,10 @@
                                     <h4>Comprovante não anexado.</h4>
                                 <?php else : ?>
                                     <h4><?php echo $relatorio->comprovante; ?></h4>
+                                    <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;">
+                                        <iframe style="width:100%;height:100%;position:absolute;left:0px;top:0px;overflow:hidden;" frameborder="0" type="text/html" src="<?php echo site_url("relatorios/comprovante/$relatorio->comprovante"); ?>" width="100%" height="100%" allowfullscreen="" allow="autoplay">
+                                        </iframe>
+                                    </div>
                                 <?php endif; ?>
                             </div>
                         </div>
@@ -88,6 +92,10 @@
                                     <h4>Relatório não anexado.</h4>
                                 <?php else : ?>
                                     <h4><?php echo $relatorio->relatorio; ?></h4>
+                                    <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;">
+                                        <iframe style="width:100%;height:100%;position:absolute;left:0px;top:0px;overflow:hidden;" frameborder="0" type="text/html" src="<?php echo site_url("relatorios/relatorioanexo/$relatorio->relatorio"); ?>" width="100%" height="100%" allowfullscreen="" allow="autoplay">
+                                        </iframe>
+                                    </div>
                                 <?php endif; ?>
                             </div>
                         </div>

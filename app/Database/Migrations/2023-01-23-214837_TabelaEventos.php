@@ -38,13 +38,23 @@ class TabelaEventos extends Migration
                 'type'       => 'VARCHAR',
                 'constraint' => '100',
             ],
-            'inicio' => [
-                'type'       => 'DATETIME',
+            'data_inicio' => [
+                'type'       => 'DATE',
                 'null' => true,
                 'default' => null,
             ],
-            'termino' => [
-                'type'       => 'DATETIME',
+            'hora_inicio' => [
+                'type'       => 'TIME',
+                'null' => true,
+                'default' => null,
+            ],
+            'data_termino' => [
+                'type'       => 'DATE',
+                'null' => true,
+                'default' => null,
+            ],
+            'hora_termino' => [
+                'type'       => 'TIME',
                 'null' => true,
                 'default' => null,
             ],

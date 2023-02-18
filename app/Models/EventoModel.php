@@ -17,8 +17,10 @@ class EventoModel extends Model
         'detalhes',
         'tipo',
         'status',
-        'inicio',
-        'termino',
+        'data_inicio',
+        'hora_inicio',
+        'data_termino',
+        'hora_termino',
         'imagem',
     ];
 
