@@ -28,14 +28,14 @@
 
         </div>
 
-        <?php echo form_open('/', ['id' => 'form'], ['id' => "$evento->id"]) ?>
+        <?php echo form_open('/', ['id' => 'form'], ['id' => "$aviso->id"]) ?>
 
-        <?php echo $this->include('Eventos/_form.php'); ?>
+        <?php echo $this->include('Avisos/_form.php'); ?>
 
         <div class="form-group mt-5 mb-4 d-flex">
 
             <input id="btn-salvar" type="submit" value="Salvar" class="btn btn-danger mr-2">
-            <a class="btn" href="<?php echo site_url("eventos"); ?>"><i class="ti-arrow-left"></i> Voltar</a>
+            <a class="btn" href="<?php echo site_url("avisos"); ?>"><i class="ti-arrow-left"></i> Voltar</a>
 
         </div>
 
@@ -62,7 +62,7 @@
             $.ajax({
 
                 type: 'POST',
-                url: '<?php echo site_url('eventos/cadastrar'); ?>',
+                url: '<?php echo site_url('avisos/cadastrar'); ?>',
                 data: new FormData(this),
                 dataType: 'json',
                 contentType: false,
@@ -86,7 +86,7 @@
 
                         } else {
                             // Tudo certo! Pode redirecionar!
-                            window.location.href = "<?php echo site_url("eventos/exibir/"); ?>" + response.id;
+                            window.location.href = "<?php echo site_url("avisos"); ?>";
                         }
 
                     }

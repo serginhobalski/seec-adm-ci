@@ -51,6 +51,9 @@
     <link rel="stylesheet" type="text/css" href="<?php echo site_url('src/admin/') ?>assets/css/dashboard.css">
     <link class="skin" rel="stylesheet" type="text/css" href="<?php echo site_url('src/admin/') ?>assets/css/color/color-1.css">
 
+    <!-- Font Awesome Style -->
+    <link rel="stylesheet" href="https://kit.fontawesome.com/33b01659b8.css" crossorigin="anonymous">
+
 
 
     <!-- Render styles -->
@@ -244,6 +247,12 @@
                             <a href="<?php echo site_url('eventos'); ?>" class="ttr-material-button">
                                 <span class="ttr-icon"><i class="fa fa-calendar"></i></span>
                                 <span class="ttr-label">Eventos</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?php echo site_url('avisos'); ?>" class="ttr-material-button">
+                                <span class="ttr-icon"><i class="fa-solid fa-bullhorn"></i></span>
+                                <span class="ttr-label">Avisos</span>
                             </a>
                         </li>
                         <li>
@@ -506,6 +515,8 @@
     <script src="<?php echo site_url('src/admin/') ?>assets/js/functions.js"></script>
     <script src="<?php echo site_url('src/admin/') ?>assets/vendors/chart/chart.min.js"></script>
     <script src="<?php echo site_url('src/admin/') ?>assets/js/admin.js"></script>
+    <!-- Font Awesome Script -->
+    <script src="https://kit.fontawesome.com/33b01659b8.js" crossorigin="anonymous"></script>
 
     <!-- <script src='<?php echo site_url('src/admin/') ?>assets/vendors/calendar/moment.min.js'></script>
     <script src='<?php echo site_url('src/admin/') ?>assets/vendors/calendar/fullcalendar.js'></script>

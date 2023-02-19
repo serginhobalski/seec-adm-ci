@@ -72,10 +72,8 @@
             <thead>
                 <tr>
                     <th class="text-primary">#</th>
-                    <th class="text-primary">Evento</th>
-                    <th class="text-primary">Tipo</th>
-                    <th class="text-primary">Início</th>
-                    <th class="text-primary">Término</th>
+                    <th class="text-primary">Aviso</th>
+                    <th class="text-primary">Ações</th>
                 </tr>
             </thead>
             <tbody>
@@ -83,7 +81,7 @@
                     <tr>
                         <td colspan="4" class="text-center">
                             <strong>
-                                Nenhum evento cadastrado até o momento...
+                                Nenhum aviso cadastrado até o momento...
                             </strong>
                         </td>
                     </tr>
@@ -91,20 +89,92 @@
                     <?php foreach ($avisos as $aviso) : ?>
                         <tr>
                             <td class="text-primary">
-                                <img src="<?php echo site_url("eventos/imagem/$aviso->imagem")  ?>" alt="" width="50px">
+                            <i class="<?php echo $aviso->icone  ?>"></i>
+                                
                             </td>
                             <td class="text-primary">
-                                <?php echo anchor("eventos/exibir/$aviso->id", esc($aviso->titulo), 'title="Exibir ' . esc($aviso->titulo) . '"') ?>
+                                <?php echo anchor("avisos/exibir/$aviso->id", esc($aviso->aviso), 'title="Exibir detalhes"') ?>
                             </td>
-                            <td class="text-primary"><?php echo $aviso->tipo ?></td>
-                            <td class="text-primary"><?php echo date("d/m/Y", strtotime($aviso->data_inicio)) ?></td>
-                            <td class="text-primary"><?php echo date("d/m/Y", strtotime($aviso->data_termino)) ?></td>
+                            <td class="text-primary d-flex">
+                                <a class="btn" href="/avisos/exibir/<?php echo $aviso->id ?>">
+                                    <i class="fa fa-archive text-info" title="Editar aviso"></i>
+                                </a>  |  
+                                <?php echo form_open("avisos/excluir/$aviso->id") ?>                            
+                                    <button class="btn" type="submit">
+                                        <i class="fa fa-trash text-danger" title="Deletar aviso"></i>
+                                    </button>
+                                <?php echo form_close(); ?>
+                            </td>
                         </tr>
                     <?php endforeach; ?>
                 <?php endif; ?>
             </tbody>
 
         </table>
+
+        <div class="card p-5">
+            <div class="card-title text-center">
+                <h3>Lista de ícones</h3>
+            </div>
+            <div class="card-body">
+                <table class="table bg-dark" style="width: 100%;">
+                    <thead>
+                        <tr>
+                            <th class="text-primary text-warning">Ícone</th>
+                            <th class="text-primary text-warning">Código</th>
+                            <th class="text-primary text-warning">HTML</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><i class="fa-solid fa-bullhorn fa-2x text-white"></i></td>
+                            <td><code>fa-solid fa-bullhorn</code></td>
+                            <td><code>&lt;i class="fa-solid fa-bullhorn"&gt;&lt;/i&gt;</code></td>
+                        </tr>
+                        <tr>
+                            <td><i class="fa-solid fa-flag fa-2x text-white"></i></td>
+                            <td><code>fa-solid fa-flag</code></td>
+                            <td><code>&lt;i class="fa-solid fa-flag"&gt;&lt;/i&gt;</code></td>
+                        </tr>
+                        <tr>
+                            <td><i class="fa-solid fa-triangle-exclamation fa-2x text-white"></i></td>
+                            <td><code>fa-solid fa-triangle-exclamation</code></td>
+                            <td><code>&lt;i class="fa-solid fa-triangle-exclamation"&gt;&lt;/i&gt;</code></td>
+                        </tr>
+                        <tr>
+                            <td><i class="fa-solid fa-download fa-2x text-white"></i></td>
+                            <td><code>fa-solid fa-download</code></td>
+                            <td><code>&lt;i class="fa-solid fa-download"&gt;&lt;/i&gt;</code></td>
+                        </tr>
+                        <tr>
+                            <td><i class="fa-solid fa-id-card fa-2x text-white"></i></td>
+                            <td><code>fa-solid fa-id-card</code></td>
+                            <td><code>&lt;i class="fa-solid fa-id-card"&gt;&lt;/i&gt;</code></td>
+                        </tr>
+                        <tr>
+                            <td><i class="fa-solid fa-newspaper fa-2x text-white"></i></i></td>
+                            <td><code>fa-solid fa-newspaper</code></td>
+                            <td><code>&lt;i class="fa-solid fa-newspaper"&gt;&lt;/i&gt;</code></td>
+                        </tr>
+                        <tr>
+                            <td><i class="fa-regular fa-folder-open fa-2x text-white"></i></i></td>
+                            <td><code>fa-regular fa-folder-open</code></td>
+                            <td><code>&lt;i class="fa-regular fa-folder-open"&gt;&lt;/i&gt;</code></td>
+                        </tr>
+                        <tr>
+                            <td><i class="fa-solid fa-up-right-from-square fa-2x text-white"></i></i></td>
+                            <td><code>fa-solid fa-up-right-from-square</code></td>
+                            <td><code>&lt;i class="fa-solid fa-up-right-from-square"&gt;&lt;/i&gt;</code></td>
+                        </tr>
+                        <tr>
+                            <td><i class="fa-brands fa-youtube fa-2x text-white"></i></i></td>
+                            <td><code>fa-brands fa-youtube</code></td>
+                            <td><code>&lt;i class="fa-brands fa-youtube"&gt;&lt;/i&gt;</code></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </div>
 

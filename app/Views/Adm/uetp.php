@@ -97,26 +97,22 @@ echo $this->extend('Layout/adm'); ?>
     <div class="col-md-12 col-lg-9 col-xl-9 col-sm-12 col-12">
         <div class="widget-card widget-bg2">
             <div class="wc-item">
-                <h4 class="wc-title">
-                    Este é o seu espaço!
+                <h4 class="wc-title text-dark">
+                <i class="fa-solid fa-bullhorn"></i> SEUS AVISOS
                 </h4>
-                <span class="wc-des">
-                    ---
-                </span>
-                <span class="wc-stats">
-                    <span class=""></span>
-                </span>
+
                 <div class="progress wc-progress">
                     <div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
-                <span class="wc-progress-bx">
-                    <span class="wc-change">
-                        --
-                    </span>
-                    <span class="wc-number ml-auto">
-                        --
-                    </span>
-                </span>
+                
+                <?php foreach($avisos as $aviso): ?>
+                <span class="wc-des">
+                    <a class="text-white" href="/avisos/detalhes/<?php echo $aviso->id ?>" title="Ver detalhes do aviso">
+                        <i class="<?php echo $aviso->icone ?>"></i> |  <?php echo $aviso->aviso ?>
+                    </a>
+                </span><hr class="text-white">
+                <?php endforeach; ?>
+                
             </div>
         </div>
     </div>

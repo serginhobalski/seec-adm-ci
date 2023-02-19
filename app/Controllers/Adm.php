@@ -11,6 +11,7 @@ class Adm extends BaseController
     private $gruposUsuarios;
     private $cursosCadastrados;
     private $eventoModel;
+    private $avisoModel;
 
 
     public function __construct()
@@ -20,6 +21,7 @@ class Adm extends BaseController
         $this->gruposUsuarios = new \App\Models\GrupoUsuarioModel();
         $this->cursosCadastrados = new \App\Models\CursoModel();
         $this->eventoModel = new \App\Models\EventoModel();
+        $this->avisoModel = new \App\Models\AvisoModel();
     }
 
     public function index()
@@ -64,6 +66,8 @@ class Adm extends BaseController
             return redirect()->back()->with("info", "Você não possui permissão para visualizar esta página.");
         }
 
+        $avisos = $this->avisoModel->select('*')->findAll();
+        
         $eventos = $this->eventoModel->select('*')->findAll();
 
         $relatorio = $this->relatoriosCadastrados->where('nome', usuario_logado()->nome)->countAllResults();
@@ -72,6 +76,7 @@ class Adm extends BaseController
             'titulo' => 'UETP ' . usuario_logado()->nome . '!',
             'relatorio' => $relatorio,
             'eventos' => $eventos,
+            'avisos' => $avisos,
         ];
         return view('Adm/uetp', $data);
     }
