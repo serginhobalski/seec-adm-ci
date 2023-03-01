@@ -323,8 +323,8 @@ class Relatorios extends BaseController
         $validacao = service('validation');
 
         $regras = [
-            'comprovante' => 'uploaded[comprovante]|max_size[comprovante,1024]|ext_in[comprovante,png,jpg,jpeg,gif,pdf]',
-            'relatorio' => 'uploaded[relatorio]|max_size[relatorio,1024]|ext_in[relatorio,png,jpg,jpeg,gif,pdf]',
+            'comprovante' => 'uploaded[comprovante]|ext_in[comprovante,png,jpg,jpeg,gif,pdf]',
+            'relatorio' => 'uploaded[relatorio]|ext_in[relatorio,png,jpg,jpeg,gif,pdf]',
         ];
 
         $mensagens = [   // Errors
